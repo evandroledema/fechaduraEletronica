@@ -1,0 +1,772 @@
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         list    p=16f877a
+                      00002         
+                      00003 ;==============================================
+                      00004 ; Vetor de R E S E T
+                      00005 ;==============================================
+                      00006         org             0x00                    ; vetor de Reset
+                      00007 
+                      00008         
+                      00009     
+0000                  00010 CompararSenha:
+                      00011 ;tranca_eletronica.c,29 ::              char CompararSenha()
+                      00012 ;tranca_eletronica.c,31 ::              char i = 0;
+Error[113]  : Symbol not previously defined (CompararSenha_i_L0)
+0000   0180           00013         CLRF    CompararSenha_i_L0+0
+                      00014 ;tranca_eletronica.c,32 ::              for(i=0; i < 6; i++)
+Error[113]  : Symbol not previously defined (CompararSenha_i_L0)
+0001   0180           00015         CLRF    CompararSenha_i_L0+0
+0002                  00016 L_CompararSenha0:
+0002   3006           00017         MOVLW   6
+Error[113]  : Symbol not previously defined (CompararSenha_i_L0)
+0003   0200           00018         SUBWF      CompararSenha_i_L0+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+0004   1800           00019         BTFSC   RP1_bit, 0
+0005   2???           00020         GOTO       L_CompararSenha1
+                      00021 ;tranca_eletronica.c,34 ::              if(senha[i] != Eeprom_Read(i)) return(0);
+Error[113]  : Symbol not previously defined (CompararSenha_i_L0)
+0006   0800           00022         MOVF       CompararSenha_i_L0+0, 0
+Error[113]  : Symbol not previously defined (_senha)
+0007   0700           00023         ADDWF      _senha+0, 0
+Error[113]  : Symbol not previously defined (FSRPTR)
+0008   0080           00024         MOVWF      FSRPTR
+Error[113]  : Symbol not previously defined (INDF)
+0009   0800           00025         MOVF       INDF, 0
+Error[113]  : Symbol not previously defined (FLOC__CompararSenha)
+000A   0080           00026         MOVWF      FLOC__CompararSenha+0
+Error[113]  : Symbol not previously defined (CompararSenha_i_L0)
+000B   0800           00027         MOVF       CompararSenha_i_L0+0, 0
+Error[113]  : Symbol not previously defined (FARG_EEPROM_Read_Address)
+000C   0080           00028         MOVWF      FARG_EEPROM_Read_Address+0
+Error[113]  : Symbol not previously defined (_EEPROM_Read)
+000D   2000           00029         CALL       _EEPROM_Read+0
+Error[113]  : Symbol not previously defined (FLOC__CompararSenha)
+000E   0800           00030         MOVF       FLOC__CompararSenha+0, 0
+Error[113]  : Symbol not previously defined (R0)
+000F   0600           00031         XORWF      R0+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+0010   1900           00032         BTFSC      RP1_bit, 2
+0011   2???           00033         GOTO       L_CompararSenha3
+Error[113]  : Symbol not previously defined (R0)
+0012   0180           00034         CLRF       R0+0
+0013   2???           00035         GOTO       L_end_CompararSenha
+0014                  00036 L_CompararSenha3:
+                      00037 ;tranca_eletronica.c,32 ::              for(i=0; i < 6; i++)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Error[113]  : Symbol not previously defined (CompararSenha_i_L0)
+0014   0A80           00038         INCF    CompararSenha_i_L0+0, 1
+                      00039 ;tranca_eletronica.c,35 ::              }
+0015   2???           00040         GOTO    L_CompararSenha0
+0016                  00041 L_CompararSenha1:
+                      00042 ;tranca_eletronica.c,37 ::              return (1);
+0016   3001           00043         MOVLW      1
+Error[113]  : Symbol not previously defined (R0)
+0017   0080           00044         MOVWF      R0+0
+                      00045 ;tranca_eletronica.c,38 ::              }
+0018                  00046 L_end_CompararSenha:
+0018   0008           00047         RETURN
+                      00048 ; end of _CompararSenha
+                      00049 
+0019                  00050 _GravarSenhaNaEeprom:
+                      00051 
+                      00052 ;tranca_eletronica.c,40 ::              void GravarSenhaNaEeprom()
+                      00053 ;tranca_eletronica.c,43 ::              for(i=0; i < 6; i++)
+Error[113]  : Symbol not previously defined (GravarSenhaNaEeprom_i_L0)
+0019   0180           00054         CLRF       GravarSenhaNaEeprom_i_L0+0
+001A                  00055 L_GravarSenhaNaEeprom4:
+001A   3006           00056         MOVLW      6
+Error[113]  : Symbol not previously defined (GravarSenhaNaEeprom_i_L0)
+001B   0200           00057         SUBWF      GravarSenhaNaEeprom_i_L0+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+001C   1800           00058         BTFSC      RP1_bit, 0
+001D   2???           00059         GOTO       L_GravarSenhaNaEeprom5
+                      00060 ;tranca_eletronica.c,45 ::              Eeprom_Write(i, senha[i]);
+Error[113]  : Symbol not previously defined (GravarSenhaNaEeprom_i_L0)
+001E   0800           00061         MOVF       GravarSenhaNaEeprom_i_L0+0, 0
+Error[113]  : Symbol not previously defined (FARG_EEPROM_Write_Address)
+001F   0080           00062         MOVWF      FARG_EEPROM_Write_Address+0
+Error[113]  : Symbol not previously defined (GravarSenhaNaEeprom_i_L0)
+0020   0800           00063         MOVF       GravarSenhaNaEeprom_i_L0+0, 0
+Error[113]  : Symbol not previously defined (_senha)
+0021   0700           00064         ADDWF      _senha+0, 0
+Error[113]  : Symbol not previously defined (FSRPTR)
+0022   0080           00065         MOVWF      FSRPTR
+Error[113]  : Symbol not previously defined (INDF)
+0023   0800           00066         MOVF       INDF, 0
+Error[113]  : Symbol not previously defined (FARG_EEPROM_Write_data_)
+0024   0080           00067         MOVWF      FARG_EEPROM_Write_data_+0
+Error[113]  : Symbol not previously defined (_EEPROM_Write)
+0025   2000           00068         CALL       _EEPROM_Write+0
+                      00069 ;tranca_eletronica.c,43 ::              for(i=0; i < 6; i++)
+Error[113]  : Symbol not previously defined (GravarSenhaNaEeprom_i_L0)
+0026   0A80           00070         INCF       GravarSenhaNaEeprom_i_L0+0, 1
+                      00071 ;tranca_eletronica.c,46 ::              }
+0027   2???           00072         GOTO       L_GravarSenhaNaEeprom4
+0028                  00073 L_GravarSenhaNaEeprom5:
+                      00074 ;tranca_eletronica.c,47 ::              }
+0028                  00075 L_end_GravarSenhaNaEeprom:
+0028   0008           00076         RETURN
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00077 ; end of _GravarSenhaNaEeprom
+                      00078 
+0029                  00079 _LimparSenha:
+                      00080 
+                      00081 ;tranca_eletronica.c,49 ::              void LimparSenha()
+                      00082 ;tranca_eletronica.c,52 ::              for(i=0; i < 6; i++)
+Error[113]  : Symbol not previously defined (R1)
+0029   0180           00083         CLRF       R1+0
+002A                  00084 L_LimparSenha7:
+002A   3006           00085         MOVLW      6
+Error[113]  : Symbol not previously defined (R1)
+002B   0200           00086         SUBWF      R1+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+002C   1800           00087         BTFSC      RP1_bit, 0
+002D   2???           00088         GOTO       L_LimparSenha8
+                      00089 ;tranca_eletronica.c,54 ::              senha[i] = '0';
+Error[113]  : Symbol not previously defined (R1)
+002E   0800           00090         MOVF       R1+0, 0
+Error[113]  : Symbol not previously defined (_senha)
+002F   0700           00091         ADDWF      _senha+0, 0
+Error[113]  : Symbol not previously defined (FSRPTR)
+0030   0080           00092         MOVWF      FSRPTR
+0031   3048           00093         MOVLW      48
+Error[113]  : Symbol not previously defined (INDF)
+0032   0080           00094         MOVWF      INDF
+                      00095 ;tranca_eletronica.c,52 ::              for(i=0; i < 6; i++)
+Error[113]  : Symbol not previously defined (R1)
+0033   0A80           00096         INCF       R1+0, 1
+                      00097 ;tranca_eletronica.c,55 ::              }
+0034   2???           00098         GOTO       L_LimparSenha7
+0035                  00099 L_LimparSenha8:
+                      00100 ;tranca_eletronica.c,56 ::              }
+0035                  00101 L_end_LimparSenha:
+0035   0008           00102         RETURN
+                      00103 ; end of _LimparSenha
+                      00104 
+0036                  00105 _main:
+                      00106 
+                      00107 ;tranca_eletronica.c,58 ::              void main()
+                      00108 ;tranca_eletronica.c,61 ::              TRISB=0b10000000;
+Warning[202]: Argument out of range.  Least significant bits used.
+0036   3028           00109         MOVLW      128
+Error[113]  : Symbol not previously defined (TRISB0_bit)
+0037   0080           00110         MOVWF      TRISB0_bit
+                      00111 ;tranca_eletronica.c,62 ::              PORTB=0;
+Error[113]  : Symbol not previously defined (RB0_bit)
+0038   0180           00112         CLRF       RB0_bit
+                      00113 ;tranca_eletronica.c,64 ::              Keypad_Init();
+Error[113]  : Symbol not previously defined (_Keypad_Init)
+0039   2000           00114         CALL       _Keypad_Init+0
+                      00115 ;tranca_eletronica.c,65 ::              Lcd_Init();
+Error[113]  : Symbol not previously defined (_Lcd_Init)
+003A   2000           00116         CALL       _Lcd_Init+0
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00117 ;tranca_eletronica.c,66 ::              Lcd_Cmd(_LCD_CLEAR);
+003B   3001           00118         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Cmd_out_char)
+003C   0080           00119         MOVWF      FARG_Lcd_Cmd_out_char+0
+Error[113]  : Symbol not previously defined (_Lcd_Cmd)
+003D   2000           00120         CALL       _Lcd_Cmd+0
+                      00121 ;tranca_eletronica.c,67 ::              Lcd_Cmd(_LCD_CURSOR_OFF);
+003E   3012           00122         MOVLW      12
+Error[113]  : Symbol not previously defined (FARG_Lcd_Cmd_out_char)
+003F   0080           00123         MOVWF      FARG_Lcd_Cmd_out_char+0
+Error[113]  : Symbol not previously defined (_Lcd_Cmd)
+0040   2000           00124         CALL       _Lcd_Cmd+0
+                      00125 ;tranca_eletronica.c,69 ::              Ptr2 = textos[3];
+Error[113]  : Symbol not previously defined (_textos)
+0041   0803           00126         MOVF       _textos+3, 0
+Error[113]  : Symbol not previously defined (_Ptr2)
+0042   0080           00127         MOVWF      _Ptr2+0
+                      00128 ;tranca_eletronica.c,70 ::              Lcd_Out(1, 1, Ptr2);
+0043   3001           00129         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_row)
+0044   0080           00130         MOVWF      FARG_Lcd_Out_row+0
+0045   3001           00131         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_column)
+0046   0080           00132         MOVWF      FARG_Lcd_Out_column+0
+Error[113]  : Symbol not previously defined (_textos)
+0047   0803           00133         MOVF       _textos+3, 0
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_text)
+0048   0080           00134         MOVWF      FARG_Lcd_Out_text+0
+Error[113]  : Symbol not previously defined (_Lcd_Out)
+0049   2000           00135         CALL       _Lcd_Out+0
+                      00136 ;tranca_eletronica.c,72 ::              while(1)
+004A                  00137 L_main10:
+                      00138 ;tranca_eletronica.c,75 ::              if(tentativas < 3)
+004A   3003           00139         MOVLW      3
+Error[113]  : Symbol not previously defined (_tentativas)
+004B   0200           00140         SUBWF      _tentativas+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+004C   1800           00141         BTFSC      RP1_bit, 0
+004D   2???           00142         GOTO       L_main12
+                      00143 ;tranca_eletronica.c,77 ::              kp = Keypad_Key_Click();
+Error[113]  : Symbol not previously defined (_Keypad_Key_Click)
+004E   2000           00144         CALL       _Keypad_Key_Click+0
+Error[113]  : Symbol not previously defined (R0)
+004F   0800           00145         MOVF       R0+0, 0
+Error[113]  : Symbol not previously defined (_kp)
+0050   0080           00146         MOVWF      _kp+0
+                      00147 ;tranca_eletronica.c,79 ::              if(kp)
+Error[113]  : Symbol not previously defined (R0)
+0051   0800           00148         MOVF       R0+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+0052   1900           00149         BTFSC      RP1_bit, 2
+0053   2???           00150         GOTO       L_main13
+                      00151 ;tranca_eletronica.c,81 ::              if(kp % 4 == 0)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0054   3003           00152         MOVLW      3
+Error[113]  : Symbol not previously defined (_kp)
+0055   0500           00153         ANDWF      _kp+0, 0
+Error[113]  : Symbol not previously defined (R1)
+0056   0080           00154         MOVWF      R1+0
+Error[113]  : Symbol not previously defined (R1)
+0057   0800           00155         MOVF       R1+0, 0
+0058   3A00           00156         XORLW      0
+Error[113]  : Symbol not previously defined (RP1_bit)
+0059   1D00           00157         BTFSS      RP1_bit, 2
+005A   2???           00158         GOTO       L_main14
+                      00159 ;tranca_eletronica.c,84 ::              }
+005B   2???           00160         GOTO       L_main15
+005C                  00161 L_main14:
+                      00162 ;tranca_eletronica.c,85 ::              else if(kp == 13) //Limpar
+Error[113]  : Symbol not previously defined (_kp)
+005C   0800           00163         MOVF       _kp+0, 0
+005D   3A13           00164         XORLW      13
+Error[113]  : Symbol not previously defined (RP1_bit)
+005E   1D00           00165         BTFSS      RP1_bit, 2
+005F   2???           00166         GOTO       L_main16
+                      00167 ;tranca_eletronica.c,87 ::              LimparSenha();
+0060   2???           00168         CALL       _LimparSenha+0
+                      00169 ;tranca_eletronica.c,88 ::              cliques = 0;
+Error[113]  : Symbol not previously defined (_cliques)
+0061   0180           00170         CLRF       _cliques+0
+                      00171 ;tranca_eletronica.c,89 ::              }
+0062   2???           00172         GOTO       L_main17
+0063                  00173 L_main16:
+                      00174 ;tranca_eletronica.c,90 ::              else if(kp == 15) //Enter
+Error[113]  : Symbol not previously defined (_kp)
+0063   0800           00175         MOVF       _kp+0, 0
+0064   3A15           00176         XORLW      15
+Error[113]  : Symbol not previously defined (RP1_bit)
+0065   1D00           00177         BTFSS      RP1_bit, 2
+0066   2???           00178         GOTO       L_main18
+                      00179 ;tranca_eletronica.c,92 ::              cliques = 0;
+Error[113]  : Symbol not previously defined (_cliques)
+0067   0180           00180         CLRF       _cliques+0
+                      00181 ;tranca_eletronica.c,93 ::              if(PORTB.F7 == 1) //Verificar entrada da senha
+Error[113]  : Symbol not previously defined (RB0_bit)
+0068   1F80           00182         BTFSS      RB0_bit, 7
+0069   2???           00183         GOTO       L_main19
+                      00184 ;tranca_eletronica.c,95 ::              if(CompararSenha()) //Sucesso
+Error[113]  : Symbol not previously defined (_CompararSenha)
+006A   2000           00185         CALL       _CompararSenha+0
+Error[113]  : Symbol not previously defined (R0)
+006B   0800           00186         MOVF       R0+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+006C   1900           00187         BTFSC      RP1_bit, 2
+006D   2???           00188         GOTO       L_main20
+                      00189 ;tranca_eletronica.c,97 ::              PORTB.F0 = ~PORTB.F0;
+006E   3001           00190         MOVLW      1
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Error[113]  : Symbol not previously defined (RB0_bit)
+006F   0680           00191         XORWF      RB0_bit, 1
+                      00192 ;tranca_eletronica.c,98 ::              Ptr1 = textos[0];
+Error[113]  : Symbol not previously defined (_textos)
+0070   0800           00193         MOVF       _textos+0, 0
+Error[113]  : Symbol not previously defined (_Ptr1)
+0071   0080           00194         MOVWF      _Ptr1+0
+                      00195 ;tranca_eletronica.c,99 ::              LimparSenha();
+0072   2???           00196         CALL       _LimparSenha+0
+                      00197 ;tranca_eletronica.c,100 ::             }
+0073   2???           00198         GOTO       L_main21
+0074                  00199 L_main20:
+                      00200 ;tranca_eletronica.c,103 ::             tentativas++;
+Error[113]  : Symbol not previously defined (_tentativas)
+0074   0A80           00201         INCF       _tentativas+0, 1
+                      00202 ;tranca_eletronica.c,104 ::             Ptr1 = textos[1];
+Error[113]  : Symbol not previously defined (_textos)
+0075   0801           00203         MOVF       _textos+1, 0
+Error[113]  : Symbol not previously defined (_Ptr1)
+0076   0080           00204         MOVWF      _Ptr1+0
+                      00205 ;tranca_eletronica.c,105 ::             LimparSenha();
+0077   2???           00206         CALL       _LimparSenha+0
+                      00207 ;tranca_eletronica.c,106 ::             }
+0078                  00208 L_main21:
+                      00209 ;tranca_eletronica.c,107 ::             }
+0078   2???           00210         GOTO       L_main22
+0079                  00211 L_main19:
+                      00212 ;tranca_eletronica.c,110 ::             GravarSenhaNaEeprom();
+0079   2???           00213         CALL       _GravarSenhaNaEeprom+0
+                      00214 ;tranca_eletronica.c,111 ::             Ptr1 = textos[2];
+Error[113]  : Symbol not previously defined (_textos)
+007A   0802           00215         MOVF       _textos+2, 0
+Error[113]  : Symbol not previously defined (_Ptr1)
+007B   0080           00216         MOVWF      _Ptr1+0
+                      00217 ;tranca_eletronica.c,112 ::             LimparSenha();
+007C   2???           00218         CALL       _LimparSenha+0
+                      00219 ;tranca_eletronica.c,113 ::             }
+007D                  00220 L_main22:
+                      00221 ;tranca_eletronica.c,115 ::             Lcd_Out(1, 1, Ptr1);
+007D   3001           00222         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_row)
+007E   0080           00223         MOVWF      FARG_Lcd_Out_row+0
+007F   3001           00224         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_column)
+0080   0080           00225         MOVWF      FARG_Lcd_Out_column+0
+Error[113]  : Symbol not previously defined (_Ptr1)
+0081   0800           00226         MOVF       _Ptr1+0, 0
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_text)
+0082   0080           00227         MOVWF      FARG_Lcd_Out_text+0
+Error[113]  : Symbol not previously defined (_Lcd_Out)
+0083   2000           00228         CALL       _Lcd_Out+0
+                      00229 ;tranca_eletronica.c,116 ::             Delay_ms(2000);
+0084   3021           00230         MOVLW      21
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Error[113]  : Symbol not previously defined (R11)
+0085   0080           00231         MOVWF      R11+0
+0086   3075           00232         MOVLW      75
+Error[113]  : Symbol not previously defined (R12)
+0087   0080           00233         MOVWF      R12+0
+Warning[202]: Argument out of range.  Least significant bits used.
+0088   3090           00234         MOVLW      190
+Error[113]  : Symbol not previously defined (R13)
+0089   0080           00235         MOVWF      R13+0
+008A                  00236 L_main23:
+Error[113]  : Symbol not previously defined (R13)
+008A   0B80           00237         DECFSZ     R13+0, 1
+008B   2???           00238         GOTO       L_main23
+Error[113]  : Symbol not previously defined (R12)
+008C   0B80           00239         DECFSZ     R12+0, 1
+008D   2???           00240         GOTO       L_main23
+Error[113]  : Symbol not previously defined (R11)
+008E   0B80           00241         DECFSZ     R11+0, 1
+008F   2???           00242         GOTO       L_main23
+0090   0000           00243         NOP
+                      00244 ;tranca_eletronica.c,117 ::             }
+0091   2???           00245         GOTO       L_main24
+0092                  00246 L_main18:
+                      00247 ;tranca_eletronica.c,120 ::             switch(kp)
+0092   2???           00248         GOTO       L_main25
+                      00249 ;tranca_eletronica.c,122 ::             case 1: kp = 49; break; //1
+0093                  00250 L_main27:
+0093   3049           00251         MOVLW      49
+Error[113]  : Symbol not previously defined (_kp)
+0094   0080           00252         MOVWF      _kp+0
+0095   2???           00253         GOTO       L_main26
+                      00254 ;tranca_eletronica.c,123 ::             case 2: kp = 50; break; //2
+0096                  00255 L_main28:
+0096   3050           00256         MOVLW      50
+Error[113]  : Symbol not previously defined (_kp)
+0097   0080           00257         MOVWF      _kp+0
+0098   2???           00258         GOTO       L_main26
+                      00259 ;tranca_eletronica.c,124 ::             case 3: kp = 51; break; //3
+0099                  00260 L_main29:
+0099   3051           00261         MOVLW      51
+Error[113]  : Symbol not previously defined (_kp)
+009A   0080           00262         MOVWF      _kp+0
+009B   2???           00263         GOTO       L_main26
+                      00264 ;tranca_eletronica.c,125 ::             case 5: kp = 52; break; //4
+009C                  00265 L_main30:
+009C   3052           00266         MOVLW      52
+Error[113]  : Symbol not previously defined (_kp)
+009D   0080           00267         MOVWF      _kp+0
+009E   2???           00268         GOTO       L_main26
+                      00269 ;tranca_eletronica.c,126 ::             case 6: kp = 53; break; //5
+009F                  00270 L_main31:
+009F   3053           00271         MOVLW      53
+Error[113]  : Symbol not previously defined (_kp)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00A0   0080           00272         MOVWF      _kp+0
+00A1   2???           00273         GOTO       L_main26
+                      00274 ;tranca_eletronica.c,127 ::             case 7: kp = 54; break; //6
+00A2                  00275 L_main32:
+00A2   3054           00276         MOVLW      54
+Error[113]  : Symbol not previously defined (_kp)
+00A3   0080           00277         MOVWF      _kp+0
+00A4   2???           00278         GOTO       L_main26
+                      00279 ;tranca_eletronica.c,128 ::             case 9: kp = 55; break; //7
+00A5                  00280 L_main33:
+00A5   3055           00281         MOVLW      55
+Error[113]  : Symbol not previously defined (_kp)
+00A6   0080           00282         MOVWF      _kp+0
+00A7   2???           00283         GOTO       L_main26
+                      00284 ;tranca_eletronica.c,129 ::             case 10: kp = 56; break;//8
+00A8                  00285 L_main34:
+00A8   3056           00286         MOVLW      56
+Error[113]  : Symbol not previously defined (_kp)
+00A9   0080           00287         MOVWF      _kp+0
+00AA   2???           00288         GOTO       L_main26
+                      00289 ;tranca_eletronica.c,130 ::             case 11: kp = 57; break;//9
+00AB                  00290 L_main35:
+00AB   3057           00291         MOVLW      57
+Error[113]  : Symbol not previously defined (_kp)
+00AC   0080           00292         MOVWF      _kp+0
+00AD   2???           00293         GOTO       L_main26
+                      00294 ;tranca_eletronica.c,131 ::             case 14: kp = 48; break;//0
+00AE                  00295 L_main36:
+00AE   3048           00296         MOVLW      48
+Error[113]  : Symbol not previously defined (_kp)
+00AF   0080           00297         MOVWF      _kp+0
+00B0   2???           00298         GOTO       L_main26
+                      00299 ;tranca_eletronica.c,132 ::             }
+00B1                  00300 L_main25:
+Error[113]  : Symbol not previously defined (_kp)
+00B1   0800           00301         MOVF       _kp+0, 0
+00B2   3A01           00302         XORLW      1
+Error[113]  : Symbol not previously defined (RP1_bit)
+00B3   1900           00303         BTFSC      RP1_bit, 2
+00B4   2???           00304         GOTO       L_main27
+Error[113]  : Symbol not previously defined (_kp)
+00B5   0800           00305         MOVF       _kp+0, 0
+00B6   3A02           00306         XORLW      2
+Error[113]  : Symbol not previously defined (RP1_bit)
+00B7   1900           00307         BTFSC      RP1_bit, 2
+00B8   2???           00308         GOTO       L_main28
+Error[113]  : Symbol not previously defined (_kp)
+00B9   0800           00309         MOVF       _kp+0, 0
+00BA   3A03           00310         XORLW      3
+Error[113]  : Symbol not previously defined (RP1_bit)
+00BB   1900           00311         BTFSC      RP1_bit, 2
+00BC   2???           00312         GOTO       L_main29
+Error[113]  : Symbol not previously defined (_kp)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00BD   0800           00313         MOVF       _kp+0, 0
+00BE   3A05           00314         XORLW      5
+Error[113]  : Symbol not previously defined (RP1_bit)
+00BF   1900           00315         BTFSC      RP1_bit, 2
+00C0   2???           00316         GOTO       L_main30
+Error[113]  : Symbol not previously defined (_kp)
+00C1   0800           00317         MOVF       _kp+0, 0
+00C2   3A06           00318         XORLW      6
+Error[113]  : Symbol not previously defined (RP1_bit)
+00C3   1900           00319         BTFSC      RP1_bit, 2
+00C4   2???           00320         GOTO       L_main31
+Error[113]  : Symbol not previously defined (_kp)
+00C5   0800           00321         MOVF       _kp+0, 0
+00C6   3A07           00322         XORLW      7
+Error[113]  : Symbol not previously defined (RP1_bit)
+00C7   1900           00323         BTFSC      RP1_bit, 2
+00C8   2???           00324         GOTO       L_main32
+Error[113]  : Symbol not previously defined (_kp)
+00C9   0800           00325         MOVF       _kp+0, 0
+00CA   3A09           00326         XORLW      9
+Error[113]  : Symbol not previously defined (RP1_bit)
+00CB   1900           00327         BTFSC      RP1_bit, 2
+00CC   2???           00328         GOTO       L_main33
+Error[113]  : Symbol not previously defined (_kp)
+00CD   0800           00329         MOVF       _kp+0, 0
+00CE   3A10           00330         XORLW      10
+Error[113]  : Symbol not previously defined (RP1_bit)
+00CF   1900           00331         BTFSC      RP1_bit, 2
+00D0   2???           00332         GOTO       L_main34
+Error[113]  : Symbol not previously defined (_kp)
+00D1   0800           00333         MOVF       _kp+0, 0
+00D2   3A11           00334         XORLW      11
+Error[113]  : Symbol not previously defined (RP1_bit)
+00D3   1900           00335         BTFSC      RP1_bit, 2
+00D4   2???           00336         GOTO       L_main35
+Error[113]  : Symbol not previously defined (_kp)
+00D5   0800           00337         MOVF       _kp+0, 0
+00D6   3A14           00338         XORLW      14
+Error[113]  : Symbol not previously defined (RP1_bit)
+00D7   1900           00339         BTFSC      RP1_bit, 2
+00D8   2???           00340         GOTO       L_main36
+00D9                  00341 L_main26:
+                      00342 ;tranca_eletronica.c,134 ::             if(cliques < 6)
+00D9   3006           00343         MOVLW      6
+Error[113]  : Symbol not previously defined (_cliques)
+00DA   0200           00344         SUBWF      _cliques+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+00DB   1800           00345         BTFSC      RP1_bit, 0
+00DC   2???           00346         GOTO       L_main37
+                      00347 ;tranca_eletronica.c,136 ::             for(i=0; i < 5; i++)
+Error[113]  : Symbol not previously defined (main_i_L0)
+00DD   0180           00348         CLRF       main_i_L0+0
+00DE                  00349 L_main38:
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00DE   3005           00350         MOVLW      5
+Error[113]  : Symbol not previously defined (main_i_L0)
+00DF   0200           00351         SUBWF      main_i_L0+0, 0
+Error[113]  : Symbol not previously defined (RP1_bit)
+00E0   1800           00352         BTFSC      RP1_bit, 0
+00E1   2???           00353         GOTO       L_main39
+                      00354 ;tranca_eletronica.c,137 ::             senha[i] = senha[i+1];
+Error[113]  : Symbol not previously defined (main_i_L0)
+00E2   0800           00355         MOVF       main_i_L0+0, 0
+Error[113]  : Symbol not previously defined (_senha)
+00E3   0700           00356         ADDWF      _senha+0, 0
+Error[113]  : Symbol not previously defined (R2)
+00E4   0080           00357         MOVWF      R2+0
+Error[113]  : Symbol not previously defined (main_i_L0)
+00E5   0800           00358         MOVF       main_i_L0+0, 0
+00E6   3E01           00359         ADDLW      1
+Error[113]  : Symbol not previously defined (R0)
+00E7   0080           00360         MOVWF      R0+0
+Error[113]  : Symbol not previously defined (R0)
+00E8   0181           00361         CLRF       R0+1
+Error[113]  : Symbol not previously defined (RP1_bit)
+00E9   1800           00362         BTFSC      RP1_bit, 0
+Error[113]  : Symbol not previously defined (R0)
+00EA   0A81           00363         INCF       R0+1, 1
+Error[113]  : Symbol not previously defined (R0)
+00EB   0800           00364         MOVF       R0+0, 0
+Error[113]  : Symbol not previously defined (_senha)
+00EC   0700           00365         ADDWF      _senha+0, 0
+Error[113]  : Symbol not previously defined (FSRPTR)
+00ED   0080           00366         MOVWF      FSRPTR
+Error[113]  : Symbol not previously defined (INDF)
+00EE   0800           00367         MOVF       INDF, 0
+Error[113]  : Symbol not previously defined (R0)
+00EF   0080           00368         MOVWF      R0+0
+Error[113]  : Symbol not previously defined (R2)
+00F0   0800           00369         MOVF       R2+0, 0
+Error[113]  : Symbol not previously defined (FSRPTR)
+00F1   0080           00370         MOVWF      FSRPTR
+Error[113]  : Symbol not previously defined (R0)
+00F2   0800           00371         MOVF       R0+0, 0
+Error[113]  : Symbol not previously defined (INDF)
+00F3   0080           00372         MOVWF      INDF
+                      00373 ;tranca_eletronica.c,136 ::             for(i=0; i < 5; i++)
+Error[113]  : Symbol not previously defined (main_i_L0)
+00F4   0A80           00374         INCF       main_i_L0+0, 1
+                      00375 ;tranca_eletronica.c,137 ::             senha[i] = senha[i+1];
+00F5   2???           00376         GOTO       L_main38
+00F6                  00377 L_main39:
+                      00378 ;tranca_eletronica.c,138 ::             senha[5] = kp;
+00F6   3005           00379         MOVLW      5
+Error[113]  : Symbol not previously defined (_senha)
+00F7   0700           00380         ADDWF      _senha+0, 0
+Error[113]  : Symbol not previously defined (FSRPTR)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00F8   0080           00381         MOVWF      FSRPTR
+Error[113]  : Symbol not previously defined (_kp)
+00F9   0800           00382         MOVF       _kp+0, 0
+Error[113]  : Symbol not previously defined (INDF)
+00FA   0080           00383         MOVWF      INDF
+                      00384 ;tranca_eletronica.c,139 ::             }
+00FB                  00385 L_main37:
+                      00386 ;tranca_eletronica.c,141 ::             }
+00FB                  00387 L_main24:
+00FB                  00388 L_main17:
+00FB                  00389 L_main15:
+                      00390 ;tranca_eletronica.c,142 ::             }
+00FB   2???           00391         GOTO       L_main41
+00FC                  00392 L_main13:
+                      00393 ;tranca_eletronica.c,145 ::             if(PORTB.F7) Ptr2 = textos[3];
+Error[113]  : Symbol not previously defined (RB0_bit)
+00FC   1F80           00394         BTFSS      RB0_bit, 7
+00FD   2???           00395         GOTO       L_main42
+Error[113]  : Symbol not previously defined (_textos)
+00FE   0803           00396         MOVF       _textos+3, 0
+Error[113]  : Symbol not previously defined (_Ptr2)
+00FF   0080           00397         MOVWF      _Ptr2+0
+0100   2???           00398         GOTO       L_main43
+0101                  00399 L_main42:
+                      00400 ;tranca_eletronica.c,146 ::             else Ptr2 = textos[4];
+Error[113]  : Symbol not previously defined (_textos)
+0101   0804           00401         MOVF       _textos+4, 0
+Error[113]  : Symbol not previously defined (_Ptr2)
+0102   0080           00402         MOVWF      _Ptr2+0
+0103                  00403 L_main43:
+                      00404 ;tranca_eletronica.c,147 ::             }
+0103                  00405 L_main41:
+                      00406 ;tranca_eletronica.c,148 ::             }
+0103   2???           00407         GOTO       L_main44
+0104                  00408 L_main12:
+                      00409 ;tranca_eletronica.c,151 ::             Ptr2 = textos[5];
+Error[113]  : Symbol not previously defined (_textos)
+0104   0805           00410         MOVF       _textos+5, 0
+Error[113]  : Symbol not previously defined (_Ptr2)
+0105   0080           00411         MOVWF      _Ptr2+0
+                      00412 ;tranca_eletronica.c,152 ::             PORTB.F1 = 1;
+Error[113]  : Symbol not previously defined (RB0_bit)
+0106   1480           00413         BSF        RB0_bit, 1
+                      00414 ;tranca_eletronica.c,153 ::             }
+0107                  00415 L_main44:
+                      00416 ;tranca_eletronica.c,155 ::             Lcd_Out(1,1, Ptr2);
+0107   3001           00417         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_row)
+0108   0080           00418         MOVWF      FARG_Lcd_Out_row+0
+0109   3001           00419         MOVLW      1
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_column)
+010A   0080           00420         MOVWF      FARG_Lcd_Out_column+0
+Error[113]  : Symbol not previously defined (_Ptr2)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+010B   0800           00421         MOVF       _Ptr2+0, 0
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_text)
+010C   0080           00422         MOVWF      FARG_Lcd_Out_text+0
+Error[113]  : Symbol not previously defined (_Lcd_Out)
+010D   2000           00423         CALL       _Lcd_Out+0
+                      00424 ;tranca_eletronica.c,156 ::             Lcd_Out(2,8, senha);
+010E   3002           00425         MOVLW      2
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_row)
+010F   0080           00426         MOVWF      FARG_Lcd_Out_row+0
+0110   3008           00427         MOVLW      8
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_column)
+0111   0080           00428         MOVWF      FARG_Lcd_Out_column+0
+Error[113]  : Symbol not previously defined (_senha)
+0112   0800           00429         MOVF       _senha+0, 0
+Error[113]  : Symbol not previously defined (FARG_Lcd_Out_text)
+0113   0080           00430         MOVWF      FARG_Lcd_Out_text+0
+Error[113]  : Symbol not previously defined (_Lcd_Out)
+0114   2000           00431         CALL       _Lcd_Out+0
+                      00432 ;tranca_eletronica.c,158 ::             Delay_ms(100);
+0115   3002           00433         MOVLW      2
+Error[113]  : Symbol not previously defined (R11)
+0116   0080           00434         MOVWF      R11+0
+0117   3004           00435         MOVLW      4
+Error[113]  : Symbol not previously defined (R12)
+0118   0080           00436         MOVWF      R12+0
+Warning[202]: Argument out of range.  Least significant bits used.
+0119   3086           00437         MOVLW      186
+Error[113]  : Symbol not previously defined (R13)
+011A   0080           00438         MOVWF      R13+0
+011B                  00439 L_main45:
+Error[113]  : Symbol not previously defined (R13)
+011B   0B80           00440         DECFSZ     R13+0, 1
+011C   2???           00441         GOTO       L_main45
+Error[113]  : Symbol not previously defined (R12)
+011D   0B80           00442         DECFSZ     R12+0, 1
+011E   2???           00443         GOTO       L_main45
+Error[113]  : Symbol not previously defined (R11)
+011F   0B80           00444         DECFSZ     R11+0, 1
+0120   2???           00445         GOTO       L_main45
+0121   0000           00446         NOP
+                      00447 ;tranca_eletronica.c,160 ::             }
+0122   2???           00448         GOTO       L_main10
+                      00449 ;tranca_eletronica.c,161 ::             }
+0123                  00450 L_end_main:
+0123   2???           00451         GOTO       $+0
+                      00452 ; end of _main
+Error[129]  : Expected (END)
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CompararSenha                     00000000
+L_CompararSenha0                  00000002
+L_CompararSenha1                  00000016
+L_CompararSenha3                  00000014
+L_GravarSenhaNaEeprom4            0000001A
+L_GravarSenhaNaEeprom5            00000028
+L_LimparSenha7                    0000002A
+L_LimparSenha8                    00000035
+L_end_CompararSenha               00000018
+L_end_GravarSenhaNaEeprom         00000028
+L_end_LimparSenha                 00000035
+L_end_main                        00000123
+L_main10                          0000004A
+L_main12                          00000104
+L_main13                          000000FC
+L_main14                          0000005C
+L_main15                          000000FB
+L_main16                          00000063
+L_main17                          000000FB
+L_main18                          00000092
+L_main19                          00000079
+L_main20                          00000074
+L_main21                          00000078
+L_main22                          0000007D
+L_main23                          0000008A
+L_main24                          000000FB
+L_main25                          000000B1
+L_main26                          000000D9
+L_main27                          00000093
+L_main28                          00000096
+L_main29                          00000099
+L_main30                          0000009C
+L_main31                          0000009F
+L_main32                          000000A2
+L_main33                          000000A5
+L_main34                          000000A8
+L_main35                          000000AB
+L_main36                          000000AE
+L_main37                          000000FB
+L_main38                          000000DE
+L_main39                          000000F6
+L_main41                          00000103
+L_main42                          00000101
+L_main43                          00000103
+L_main44                          00000107
+L_main45                          0000011B
+_.org_0_0123                      00000123
+_GravarSenhaNaEeprom              00000019
+_LimparSenha                      00000029
+__16F877A                         00000001
+__DEBUG                           
+_main                             00000036
+
+MPASM 5.87              TRANCAELETRONICA.ASM   8-4-2021  22:44:49         PAGE 14
+
+
+
+
+
+Errors   :   175
+Warnings :     3 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
