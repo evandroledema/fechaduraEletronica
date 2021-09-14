@@ -1,0 +1,249 @@
+In this video, we will use the basic concept you learned from previous
+videos and bring it all together to enable an understanding of
+the phenomenas for photovoltaic energy
+conversion that needs to be balanced to create
+an efficient solar cell. The learnings from this video
+will also enable you to understand the advantage
+of advanced solar cells. In this video, we will start by looking at the overall process in a solar cell and
+afterward go through the individual processes
+in greater detail, and at the end, we will sum up. In this slide, a typical
+industrial solar cell is shown. The solar cell is made of a p-doped wafer with the
+top part being n-doped, the n-region is heavily doped Whereas the p-region is
+more moderately doped. The top surface is called the emitter since it emits electrons. N-type cells with P-doped top
+layer can also be made. However, p-type have until
+now been dominantly, mostly due to historical reasons. The first step in Photovoltaic
+Energy Conversion is that the light is entering
+the solar sun surface. At the surface, a
+smaller fraction of the light is reflected and the rest is refracted or
+passed into the solar cell. When light passes
+through the solar cell, most of the light is absorbed. Longer wavelengths are generally penetrating deeper
+into the sample, and a minor fraction of
+the longer wavelengths is transmitted through
+the solar cell.  When a photon is absorbed
+and electron-hole pair is created. If the electron-hole pair is created in the n-region. The hole is a so-called
+minority carrier and needs to diffuse to the space charge region where it separates and become
+a majority carrier. Similarly, if the
+electron-hole pair is created in the
+p-type material, the electron needs to diffuse to the space charge region to
+become a majority carrier. When the charge carriers
+are minority carriers, the chance of recombination
+is rather high. When the charge carriers are separated in the
+space charge region, they'll move to the
+contacts and further to the interconnection wires that will bring the current to a load. Let's take a deeper
+look into reflection. Until now, we have only
+considered light as photons, which are particles that
+are quantized in energy. But light can also be
+described as a light wave with an oscillating electric
+and magnetic field in a perpendicular directions. The wave is characterized by the wavelength and the frequency. The product of these two
+is the speed of light, which is 300,000 kilometers
+per second in a vacuum. When light enters a medium, the speed of light is decreased
+with a factor of n, which is known as the refractive
+index of the material. The refractive index is
+wavelength-dependent in general and for silicon
+69
+00:02:41,470 --> 00:02:43,795
+the solar average
+value is around 4, whereas it is one for air
+and around 1.45 for glass. As a result, the light
+is refracted and changes slightly direction according to Snell's Law in the material. At normal incidence, meaning that the light entering
+perpendicular to the surface, the reflection and
+transmittance for a single optically
+thick layer can be determined from the
+stated equation. It can be seen that the
+reflection is minimized if the differences in refractive
+indices are reduced. For other angles, the full Fresnel equations can be used for flat surfaces, and these dramatically
+increase the complexity. To reduce surface reflections, the ultimate solution is to have a gradually increasing
+refractive index. But if only one layer can be used as an
+anti-reflective coating, the optimum refractive
+index is the square root of the product of the interfacing
+refractive indices. Texturing the surface also
+reduces the reflection. Since a lot of the
+reflected light can be recaptured and therefore, most solar cells have
+textured surfaces. The stated reflection
+and transmission coefficients are valid for
+so-called seek optical layers, Where the thickness
+of the layer is much greater than the
+wavelength of the light. If the thickness of the
+layer is similar to the wavelengths interference occurs. Recall that Light is electric
+and magnetic fields oscillating
+in space and time. The total field is sum of
+the fields of multiple waves. Therefore, if two waves are
+180 degrees out of phase, then reflection can vanish. This phase lag can
+for one wavelength be created making the
+wave a a reflection point travel half a wavelength longer than the wave
+reflected at the top surface. Therefore, the
+optimum thickness of an anti-reflective coating is an uneven number of quarter wavelengths in
+the relevant medium. However, this optimization, and it's only valid for
+one wavelength, and since sunlight consists
+of multiple wavelengths, the center wavelengths
+from sunlight are used. When light enters the material, it is absorbed in a
+depth in the material, and then an electron-hole pair is generated as shown
+in the animation. The light intensity in the material follows
+an exponential decay. This decay is called
+Lambert-Beer's law, and alpha in the equation is
+called the absorption coefficient and is strongly wavelength and
+material dependent. For the case of silicon, the absorption
+coefficient is high for short wavelengths and low
+for longer wavelengths, close to but above the band gap. In the figure to the left, 99 percent absorption depth for silicon is plotted as a
+function of wavelength. As you can see, wavelengths below 400 nanometers is absorbed
+within the first micron. However, 200 microns
+is required for the near-infrared wavelengths
+at 850 nanometers. For even longer wavelengths, some of the light is
+actually transmitted, and thus means for
+preventing this, light escape is done. For semiconductors and for photons with higher
+energies and the band gap, absorption of a photon results in generation of an
+electron-hole pair. In the plot to the right, the generation rate is
+shown as a function of depth into the substrate
+based on a simulation. On the right axis, you can see the percentage
+of incoming photons absorbed normalized to the absorption at a thickness of 200 microns. The absorption depths, together with
+technological limitations, set the thickness
+for solar cells. Textured surfaces can enable
+that the light enters the solar cell at an angle and thereby increasing the
+optical path length, and this path length enhancement can reduce the thickness
+of the solar cell. When electron-hole
+pairs are generated, the minority carrier needs to diffuse to the space
+charge region to become a majority carrier before the minority
+carrier recombine. Recall from the previous
+video that there's no electric field outside
+the space charge region, and therefore, there's
+almost no force driving the minority carrier
+to the space charge region. If the electron-hole pair is
+generated in the n-region, the hole is the minority carrier and the electron is
+the majority carrier, and vice versa for the p-region. The further away from the space charge region the electron-hole
+pair is generated, the smaller the probability for the electron-hole pair to be collected and contribute
+to the photocurrent. Let's take a close
+look at some examples. If the electron-hole
+pair is generated at the very top surface
+of the solar cell, there might be a very
+high density of dangling bonds acting as
+recombination traps, therefore the electron-hole
+pair will likely recombine before it's
+collected at the contacts. If the electron-hole pair is generated in the
+space charge region, there's an immediate
+electric field to separate the charges, and these pairs
+will be collected. If the electron-hole
+pair is generated somewhere in either
+the p or n-region, but within the diffusion length
+to the space charge region, of the minority carrier, in this
+example of the electron, will need to diffuse to the space charge
+region and there is a high probability that the electron-hole pair
+will be collected. If the electron-hole pair
+is generated at a distance outside the diffusion length from the space charge region, the collection probability is low and the chance of
+recombination is high. The figure summarizes
+the concept that generation of electron-hole
+pairs is highest closest to the surface and the collection
+probability is high at the space charge
+region and decreases exponentially with
+increasing distance from the space charge region. As we learned in the
+previous lecture, the diffusion length decreases with increasing doping density, and thus the diffusion
+length compared to the optical absorption depth is decisive for the
+doping density, still keeping in mind that high doping gives high voltage. The interface between
+the metal and the semiconductor is a
+significant recombination site. This is a result of metals
+having a large density of allowed electronic states within the band gap of
+the semiconductor. These interfaces are
+not carrier-selective, but a number of tricks can be done to keep either
+the electron or hole away from the metal and
+thus minimize recombination. One of the tricks
+involves reducing the overall contact area between the metal and
+the semiconductor, thereby lowering the area
+in which this type of recombination takes place to small local points
+in the solar cell. Another trick involves
+high doping of the semiconductor in
+the interface region. Now the region between the
+highly-doped and low-doped semiconductor acts just
+like a p-n junction, where an electrical
+field forms and drives the minority carriers away
+from the metal contact. This is also known as
+the back surface field. So far, we have, in great detail, looked at the electron-hole pair generation and the transport of charge carriers in the vertical direction
+of the solar cell. We also need to look at how the current is collected
+in the contact grid. In most industrial
+silicon solar cells, there is a front contact
+grid consisting of so-called busbars and fingers that is collecting the current. This grid is made of highly
+conductive material, usually, a fired silver paste. This silver paste is blocking further light absorption where
+it covers the solar cell. As charge carriers are created, they will once have to
+become majority carriers, be transported to the fingers, and then via the
+fingers to the busbars, where the current will be
+collected to the leads. The front grid needs to be
+optimized in order to balance the resistive losses
+and the loss of photocurrent due to shading
+from the front grid. The more front cross-section, the lower the resistance, but the more shading. In the lateral directions, the current densities increases linearly with the distances, and therefore the losses
+introduces cubed and squared geometry parameters as stated for the emitter and busbar loss. In the given example
+shown in the graph, the number of busbars and the width loss of fingers
+was kept constant. As you can see, there is
+an optimal finger spacing, in this case, close
+to one millimeter. The minimum width and the height of the silver fingers
+is determined by process limitation of the typically applied
+screen printing process, and as well the rheology
+of the silver paste. Aside from front surface, resistive losses in the
+base are also present, and there's a small
+interface resistance between the semiconductor
+and the metal. However, both of these
+are minor contributions. Let's try to condense the semiconductor and
+solar cell knowledge we have learned so far. In order to achieve the
+most efficient solar cell, the overall objective is to maximize the voltage
+and the current at the operating point where
+the most power is extracted. For the voltage and current
+optimization, first of all, the band gap of the semiconductor
+material is decisive. For single junction cells, the Shockley-Queisser
+limit shows that the optimal band gap is
+around 1.4 electron volts. Once a semiconductor
+material is chosen, high doping for a p-n
+junction solar cell makes the maximum obtainable
+voltage approach the potential difference
+corresponding to the band gap of
+the semiconductor, or in short, the bandgap voltage. On the other hand, doping reduces the lifetime
+and the mobility, which reduces the
+diffusion lengths. The device thickness
+can also be altered, and increasing the thickness increases the light absorption onto the point where almost
+all the light is absorbed. However, a thick device requires longer
+diffusion lengths, and limits the doping
+and thereby the voltage. The front surface of a
+solar cell can be textured, and thereby the
+reflection is reduced, which increases the current. In extreme cases, the surface
+area becomes so large, that good surface
+passivation is difficult, and surface recombination
+reduces the current. The surface texturing also
+enhances the optical paths. Increasing the optical
+path length reduces the required minority
+carrier diffusion lengths and enables higher doping, and there by an
+increased voltage. The material needs to be pure since certain
+impurities like carbon and iron creates Shockley read hall traps in the middle
+of the band gap. These impurities
+increase recombination and therefore
+decrease the current. It also decreases
+the voltage since the diffusion length has to be maintained with the
+help of lower doping. For Shockley-Read-Hall
+recombination to be insignificant defect
+density is of less than 10 to the 12 per
+cubic centimeter is needed, corresponding to 11
+n-grade semiconductor. The last parameter to consider here is the current
+collection grid, where an increased area reduces the current
+due to shading but increases the voltage
+slightly since the resistive voltage drop of the front grid is decreased. However, as we will see later, the voltage of the solar cell is also dependent on the current. Let's summarize this figure. Light enters the solar cell
+at the front surface and a fraction is reflected and most is transmitted
+into the sample. The surface reflection
+can be reduced with anti-reflective
+coatings and surface texturing giving
+reflected light a second, and maybe even a third chance. The light that enters
+the material is absorbed according
+to Lambert-Beer law, where the light intensity in the material is following
+an exponential decay. The absorption
+coefficient is strongly wavelength dependent,
+and for silicon, the red and near
+infrared wavelengths is generally penetrating hundreds
+of microns into the sample, and for certain solar cells even escapes on the rare side. Absorption results
+in the creation of an electron-hole pair, and then minority carrier of this pair needs to diffuse to the space charge
+region and become a majority carrier
+before it recombines. The further away from the space charge region the electron-hole
+pairs is created, the smaller the chance of
+the electron-hole pair to be collected and contribute
+to the photocurrent is. Good solar cell Engineering makes the electron-hole pairs to
+be created at a distance less than one diffusion length of minority carriers from
+the space charge region. The carriers are subsequently collected at the
+contact grid where trade-offs between covered area and resistance of the
+front grid is made. Finally, a table
+displaying the effects on the parameters having voltage
+and current was displayed. With these concluding remarks, we have now gone through
+the fundamentals of semiconductors and sketch how the
+semiconductor technology can be used to make a solar cell.

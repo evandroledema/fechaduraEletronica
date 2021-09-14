@@ -1,0 +1,227 @@
+Welcome to this short video about doping of semiconductors
+and the PN junction. So far, you have got a fairly in-depth explanation of the intrinsic
+semiconductors and how photon can generate
+electron-hole pairs via the band structure in
+the semiconductor material. You have also learned how electrons and holes
+can recombine via four mechanisms and how current can run in the semiconductor via
+diffusion and drift. In this video, you will learn the fundamental concepts
+of charge separation, where electron and holes can be extracted from the solar cell. This is done through
+the PN junction. In the following video, we will use the basic
+concepts to go further into details on balancing the
+concepts to maximize efficiency. The content of this
+video is doping of semiconductors and
+the PN junction. By adding the right
+impurity atoms into the semiconductor
+crystal lattice, the conductivity and
+the Fermi levels can be manipulated by either adding more electrons called n-doping or more holes
+called p-doping. This manipulation can be used to create a p-n junction diode, which is one of the simplest
+semiconductor devices, even though not really simple, used for solar cells and
+integrated circuits. The p-n junction creates an internal electrical field which can be used for
+charge separation. The overall concept of
+the ideal solar cell is illustrated in the figure where the electron hole pairs are generated in the
+absorber material and the electrons are extracted via an electron selective layer and
+similar for the holes. n-doping is the result of adding more electrons in
+the conduction band of the semiconductor, it can be done replacing and very little fraction
+of silicon atoms with group five elements which have five
+valence electrons. The band structure
+will remain the same, but each group five element
+add an additional electron, which will be in the conduction
+band at room temperature, and these electrons will
+be free charge carriers. We call these atoms donor items since they
+donate an electron. The number of free electrons
+in the conduction band corresponds to the number of donor atoms for
+group five elements. The most commonly
+used donor atoms are phosphorus, arsenic,
+and antimony. For solar cells,
+phosphorus doping is used for n-type doping in
+industrial solar cells. Since the donor atoms populates the conduction band
+with more electrons, the Fermi level is displaced
+towards the conduction band, which is illustrated
+in the figure. The change and Fermi
+level is a key to make successful charge separation and solar cells using p-n junctions. p-doping is the result of adding more holes in the valence
+band of a semiconductor. Replacing a very little
+fraction of silicon atoms with group three elements which
+have three valence electrons, the band structure
+will remain the same, but each group three element
+adds an additional hole, which would be in the valence
+band at room temperature. These holes will be
+free charge carriers. We call these atoms
+acceptor atoms since they accept or
+rather absorb an electron. The number of free holes in the conduction band corresponds to the number of acceptor atoms
+for group three elements. The most commonly used
+acceptor atoms is boron, aluminum, gallium, and indium. For solar cells,
+boron is used for the p-type doping of
+industrial solar cells. Since the acceptor atoms populate the valence
+band with more holes, the Fermi level is displaced
+towards the valence band, which is illustrated
+in the figure. The change in Fermi
+level is a key to make successful charge
+separation in solar cells. Doping is measured in
+doping concentration, which is the number of doping
+atoms per cubic centimeter. N-type concentrations
+are denoted N_D, for donors, or N_e,
+for electrons. Similar p-type doping
+is denoted N_A, for acceptors, or N_h, for holes. Sometimes doping
+concentrations are also called doping densities. For the dopings to be active, the doping atoms needs to be placed
+in the crystal lattice. When they are placed in
+the crystal lattice, the electrons
+contribute to filling the band and the atoms
+are fully ionized. Full ionization is assumed, and in general, this
+is a good assumption. Doping concentration range is
+typically from 10^12-10^19, per cubic centimeter,
+which should be compared to pure silicon, which have 5 times 10^22
+atoms per cubic centimeter, and therefore, the
+impurity concentration is much below 0.1 percent. The upper limit for doping is called the solid solubility. If the doping is increased beyond the solid solubility
+of the semiconductor, the material goes from being a heavily doped
+semiconductor to an alloy, being a mixture of
+the dopant material and the host material. This material have different
+material properties. The solid solubility is
+dependent on the dopant. For silicon, most
+commonly used dopants, have solid solubilities
+in silicon of around 10^20
+per cubic centimeter. Doping also decreases the resistivity of
+the semiconductor. The higher doping concentration,
+the lower resistivity. Recall from the previous
+video that the conductivity, which is the inverse
+of the resistivity, is proportional to
+the product of the charge carrier concentration and the mobility. In the equation here, only the majority
+carriers contribute since its concentration are
+several orders of magnitude higher than
+the minority carriers. Doping around the solid
+solubility gives you a typical resistivity of around 10 to the minus four
+ohms centimeter, still two orders of magnitude higher than the one of copper. So a doped piece of
+silicon is still a bad conductor at room
+temperature compared to copper, but the conductivity is as for all other semiconductor
+properties, strongly temperature dependent. As the last part of the doping, we need to review the
+charge carrier statistics. The changes in the Fermi level can be calculated as the thermal
+energy multiplied by the natural logarithm to the
+ratio between the density of states at the conduction or valence band and the
+doping concentration. The number of free
+electrons and holes follows the Boltzmann statistics using
+the relevant Fermi levels. The Boltzmann statistics is a simplification of the
+Fermi-Dirac statistics, valid when the energy difference
+is much larger than kT. The distance from the
+conduction or valence band to the Fermi level is plotted on the graph as a black solid line. The higher p- or n-doping, the closer the Fermi level is to the valence or conduction
+band respectively. For the intrinsic semiconductors, the number of electrons and
+holes was always equal. However, for doped
+semiconductors in equilibrium, this is no longer the case. Instead, the product of
+free electrons and holes is always equal to the intrinsic carrier
+concentration squared. As you saw in the
+previous lecture, there were three types of bulk
+recombination mechanisms. A silicon with an
+indirect band gap or Auger recombination as limiting the lifetime of
+minority carriers. Auger recombination is a
+free particle process, where the recombination energy is transferred to a third
+electron or hole. From the previous video, the rates of the recombination
+processes were presented. The Auger recombination
+lifetime is inversely proportional to the square
+of the free charge carriers, and it is therefore decreasing with increasing
+doping concentration. Therefore, also the
+diffusion length is inversely proportional to
+the doping concentration, and thus, greatly
+reduced at high doping. Since the Auger rate constant is almost the same for
+holes and electrons, these figures are valid for both. The diffusion length is
+plotted as a function of doping concentration using the low n-type dopant
+diffusion constant in blue, and using the high
+doping diffusion constant for holes
+as the red line. In real life, the
+diffusion lengths are between these two lines. At low doping level, the electron diffusion length
+is closer to the blue, and at high doping levels, the hole diffusion lengths
+is closer to the red. We will, in the next video, see the diffusion length sets an important upper limit for
+the doping concentration. Now, we have looked
+in greater details of the properties of both p
+and n-doped semiconductors, and have seen that by
+doping semiconductors, especially the Fermi
+level, can be manipulated. Now, it's time to use
+this knowledge and apply it in order to create
+a charge separation. Let's create a PN
+junction simply by contacting an N-type
+semiconductor with a P-type semiconductor. The Fermi level must be constant
+throughout the junction, which is required by
+thermal equilibrium. The conduction and valence bands bends and creates a
+built in potential. A so-called space charge
+region is created. In the N-region of the
+space charge region, there are more electrons than in the P-region, and therefore, electrons diffuses
+to the P-region and recombine with the holes. A similar but opposite
+concentration difference exists for holes while the
+hole diffuses to the N-region, where they recombine
+with the electrons. From the excess charges
+electrical fields are created, creating a drift
+current that cancels the diffusion currents and
+enables charge neutrality. The differences in Fermi levels
+relative to the valence or conduction band creates a
+so-called Build in potential. The build in potential helps
+separating the charges. and is also the upper limit for the voltage of a solar cell. The build in potential
+can be calculated from the Fermi level displacement
+that arises from the doping. What happens if we forward
+bias a P-N junction? If the applied voltage goes
+below the built-in voltage, the built-in voltage prevent excess electrons moving
+to the p-region. The space charge
+region is reduced, and there is a very small
+current in the diode. On the other hand, if the voltage is above build-in voltage, the built-in voltage is almost neutralized and the space charge region
+almost disappears. In this case, the diode becomes a conductor with a large current. Obviously, if we reverse
+bias the junction, the space charge region enlarges and only a minimal
+reverse current flows. If the P-N junction is
+severely reverse biased, the breakdown voltage is reached and the P-N junction starts
+reverse flow of current. Actually, similar
+to a diode since the P-N junction is
+basically a diode. Let's take a closer look at
+the space charge region. The charges from the fixed
+uncompensated atoms, which arises due to
+the electron and hole diffusion creates
+an electrical field. This electrical field is zero outside the space charge region and increases
+numerically linearly towards the N and P region. Exactly at the junction, the field has its
+maximum numerical value. By integrating the field over
+the space charge region, the built-in potential
+can also be determined. We will later see
+that the width of the space charge region is
+important as this field separates the charges and is decreasing with increasing
+doping concentrations. Further, charge neutrality
+requires that the product of the doping concentration
+and the width of the respective regions
+must be equal. Now the most important
+physics has been presented, which is laying a
+solid foundation for understanding the physics
+of the solar cell. Before we end this video, we'll take a brief look at the current -voltage
+relationship. In the dark condition the current voltage
+relationship can be derived knowing that at the zero bias that diffusion current
+cancels the drift current. Further using that
+the drift current is generated by the electric
+field in the junction. The solution to the
+obtained differential equation after applying appropriate
+boundary conditions, is the exponential current
+voltage relationship, as stated in the equation. This equation is called the Shockley equation
+and its describing the behavior that we saw on the forward and reverse
+bias in the dark. With a small so-called
+saturation current below the threshold voltage and
+otherwise conduction. If the junction is illuminated, electron-hole pairs are
+generated and a photo current is running in the
+opposite direction of the saturation current. An expression for the reverse saturation current is given. As you can see, it decreases with increasing doping densities. The temperature
+dependence, especially through the intrinsic
+carrier concentration, makes the reverse saturation current increase
+with temperature. Let's conclude this video. In this video, we have
+introduced N and P doping, where excess electrons
+and holes can be added to the conduction and valence band by replacing
+a few silicon atoms with group 5 and 3 elements. The additional charge carriers
+moves the Fermi-level toward the band edges and
+increases the conductivity. We also saw that Auger recombination is
+limiting diffusion length, which is decreasing with
+increasing doping concentration. We also created the P-N junction, where an n-type semiconductor is connected with a
+p-type semiconductor. Since the Fermi-level must be constant throughout the junction, a built-in potential is created. Further concentration
+gradients makes electron diffused to the
+p-region and vice versa. The uncompensated charges create an electric field that
+generates an opposite current. In equilibrium, these cancel. The electric field is in the so called space
+charge region and outside the space charge
+region, there in no field. When applying a
+small forward bias, a small current is flowing, which is the reverse
+saturation current. When the applied voltage is higher than the built-in voltage, the junction starts
+to conduct current. For a reverse bias, the junction general
+prevents flow of current until the
+breakdown voltage is exceeded generally at
+high reverse voltages. When the junction is illuminated, a photo-current is created in the opposite direction as a
+reverse saturation current. This current is facilitated
+by the charge separation from the P-N junctions
+built-in electric field. Now we have finished
+semiconductor physics and will in the next
+video look at how these principles are applied
+in a simple solar cell.
