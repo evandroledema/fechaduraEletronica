@@ -1,0 +1,826 @@
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;Loop de verificar se fim de curso s2(se portao fechado) funcionando e mandando para loop 
+                      00002 ;que espera comando para abrir.
+                      00003 ;falta resto
+                      00004 ;ESTOU USANDO ESTEEEEEE
+                      00005 
+Warning[205]: Found directive in column 1. (PROCESSOR)
+Warning[215]: Processor superseded by command line.  Verify processor symbol.
+                      00006 PROCESSOR '16F876A'
+                      00007         INCLUDE <P16F876A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F876A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00524         LIST
+                      00008 
+2007   3F39           00009         __CONFIG _XT_OSC & _WDT_OFF & _PWRTE_OFF & _CP_OFF & _LVP_OFF & _BODEN_OFF
+                      00010 
+                      00011         CBLOCK 0x20
+  00000020            00012         D1
+  00000021            00013         D2
+  00000022            00014         FADE_STATE ;IF = 0x00 INCREMENT CCPR1L ELSE DECREMENT CCPR1L
+  00000023            00015         D3
+  00000024            00016         T1
+  00000025            00017         CounterC
+  00000026            00018         CounterB
+  00000027            00019         CounterA
+  00000028            00020         contador1       ;registradores usados para atraso
+  00000029            00021         contador2
+  0000002A            00022         contador3
+                      00023         ENDC
+                      00024         
+0000                  00025         ORG 0x0000
+                      00026         
+                      00027         ; --- Mapeamento de Hardware (PARADOXUS PEPTO) ---
+                      00028         #define bank0   bcf     STATUS,RB0
+                      00029         #define bank1   bsf     STATUS,RB0
+                      00030         #define         S1              PORTB,RB0                               ;Botão S1 ligado ao pino
+                             RB0 abre portao
+                      00031         #define         S2              PORTB,RB1                               ;fim de curso S2 ligado 
+                            ao pino RB1 indica 
+                      00032         #define         S3              PORTB,RB2       ;fim de curso s2 ligado ao pino RB2
+                      00033         #define         S4              PORTB,RB3       ;fim de curso s4 ligado ao pino RB3
+                      00034         #define         led1    TRISB,RB5
+                      00035         #define         led2    TRISB,RB7
+                      00036 
+                      00037         ;movlw          H'FF'                           ;W = B'11111111'
+                      00038         ;movwf          PORTB                           ;RB7 (configurado como saída) inicia em HIGH
+                      00039 ;=-----------------------------------------
+0000   3007           00040         movlw   0x07
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0001   009C           00041         movwf   CMCON                   ;turn comparators off (make it like a 16F84)
+                      00042         
+                      00043 ;------------------------------------------
+0002   110B           00044         bcf                     INTCON,T0IF                                     ;Sim, limpa flag do Time
+                            r0
+0003   3096           00045         movlw           D'150'                                          ;Move literal 108d para work
+0004   0081           00046         movwf           TMR0                                            ;Reinicia TMR0
+                      00047 
+0005   3007           00048         movlw   0x07
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0006   009C           00049         movwf   CMCON                   ;turn comparators off (make it like a 16F84)
+                      00050 
+0007   1683           00051         bsf     STATUS,         RP0     ;select bank 1
+0008   1283           00052         bcf     STATUS,         RP0     ;select bank 0
+                      00053 
+                      00054 ;----------------------------------------;
+                      00055 ;PORTÃO EM QUALQUER POSIÇÃO MENOS ABERTO OU FECHADO
+                      00056 ;----------------------------------------;
+                      00057 ;loop01
+                      00058 ;       btfss   S2
+                      00059 ;       nop
+                      00060 ;       btfsc   S2
+                      00061 ;       nop
+                      00062 ;       btfsc   S4      
+                      00063 ;       goto    loop02
+                      00064 ;----------------------------------------;
+                      00065 ;VERIFICA QUAIS FINS DE CURSO ESTÃO APERTADO. VERIFICA SE PORTÃO ESTÁ ABERTO OU FECHADO
+                      00066 ;----------------------------------------;
+                      00067 
+                      00068 
+0009                  00069 loop_1:
+0009   1C86           00070         btfss   S2              ;Botão/fim de curso S2 pressionado? (potão fechado?)
+000A   284D           00071         goto    loop_5  ;Sim, desvia para instruções loop_2
+000B   1D86           00072         btfss   S4              ;Fim de curso S4 presionado? (Portão aberto?)
+000C   289A           00073         goto    loop_4  ;Sim, desvia para instruções loop_3
+                      00074 
+                      00075 
+000D                  00076 loop02
+000D   1C06           00077         btfss   S1
+000E   2817           00078         goto    relay_desligado
+000F   1D06           00079         btfss   S3
+0010   281D           00080         goto    relay_ligado
+0011   2809           00081         goto    loop_1
+                      00082 
+                      00083 
+                      00084 ;----------------------------------------;
+0012                  00085 loop_2: ;se botao de abrir portao pressionado
+0012   1C06           00086         btfss   S1
+0013   2817           00087         goto    relay_desligado ;Sim, desvia para instruções relay. função responsável por comandar relé
+                             e abrir portão
+                      00088         
+                      00089 ;----------------------------------------;
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0014                  00090 loop_3: ;se botao de fecha portao pressionado
+0014   1D06           00091         btfss   S3                       ;Botão S3 apertado?
+0015   281D           00092         goto    relay_ligado ;então vai pro relay para trocar posição para FECHAR PORTÃO
+0016   2809           00093         goto    loop_1
+                      00094 
+0017                  00095 relay_desligado:        ;botão S1 abre portao
+0017   1683           00096         BSF STATUS, RP0 ;SELECT BANK 01
+0018   1386           00097         BCF PORTB, 7 ;SET RC2 AS OUTPUT
+0019   1283           00098         BCF STATUS, RP0 ;SELECT BANK 00
+001A   3000           00099         movlw   H'00'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001B   0086           00100         movwf   TRISB
+001C   2850           00101         goto    INIT_1  ;vai pra função que inicia sinal de pwm pro portão
+                      00102         
+001D                  00103 relay_ligado: ;botão S3 fecha portao
+001D   1683           00104         BSF STATUS, RP0 ;SELECT BANK 01
+001E   1386           00105         BCF PORTB, 7 ;SET RC2 AS OUTPUT
+001F   1283           00106         BCF STATUS, RP0 ;SELECT BANK 00
+0020   30FF           00107         movlw   H'FF'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0021   0086           00108         movwf   TRISB
+                      00109         ;movwf  TRISB
+                      00110         ;faz relay: posição desligado (FECHA POPTÃO)
+0022   2823           00111         goto    INIT    ;vai pra função que inicia sinal de pwm pro portão
+                      00112 ;----------------------------------------;
+                      00113 
+                      00114 ;----------PARTE DO CODIGO RESPONSÁVEL POR MANDAR O SINAL PWM----------------
+0023                  00115 INIT:           ;ABRE PORTÃO!!!
+                      00116         ;PWM PERIOD = [(PR2)+1] * 4 * TOSC * (TMR2 PRESCALE VALUE) ;PR2 = TMR2 PERIOD REGISTER, TOSC = P
+                            IC CLOCK PERIOD (FOSC = 1 / TOSC)
+                      00117         ;PWM DUTY CYCLE = (CCPR1L:CCP1CON<5:4>) * TOSC * (TMR2 PRESCALE VALUE)
+                      00118         
+                      00119         ;;;SET PWM FREQUENCY;;;
+0023   1683           00120         BSF STATUS, RP0 ;seleciona BANK 01
+0024   30FA           00121         MOVLW D'250' ;coloca em PR2 o valor 128 em DECIMAL SO THE PWM PERIOD = 2064uS => PWM FREQUENCY =
+                             484Hz
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0025   0092           00122         MOVWF PR2
+                      00123         
+0026   1283           00124         bcf     STATUS,         RP0     ;select bank 0
+                      00125 
+0027   0195           00126         CLRF CCPR1L 
+                      00127         
+0028   300C           00128         MOVLW B'00001100' 
+0029   0097           00129         MOVWF CCP1CON
+                      00130         
+                      00131         ;;;SET PWM PIN TO OUTPUT MODE;;;
+002A   1683           00132         BSF STATUS, RP0 ;SELECT BANK 01
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002B   1107           00133         BCF TRISC, 2 ;SET RC2 AS OUTPUT, TO USE FOR PWM
+002C   1283           00134         BCF STATUS, RP0  ;SELECT BANK 00
+                      00135         
+                      00136         ;;SET tempo 2 do PRESCALE;;;
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002D   3002           00137         MOVLW B'00000010'
+002E   0092           00138         MOVWF T2CON
+                      00139         
+                      00140         ;;;limpo TIMER 2;;;
+002F   0191           00141         CLRF TMR2
+                      00142         
+                      00143         ;;;habilito TIMER 2;;;
+0030   1512           00144         BSF T2CON, TMR2ON
+                      00145         
+0031   01A2           00146         CLRF FADE_STATE
+                      00147         
+0032                  00148 MAIN:
+                      00149         
+0032   3000           00150         MOVLW 0x00
+                      00151         ;IORWF FADE_STATE, W
+                      00152 
+0033   1D03           00153         BTFSS STATUS, Z ;IF FADE_STATE == 0 GOTO INC_CCPR1L
+                      00154 ;       GOTO DEC_CCPR1L ;ELSE GOTO DEC_CCPR1L
+                      00155         
+0034                  00156 INC_CCPR1L:
+                      00157     ;btfss      S4
+                      00158         ;goto   desliga_1
+0034   3096           00159         movlw   D'150' ;TEMPO QUE FICA EM ESTADO ON
+0035   0615           00160         xorwf   CCPR1L,W
+Message[305]: Using default destination of 1 (file).
+0036   0795           00161         addwf   CCPR1L  ;INCREMENT CCPR1L
+                      00162         ;GOTO CHANGE_STATE_0 
+                      00163 
+                      00164 
+                      00165 ;CHANGE_STATE:
+0037   09A2           00166         COMF FADE_STATE, F 
+0038   1C86           00167         btfss   S2
+0039   283D           00168         goto    desliga
+003A   1C06           00169         btfss   S1
+003B   288A           00170         goto    abreportao_fechando
+003C   2834           00171         goto    INC_CCPR1L
+                      00172 
+003D                  00173 desliga:
+003D   3000           00174         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+003E   0615           00175         xorwf   CCPR1L,W
+Message[305]: Using default destination of 1 (file).
+003F   0295           00176         subwf   CCPR1L  ;desincrementa CCPR1L
+0040   3006           00177         movlw D'6'
+                      00178 ;--CRIO DELAY DE 1 SEGUNDO---;
+0041   00A5           00179         movwf CounterC
+0042   3018           00180         movlw D'24'
+0043   00A6           00181         movwf CounterB
+0044   30A8           00182         movlw D'168'
+0045   00A7           00183         movwf CounterA
+0046                  00184 h2
+0046   0BA7           00185         decfsz CounterA,1
+0047   2846           00186         goto h2
+0048   0BA6           00187         decfsz CounterB,1
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0049   2846           00188         goto h2
+004A   0BA5           00189         decfsz CounterC,1
+004B   2846           00190         goto h2
+                      00191 ;--DEPOIS DO DELAY DE 1 SEGUNDO VOLTO PRO INICIO---;
+004C   284D           00192         goto loop_5
+                      00193 
+004D                  00194 loop_5
+004D   1C06           00195         btfss   S1
+004E   2817           00196         goto    relay_desligado
+004F   284D           00197         goto    loop_5
+                      00198 
+                      00199 
+                      00200 ;========================================================================;
+0050                  00201 INIT_1:         ;ABRE PORTÃO!!!
+                      00202         ;PWM PERIOD = [(PR2)+1] * 4 * TOSC * (TMR2 PRESCALE VALUE) ;PR2 = TMR2 PERIOD REGISTER, TOSC = P
+                            IC CLOCK PERIOD (FOSC = 1 / TOSC)
+                      00203         ;PWM DUTY CYCLE = (CCPR1L:CCP1CON<5:4>) * TOSC * (TMR2 PRESCALE VALUE)
+                      00204         ;;;SET PWM FREQUENCY;;;
+0050   1683           00205         BSF STATUS, RP0 ;seleciona BANK 01
+0051   30FA           00206         MOVLW D'250' ;coloca em PR2 o valor 128 em DECIMAL SO THE PWM PERIOD = 2064uS => PWM FREQUENCY =
+                             484Hz
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0052   0092           00207         MOVWF PR2
+                      00208         
+0053   1283           00209         bcf     STATUS,         RP0     ;select bank 0
+                      00210 
+0054   0195           00211         CLRF CCPR1L 
+                      00212         
+0055   300C           00213         MOVLW B'00001100' 
+0056   0097           00214         MOVWF CCP1CON
+                      00215         
+                      00216         ;;;SET PWM PIN TO OUTPUT MODE;;;
+0057   1683           00217         BSF STATUS, RP0 ;SELECT BANK 01
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0058   1107           00218         BCF TRISC, 2 ;SET RC2 AS OUTPUT, TO USE FOR PWM
+0059   1283           00219         BCF STATUS, RP0  ;SELECT BANK 00
+                      00220         
+                      00221         ;;SET tempo 2 do PRESCALE;;;
+005A   3002           00222         MOVLW B'00000010'
+005B   0092           00223         MOVWF T2CON
+                      00224 
+                      00225         ;;;limpo TIMER 2;;;
+005C   0191           00226         CLRF TMR2
+                      00227         
+                      00228         ;;;habilito TIMER 2;;;
+005D   1512           00229         BSF T2CON, TMR2ON
+                      00230         
+005E   01A2           00231         CLRF FADE_STATE
+                      00232         
+005F                  00233 MAIN_1:
+                      00234         
+005F   3000           00235         MOVLW 0x00
+                      00236         ;IORWF FADE_STATE, W
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00237 
+0060   1D03           00238         BTFSS STATUS, Z ;IF FADE_STATE == 0 GOTO INC_CCPR1L
+                      00239 ;       GOTO DEC_CCPR1L ;ELSE GOTO DEC_CCPR1L
+                      00240         
+0061                  00241 INC_CCPR1L_1:
+0061   3096           00242         movlw   D'150' ;TEMPO QUE FICA EM ESTADO ON
+0062   0615           00243         xorwf   CCPR1L,W
+Message[305]: Using default destination of 1 (file).
+0063   0795           00244         addwf   CCPR1L  ;INCREMENT CCPR1L
+                      00245         ;GOTO CHANGE_STATE_0 
+                      00246 
+                      00247 
+                      00248 ;CHANGE_STATE:
+0064   09A2           00249         COMF FADE_STATE, F 
+0065   1D86           00250         btfss   S4
+0066   286A           00251         goto    desliga_1
+0067   1D06           00252         btfss   S3
+0068   287A           00253         goto    fechaportao_abrindo
+0069   2861           00254         GOTO INC_CCPR1L_1
+                      00255 
+006A                  00256 desliga_1:
+006A   3000           00257         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+006B   0615           00258         xorwf   CCPR1L,W
+Message[305]: Using default destination of 1 (file).
+006C   0295           00259         subwf   CCPR1L  ;desincrementa CCPR1L
+006D   3006           00260         movlw D'6'
+                      00261 ;--CRIO DELAY DE 1 SEGUNDO---;
+006E   00A5           00262         movwf CounterC
+006F   3018           00263         movlw D'24'
+0070   00A6           00264         movwf CounterB
+0071   30A8           00265         movlw D'168'
+0072   00A7           00266         movwf CounterA
+0073                  00267 h1
+0073   0BA7           00268         decfsz CounterA,1
+0074   2873           00269         goto h1
+0075   0BA6           00270         decfsz CounterB,1
+0076   2873           00271         goto h1
+0077   0BA5           00272         decfsz CounterC,1
+0078   2873           00273         goto h1
+                      00274 ;--DEPOIS DO DELAY DE 1 SEGUNDO VOLTO PRO INICIO---;
+0079   289A           00275         goto loop_4
+                      00276 
+007A                  00277 fechaportao_abrindo:
+007A   3000           00278         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+007B   0615           00279         xorwf   CCPR1L,W
+Message[305]: Using default destination of 1 (file).
+007C   0295           00280         subwf   CCPR1L  ;desincrementa CCPR1L
+                      00281 ;------------------------------------
+                      00282 ;----delay de 2,5 segundos ----------
+                      00283 ;------------------------------------
+007D   3078           00284         movlw   D'120'
+007E   00A8           00285         movwf   contador1
+007F   308B           00286         movlw   0X8B
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0080   00A9           00287         movwf   contador2
+0081   3007           00288         movlw   0X07
+0082   00AA           00289         movwf   contador3
+0083   0BA8           00290         decfsz  contador1,1
+0084   2883           00291         goto    $-1
+0085   0BA9           00292         decfsz  contador2,1
+0086   2883           00293         goto    $-3
+0087   0BAA           00294         decfsz  contador3,1
+0088   2883           00295         goto    $-5
+0089   281D           00296         goto    relay_ligado
+                      00297 
+                      00298 
+                      00299 
+008A                  00300 abreportao_fechando:
+008A   3000           00301         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+008B   0615           00302         xorwf   CCPR1L,W
+Message[305]: Using default destination of 1 (file).
+008C   0295           00303         subwf   CCPR1L  ;desincrementa CCPR1L
+                      00304 ;------------------------------------
+                      00305 ;----delay de 2,5 segundos ----------
+                      00306 ;------------------------------------
+008D   3078           00307         movlw   D'120'
+008E   00A8           00308         movwf   contador1
+008F   308B           00309         movlw   0X8B
+0090   00A9           00310         movwf   contador2
+0091   3007           00311         movlw   0X07
+0092   00AA           00312         movwf   contador3
+0093   0BA8           00313         decfsz  contador1,1
+0094   2893           00314         goto    $-1
+0095   0BA9           00315         decfsz  contador2,1
+0096   2893           00316         goto    $-3
+0097   0BAA           00317         decfsz  contador3,1
+0098   2893           00318         goto    $-5
+                      00319 ;------------------------------------
+0099   2817           00320         goto    relay_desligado
+                      00321 
+009A                  00322 loop_4
+009A   1D06           00323         btfss   S3
+009B   281D           00324         goto    relay_ligado
+009C   289A           00325         goto    loop_4
+                      00326 
+                      00327         ;#include "up_md_atrasos.asm"
+                      00328 
+Warning[205]: Found directive in column 1. (end)
+                      00329 end
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+CHS2                              00000005
+CIS                               00000003
+CKE                               00000006
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+CounterA                          00000027
+CounterB                          00000026
+CounterC                          00000025
+D                                 00000005
+D1                                00000020
+D2                                00000021
+D3                                00000023
+DATA_ADDRESS                      00000005
+DC                                00000001
+D_A                               00000005
+D_NOT_A                           00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FADE_STATE                        00000022
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+INC_CCPR1L                        00000034
+INC_CCPR1L_1                      00000061
+INDF                              00000000
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INIT                              00000023
+INIT_1                            00000050
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+MAIN                              00000032
+MAIN_1                            0000005F
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+S1                                PORTB,RB0
+S2                                PORTB,RB1
+S3                                PORTB,RB2
+S4                                PORTB,RB3
+SEN                               00000000
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1                                00000024
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F876A                         00000001
+abreportao_fechando               0000008A
+bank0                             bcf     STATUS,RB0
+bank1                             bsf     STATUS,RB0
+contador1                         00000028
+contador2                         00000029
+contador3                         0000002A
+desliga                           0000003D
+desliga_1                         0000006A
+fechaportao_abrindo               0000007A
+h1                                00000073
+h2                                00000046
+led1                              TRISB,RB5
+led2                              TRISB,RB7
+loop02                            0000000D
+loop_1                            00000009
+loop_2                            00000012
+loop_3                            00000014
+loop_4                            0000009A
+loop_5                            0000004D
+relay_desligado                   00000017
+relay_ligado                      0000001D
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXX--- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   157
+Program Memory Words Free:  8035
+
+
+MPASM  5.51            SOURCE_FILE_AULA41.ASM   8-11-2021  21:14:38         PAGE 15
+
+
+
+
+
+Errors   :     0
+Warnings :     3 reported,     0 suppressed
+Messages :    14 reported,     0 suppressed
+
+

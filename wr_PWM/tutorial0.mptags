@@ -1,0 +1,15 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+Delay	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	31;"	l	line:31
+Delay_0	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	37;"	l	line:37
+LIST	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	1;"	l	line:1
+Loop	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	24;"	l	line:24
+cblock	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	5;"	l	line:5
+d1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	33;"	l	line:33
+goto	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\tutorial0.asm	44;"	v	line:44

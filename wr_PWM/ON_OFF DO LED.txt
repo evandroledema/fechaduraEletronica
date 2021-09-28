@@ -1,0 +1,7 @@
+ACENDER E APAGA LED
+
+bsf		PORTA,2			;Acende LED-R (buzzer)
+	rcall	delay_1s
+	rcall	delay_1s
+	bcf		PORTA,2			;Apaga LED-R (buzzer)
+	bra		menu

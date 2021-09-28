@@ -1,0 +1,114 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Tue Aug 17 10:34:01 2021
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000282
+.config_2007_SOURCE_FILE_AULA41.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000140      
+                            0x002007    0x002007      
+            322 out of 8454 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               INC_CCPR1L   0x00006f    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+             INC_CCPR1L_1   0x00009c    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                     INIT   0x00005e    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   INIT_1   0x00008b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+           Inicia_teclado   0x000005    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                     Lop1   0x000040    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                    Lopp1   0x00003b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                     MAIN   0x00006d    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   MAIN_1   0x00009a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+      abreportao_fechando   0x0000b9    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   banco0   0x00000a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                   banco1   0x000007    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                 codifica   0x000028    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+              delay_100ms   0x00011a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+               delay_10ms   0x0000fb    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_1ms   0x0000ce    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                 delay_1s   0x000134    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+              delay_2.5ms   0x0000c1    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+               delay_20ms   0x000104    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_2ms   0x0000d7    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_3ms   0x0000e0    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_4ms   0x0000e9    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+              delay_500ms   0x000127    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+               delay_50ms   0x00010d    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_5ms   0x0000f2    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                  desliga   0x000078    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                desliga_1   0x0000a5    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+      fechaportao_abrindo   0x0000b5    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                       h1   0x0000ae    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                       h2   0x000081    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   ld_deb   0x00002b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                   loop02   0x000048    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_1   0x000044    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_2   0x00004d    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_3   0x00004f    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_4   0x0000be    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_5   0x000088    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+          relay_desligado   0x000052    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+             relay_ligado   0x000058    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                scan_cols   0x00001b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                  teclado   0x00000a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+           Inicia_teclado   0x000005    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                   banco1   0x000007    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                  teclado   0x00000a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                   banco0   0x00000a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                scan_cols   0x00001b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                 codifica   0x000028    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                   ld_deb   0x00002b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_teclado_4x4.asm
+                    Lopp1   0x00003b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                     Lop1   0x000040    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_1   0x000044    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop02   0x000048    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_2   0x00004d    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_3   0x00004f    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+          relay_desligado   0x000052    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+             relay_ligado   0x000058    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                     INIT   0x00005e    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                     MAIN   0x00006d    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+               INC_CCPR1L   0x00006f    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                  desliga   0x000078    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                       h2   0x000081    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_5   0x000088    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   INIT_1   0x00008b    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   MAIN_1   0x00009a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+             INC_CCPR1L_1   0x00009c    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                desliga_1   0x0000a5    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                       h1   0x0000ae    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+      fechaportao_abrindo   0x0000b5    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+      abreportao_fechando   0x0000b9    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+                   loop_4   0x0000be    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\source_file_aula41.asm
+              delay_2.5ms   0x0000c1    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_1ms   0x0000ce    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_2ms   0x0000d7    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_3ms   0x0000e0    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_4ms   0x0000e9    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                delay_5ms   0x0000f2    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+               delay_10ms   0x0000fb    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+               delay_20ms   0x000104    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+               delay_50ms   0x00010d    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+              delay_100ms   0x00011a    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+              delay_500ms   0x000127    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+                 delay_1s   0x000134    program     static C:\Users\War\OneDrive\ufmt\Micro\wr_PWM\up_md_atrasos.asm
+
+

@@ -1,0 +1,17 @@
+Warning[205] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 6 : Found directive in column 1. (PROCESSOR)
+Warning[215] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 6 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 41 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 49 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 100 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 108 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 122 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 133 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 161 : Using default destination of 1 (file).
+Message[305] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 176 : Using default destination of 1 (file).
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 207 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 218 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 244 : Using default destination of 1 (file).
+Message[305] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 259 : Using default destination of 1 (file).
+Message[305] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 280 : Using default destination of 1 (file).
+Message[305] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 303 : Using default destination of 1 (file).
+Warning[205] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\SOURCE_FILE_AULA41.ASM 329 : Found directive in column 1. (end)

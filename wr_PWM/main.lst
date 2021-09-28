@@ -1,0 +1,2689 @@
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[215]: Processor superseded by command line.  Verify processor symbol.
+                      00001         list      p=16f877A
+                      00002         #INCLUDE <P16F877A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F877A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00566         LIST
+                      00003         #include <macros.inc>
+                      00001 
+                      00002 banco0  macro
+                      00003         bcf     STATUS,RP0
+                      00004         endm
+                      00005 
+                      00006 banco1  macro
+                      00007         bsf     STATUS,RP0
+                      00008         endm
+                      00009 
+                      00010 ;macro: salta parr endx, se regx = literal
+                      00011 je_rl   macro   regx, lit, endx
+                      00012         movlw   lit
+                      00013         xorwf   regx,W
+                      00014         btfsc   STATUS,Z
+                      00015         goto    endx
+                      00016         endm
+                      00017 
+                      00018 ;macro: captura BCD em regx
+                      00019 bcd_k   macro   regx
+                      00020         call    teclado
+                      00021         btfss   fpress,0
+                      00022         goto    $-2
+                      00023         call    valida_BCD
+                      00024         btfss   fpress,0
+                      00025         goto    $ - 5
+                      00026         movfw   code_tecla
+                      00027         movwf   regx
+                      00028         endm
+2007   2F02           00004         __CONFIG H'2F02'
+                      00005         ERRORLEVEL -302, -305
+                      00006 ;LIST
+                      00007         ;__CONFIG _XT_OSC & _WDT_OFF & _PWRTE_OFF & _CP_OFF & _LVP_OFF & _BODEN_OFF
+                      00008 
+  00F42400            00009 Fosc      equ   .16000000               ; Hz: Fclock do sistema
+  00002580            00010 baudrate equ    .9600                   ; bps: taxa de transmissão
+  00000019            00011 k_spbrg  equ    Fosc/baudrate/.64 - 1 ; BRGH = 1
+                      00012 
+                      00013         CBLOCK 0X20
+  00000020            00014                 Loper,D1,D2,FADE_STATE ;IF = 0x00 INCREMENT CCPR1L ELSE DECREMENT CCPR1L
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  00000024            00015                 D3,T1,CounterC,CounterB,CounterA,contador1,contador2,contador3,tecla1,tecla2,tecla3,test
+                            e1,conta_dig,dig1,dig2,dig3,giga,contador
+  00000036            00016                 dado_rx1,dado_rx2,dado_rx3,dado_rx4,dado_rx5,dado_rx6
+  0000003C            00017                 flag_rx,flag_rx1,flag_rx2,flag_rx3,flag_rx4,flag_rx5,flag_rx6
+  00000043            00018                 v1,v2,v3
+  00000046            00019                 vb1,vb2,vb3
+                      00020      ENDC
+                      00021 
+0000                  00022         ORG 0x00
+                      00023 ;AQUI ERA 
+0000   284D           00024         goto    setup
+                      00025 ;       goto    PROGRAMA_PORTAO 
+0004                  00026         org     0x04
+                      00027         #include "up_md_teclado_4x4.asm"
+                      00001 #Define Linha1  PORTD,3
+                      00002 #Define Linha2  PORTD,2
+                      00003 #Define Linha3  PORTD,1
+                      00004 #Define Linha4  PORTD,0
+                      00005 
+                      00006 #Define Col1    PORTA,0
+                      00007 #Define Col2    PORTA,1
+                      00008 #Define Col3    PORTA,2
+                      00009 #Define Col4    PORTA,3
+                      00010 
+                      00011         cblock
+  00000049            00012            tecla,conta_kp,fpress,ptr_car
+                      00013         endc
+                      00014 
+                      00015 ;txt_calc:
+                      00016 ;       addwf   PCL, F
+                      00017 ;       dt              "  Calculadora" ; 13c
+                      00018 
+0004                  00019 ascii_key:
+0004   0782           00020         addwf   PCL,F
+0005   3441 3430 3445 00021         dt              "A0E+123-456*789/"
+       342B 3431 3432 
+       3433 342D 3434 
+       3435 3436 342A 
+       3437 3438 3439 
+       342F 
+                      00022 
+                      00023 ;mostrar "calculadora" no LCD
+                      00024 
+0015                  00025 Inicia_teclado:
+0015   300F           00026         movlw   0x0F
+0016   0488           00027         iorwf   PORTD,F         ;desabilita linhas
+                      00028         banco1
+0017   1683               M         bsf     STATUS,RP0
+0018   0485           00029         iorwf   TRISA,F         ;PORTB<3:0> input
+0019   30F0           00030         movlw   0xF0
+001A   0588           00031         andwf   TRISD,F         ;PORTC<3:0> output
+                      00032         banco0
+001B   1283               M         bcf     STATUS,RP0
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001C   0008           00033         return
+                      00034         
+001D                  00035 teclado:
+001D   01CB           00036         clrf    fpress
+001E   01CA           00037         clrf    conta_kp
+001F   03CA           00038         decf    conta_kp,F      ; conta_kp = -1
+                      00039 ;varredura de linha_1
+0020   1188           00040         bcf             Linha1          ; habilita linha 1
+0021   22AE           00041         call    delay_50ms
+0022   2031           00042         call    scan_cols       ; varredura das 4 colunas
+0023   1588           00043         bsf             Linha1          ; desabilita linha 1
+                      00044 ;varredura de linha_2
+0024   1108           00045         bcf             Linha2          ; habilita linha 2
+0025   22AE           00046         call    delay_50ms
+0026   2031           00047         call    scan_cols       ; varredura das 4 colunas
+0027   1508           00048         bsf             Linha2          ; desabilita linha 2
+                      00049 ;varredura de linha_3
+0028   1088           00050         bcf             Linha3          ; habilita linha 3
+0029   22AE           00051         call    delay_50ms
+002A   2031           00052         call    scan_cols       ; varredura das 4 colunas
+002B   1488           00053         bsf             Linha3          ; desabilita linha 3
+                      00054 ;varredura de linha_4
+002C   1008           00055         bcf             Linha4          ; habilita linha 4
+002D   22AE           00056         call    delay_50ms
+002E   2031           00057         call    scan_cols       ; varredura das 4 colunas
+002F   1408           00058         bsf             Linha4          ; desabilita linha 4
+                      00059 ;sair de sub-rotina de teclado
+0030   0008           00060         return
+                      00061 
+                      00062 ;Varredura das 4 colunas para detectar tecla pressionada
+                      00063 ;Testa se algum pino de PORTB<3:0> está em zero
+0031                  00064 scan_cols:
+0031   0ACA           00065         incf    conta_kp,F      ;incrementa apontador de teclas
+0032   1C05           00066         btfss   Col1            ;se não detecta press na col1, pula
+                      00067         ;se detecta press, irá para codificar a tecla
+0033   203E           00068         call    codifica        ; 0:[A=on], 4:[1], 8:[4], 12:[7]
+0034   0ACA           00069         incf    conta_kp,F
+0035   1C85           00070         btfss   Col2            ;se não detecta press na col2, pula
+0036   203E           00071     call        codifica        ; 1:[0], 5:[2], 9:[5], 13:[8]
+0037   0ACA           00072         incf    conta_kp,F
+0038   1D05           00073         btfss   Col3            ;se não detecta press na col3, pula
+0039   203E           00074         call    codifica        ; 2:[E=exe], 6:[3], 10:[6], 14:[9]
+003A   0ACA           00075         incf    conta_kp,F
+003B   1D85           00076         btfss   Col4            ;se não detecta press na col4, pula
+003C   203E           00077         call    codifica        ; 3:[+], 7:[-], 11:[*], 15:[/]
+                      00078         
+                      00079 ;-----------------
+                      00080 ;bluetooth      
+                      00081 ;-----------------
+003D   0008           00082         return
+003E                  00083 codifica:
+003E   084A           00084         movfw   conta_kp        ;apontador tem localização da tecla press
+003F   2004           00085         call    ascii_key       ;obtem o ASCII da tecla press
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0040   00C9           00086         movwf   tecla           ;tecla = ASCII(tecla press)
+0041   144B           00087         bsf             fpress,0        ;ativa flag, indica que uma tecla foi press
+0042   22A5           00088         call    delay_20ms
+0043                  00089 ld_deb:
+0043   22AE           00090         call    delay_50ms      ;p/debouncing
+0044   1C05           00091         btfss   Col1
+0045   2043           00092         call    ld_deb          ;espera a tecla de col1, ser solta
+0046   1C85           00093         btfss   Col2
+0047   2043           00094         call    ld_deb          ;espera a tecla de col2, ser solta
+0048   1D05           00095         btfss   Col3
+0049   2043           00096         call    ld_deb          ;espera a tecla de col3, ser solta
+004A   1D85           00097         btfss   Col4
+004B   2043           00098         call    ld_deb          ;espera a tecla de col4, ser solta
+004C   0008           00099         return
+                      00028 
+                      00029 
+                      00030 ;=======================================
+                      00031 ;-INICIO LEITURA DO TECLADO E BLUETOOTH-
+                      00032 ;=======================================
+004D                  00033 setup:
+                      00034 ;===============================
+                      00035 ;LIGA LED ENSIRA SENHA
+                      00036 ;===============================
+004D   1683           00037         BSF STATUS, RP0 ;SELECT BANK 01
+004E   1207           00038         BCF PORTC, 4 ;SET RC2 AS OUTPUT
+004F   1187           00039         BCF PORTC, 3
+0050   1287           00040         BCF PORTC, 5
+0051   1283           00041         BCF STATUS, RP0 ;SELECT BANK 00
+                      00042 ;---------------------------------------------------
+0052   1607           00043         bsf     PORTC,4 ;Acende LED de add senha
+0053   1187           00044         bcf     PORTC,3 ;Apaga LED de senha errada
+0054   1287           00045         bcf     PORTC,5 ;Apaga LED de senha correta
+                      00046 ;---------------------------------------------------
+                      00047 ;       BSF STATUS, RP0 ;SELECT BANK 01
+                      00048 ;       BCF PORTC, 4 ;SET RC2 AS OUTPUT
+                      00049 ;       BCF STATUS, RP0 ;SELECT BANK 00
+                      00050 ;       movlw   H'FF'
+                      00051 ;       movwf   TRISC
+0055   22F9           00052         call iniciar_UART
+0056   239D           00053         call msg_senha
+0057   2015           00054         call    Inicia_teclado  ;configura PORTB e PORTC
+                      00055 ;       call    Inicia_LCD              ;configura LCD e Portas
+                      00056         banco1  
+0058   1683               M         bsf     STATUS,RP0
+0059   3006           00057         movlw   0x06
+005A   009F           00058         movwf   ADCON1                  ;PORTE como E/S dig.
+                      00059         banco0
+005B   1283               M         bcf     STATUS,RP0
+                      00060 
+005C                  00061 MAIN:
+005C                  00062 calculadora:
+                      00063 ;       movlw   LCD_CLEAR
+                      00064 ;       call    EnviaCmdLCD             ; limpa LCD
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00065 ;mostrar "calculadora" no LCD
+                      00066         ;call   env_msg_calc
+                      00067 ;operandos:
+                      00068         ;movlw  0xC1
+                      00069         ;call   EnviaCmdLCD             ; cursor = endereço 0xC1 
+                      00070 
+005C   3003           00071         movlw   .3
+005D   00B0           00072         movwf   conta_dig               ;n° de digitos de Op1
+                      00073 
+                      00074 ;Lê 1° operando
+005E                  00075 Lop1_teclado:
+                      00076 
+005E   201D           00077         call    teclado                 ; lê BCD1 de op1
+005F   1C4B           00078         btfss   fpress,0                ;se nenhuma tecla, vai pra bluetooth
+0060   2138           00079         call    RxTx1                   ;primeiro bluetooth                     
+                      00080         
+0061   0849           00081         movfw   tecla   
+0062   00AC           00082         movwf   tecla1
+0063   00D7           00083         movwf   cent                    ; cent = ASCII(BCD1)
+0064   2258           00084         call    EnviaCarLCD
+0065   03B0           00085         decf    conta_dig,F
+                      00086 
+0066                  00087 Lop2_teclado:
+0066   201D           00088         call    teclado                 ; lê BCD2 ou operador
+0067   1C4B           00089         btfss   fpress,0
+0068   213D           00090         call    RxTx2                   ;segundo bluetooth
+                      00091                 
+0069   0849           00092         movfw   tecla
+006A   00AD           00093         movwf   tecla2
+006B   00D8           00094         movwf   deze                    ; deze = ASCII(BCD2)
+                      00095         
+006C   2258           00096         call    EnviaCarLCD
+006D   03B0           00097         decf    conta_dig,F
+                      00098 
+006E                  00099 Lop3_teclado:
+006E   201D           00100         call    teclado                 ; lê BCD3 ou operador
+006F   1C4B           00101         btfss   fpress,0
+0070   2142           00102         call    RxTx3                   ;terceiro bluetooth
+                      00103         
+0071   0849           00104         movfw   tecla
+0072   00AE           00105         movwf   tecla3
+0073   00D9           00106         movwf   unid                    ; deze = ASCII(BCD2)
+                      00107         
+0074   2258           00108         call    EnviaCarLCD
+0075   03B0           00109         decf    conta_dig,F
+                      00110 
+                      00111 ;---------------------------------------
+                      00112 ;--------FIM DA LEITURA DO TECLADO------
+                      00113 ;---------------------------------------
+                      00114 
+                      00115 ;=======================================
+                      00116 ;--------------TESTE SENHA--------------
+                      00117 ;=======================================
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0076   2192           00118         call    numero_senha ;onde esta armazenado as senhas corretas
+0077   1CCB           00119         btfss   fpress,1 ;se botão apertado, ele vai pra debaixo
+0078   2199           00120         call    teclado_1 ;verifica senha de
+                      00121 ;---------------------------------------
+                      00122 ;---------FIM TESTE DE SENHA------------
+                      00123 ;---------------------------------------
+                      00124 
+                      00125 ;=======================================
+                      00126 ;------------COMEÇA PORTÃO--------------
+                      00127 ;=======================================
+                      00128 
+                      00129 
+0079                  00130 PROGRAMA_PORTAO:
+                      00131 ; --- Mapeamento de Hardware
+                      00132         #define bank0   bcf     STATUS,RB0
+                      00133         #define bank1   bsf     STATUS,RB0
+                      00134         #define S1      PORTB,RB0       ;Botão S1 ligado ao pino RB0 abre portao
+                      00135         #define S2      PORTB,RB1       ;fim de curso S2 ligado ao pino RB1 indica 
+                      00136         #define S3      PORTB,RB2       ;fim de curso s2 ligado ao pino RB2
+                      00137         #define S4      PORTB,RB3       ;fim de curso s4 ligado ao pino RB3
+                      00138         #define S5      PORTB,RB4       ;o fim de curso que decta fechamento do portão e faz fechamento 
+                            suave 
+                      00139         #define led1    TRISB,RB5
+                      00140 
+0079   1683           00141         BSF STATUS, RP0 ;SELECT BANK 01
+007A   1007           00142         BCF PORTC, 0 ;SET RC2 AS OUTPUT
+007B   01CB           00143         clrf fpress
+                      00144 ;========================================================
+                      00145 ;para a instrução s5, basta copiar um pwm gerado
+                      00146 ;e reduzir o valor do tempo on
+                      00147 ;usar nova função para nao detectar sensor de proximidade
+                      00148 ;========================================================     
+                      00149 ;=======================================
+                      00150         ;#define         led2    TRISC,RC0
+                      00151         ;movlw          H'FF'                           ;W = B'11111111'
+                      00152         ;movwf          PORTB                           ;RB7 (configurado como saída) inicia em HIGH
+                      00153 ;------------------------------------------
+007C   3007           00154         movlw   0x07
+007D   009C           00155         movwf   CMCON                   ;turn comparators off (make it like a 16F84)
+                      00156 ;------------------------------------------
+                      00157 
+007E   104B           00158         bcf             fpress,0                ;limpa flag
+007F   3030           00159         movlw   0x30                    
+0080   0249           00160         subwf   tecla,W                 ;tecla - 0x30
+                      00161 
+                      00162         ;bcf                     INTCON,T0IF                                     ;Sim, limpa flag do Tim
+                            e r0
+0081   3096           00163         movlw   D'150'                                          ;Move literal 108d para work
+0082   0081           00164         movwf   TMR0                                            ;Reinicia TMR0
+0083   3007           00165         movlw   0x07
+0084   009C           00166         movwf   CMCON                   ;turn comparators off (make it like a 16F84)
+0085   1683           00167         bsf     STATUS,RP0     ;select bank 1
+0086   1283           00168         bcf     STATUS,RP0     ;select bank 0
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00169 ;========================================================
+                      00170 ;------------INICIA NOVO COMANDO BLUETOOTH---------------
+                      00171 ;========================================================
+0087   2403           00172         call    limpa_tela              ;limpa tela
+0088   23BC           00173         call    abrir_fechar    ;manda frase (O)Abrir / (C)Fechar / (S)Parar: 
+                      00174 
+                      00175 ;======================================================================================
+                      00176 ;VERIFICA QUAIS FINS DE CURSO ESTÃO APERTADO. VERIFICA SE PORTÃO ESTÁ ABERTO OU FECHADO
+                      00177 ;======================================================================================
+0089                  00178 loop_1:
+0089   1C86           00179         btfss   S2              ;Botão/fim de curso S2 pressionado? (potão fechado?)
+008A   28C4           00180         goto    loop_5  ;Sim, desvia para instruções loop_5
+008B   1D86           00181         btfss   S4              ;Fim de curso S4 presionado? (Portão aberto?)
+008C   2926           00182         goto    loop_4  ;Sim, desvia para instruções loop_4
+                      00183 
+                      00184 ;----------------------------------------------------
+                      00185 ;VERIFICA QUAL BOTÃO APERTADO (ABRIR OU FECHAR PORTÃO
+                      00186 ;----------------------------------------------------
+008D                  00187 loop02:
+008D   1C06           00188         btfss   S1
+008E   2893           00189         goto    relay_desligado
+008F   1D06           00190         btfss   S3
+0090   2896           00191         goto    relay_ligado
+                      00192 ;--------------------------------------------------
+                      00193 ;--------------VERIFICA BLUETOOTH------------------
+                      00194 ;--------------------------------------------------
+0091   294E           00195         goto    verifica_se_caractere_entrou
+                      00196 ;--------------------------------------------------
+0092                  00197 end_function:
+0092   2889           00198         goto    loop_1 ;Volta pro inicio e verifica se algum fim de curso apertado
+                      00199 ;==================================================
+                      00200 ;-------MANTÉM RELÉ DESLIGADO E ABRE PORTÃO--------
+                      00201 ;==================================================
+0093                  00202 relay_desligado:        ;botão S1 abre portao
+                      00203 ;jogar o set da porta lá em cima
+                      00204 ;depois usar só bsf e bcf na saida da portaC
+0093   1283           00205         BCF STATUS, RP0 ;SELECT BANK 00
+0094   1007           00206         bcf             PORTC,0
+0095   28DE           00207         goto    INIT_1  ;vai pra função que inicia sinal de pwm pro portão
+                      00208 ;==================================================
+                      00209 ;-------MANTÉM RELÉ LIGADO E DESLIGA PORTÃO--------
+                      00210 ;==================================================
+0096                  00211 relay_ligado: ;botão S3 fecha portao
+0096   1283           00212         BCF STATUS, RP0 ;SELECT BANK 00
+0097   1407           00213         bsf             PORTC,0
+0098   2899           00214         goto    INIT    ;vai pra função que inicia sinal de pwm pro portão
+                      00215 ;==================================================
+                      00216 
+                      00217 ;==================================================
+                      00218 ;PARTE DO CODIGO RESPONSÁVEL POR MANDAR O SINAL PWM
+                      00219 ;==================================================
+0099                  00220 INIT:           ;FECHA PORTÃO!!! S3
+                      00221 ;PWM PERIOD = [(PR2)+1] * 4 * TOSC * (TMR2 PRESCALE VALUE) ;PR2 = TMR2 PERIOD REGISTER, TOSC = PIC CLOCK
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                             PERIOD (FOSC = 1 / TOSC)
+                      00222 ;PWM DUTY CYCLE = (CCPR1L:CCP1CON<5:4>) * TOSC * (TMR2 PRESCALE VALUE)
+                      00223         ;;;SET PWM FREQUENCY;;;
+0099   1683           00224         BSF STATUS, RP0 ;seleciona BANK 01
+009A   30FA           00225         MOVLW D'250' ;coloca em PR2 o valor 128 em DECIMAL SO THE PWM PERIOD = 2064uS => PWM FREQUENCY =
+                             484Hz
+                      00226 
+009B   0092           00227         MOVWF PR2
+009C   1283           00228         bcf     STATUS,         RP0     ;select bank 0
+009D   0195           00229         CLRF CCPR1L 
+009E   300C           00230         MOVLW B'00001100' 
+009F   0097           00231         MOVWF CCP1CON
+                      00232         ;;;SET PWM PIN TO OUTPUT MODE;;;
+00A0   1683           00233         BSF STATUS, RP0 ;SELECT BANK 01
+00A1   1107           00234         BCF TRISC, 2 ;SET RC2 AS OUTPUT, TO USE FOR PWM
+00A2   1283           00235         BCF STATUS, RP0  ;SELECT BANK 00
+                      00236         ;;SET tempo 2 do PRESCALE;;;
+                      00237 
+00A3   3002           00238         MOVLW B'00000010'
+00A4   0092           00239         MOVWF T2CON
+                      00240         ;;;limpo TIMER 2;;;
+00A5   0191           00241         CLRF TMR2
+                      00242         ;;;habilito TIMER 2;;;
+00A6   1512           00243         BSF T2CON, TMR2ON
+                      00244 
+00A7   01A3           00245         CLRF FADE_STATE
+                      00246 
+00A8                  00247 MAIN_0:
+                      00248         ;MOVLW 0x00
+                      00249         ;IORWF FADE_STATE, W
+                      00250         ;BTFSS STATUS, Z ;IF FADE_STATE == 0 GOTO INC_CCPR1L
+00A8   30B4           00251         movlw   D'180' ;TEMPO QUE FICA EM ESTADO ON estava 150  
+00A9                  00252 INC_CCPR1L:
+00A9   0615           00253         xorwf   CCPR1L,W
+00AA   0795           00254         addwf   CCPR1L  ;INCREMENT CCPR1L
+                      00255         ;GOTO CHANGE_STATE_0 
+00AB   09A3           00256         COMF    FADE_STATE,F
+                      00257 
+00AC                  00258 lop_s3:
+00AC   1C86           00259         btfss   S2
+00AD   28BE           00260         goto    desliga
+00AE   1C06           00261         btfss   S1
+00AF   2921           00262         goto    abreportao_fechando
+00B0   1E06           00263         btfss   S5
+00B1   292E           00264         goto    fecha_suave_fodase
+00B2   22C8           00265         call    delay_500ms
+                      00266 
+00B3                  00267 lops_s33:
+00B3   1C86           00268         btfss   S2
+00B4   28BE           00269         goto    desliga
+00B5   1E06           00270         btfss   S5
+00B6   292E           00271         goto    fecha_suave_fodase
+00B7   1C06           00272         btfss   S1
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00B8   2921           00273         goto    abreportao_fechando
+00B9   229C           00274         call    delay_10ms
+                      00275 ;-------------------------------------------------------------
+00BA   2966           00276         goto    blue_fechando   ;verifica entrada do bluetooth
+                      00277 ;-------------------------------------------------------------
+00BB                  00278 lops_s333:      
+00BB   1D06           00279         btfss   S3
+00BC   28C7           00280         goto    velo_1
+00BD   28B3           00281         goto    lops_s33
+                      00282 ;=====================================
+                      00283 ;------------DESLIGA O PWM------------
+                      00284 ;=====================================
+00BE                  00285 desliga:
+00BE   3000           00286         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+00BF   0615           00287         xorwf   CCPR1L,W
+00C0   0295           00288         subwf   CCPR1L  ;desincrementa CCPR1L
+00C1   3006           00289         movlw   D'6'
+00C2   22D5           00290         call    delay_1s
+00C3   28C4           00291         goto    loop_5
+                      00292 ;=====================================
+00C4                  00293 loop_5: ;FIM DE CURSO S2 APERTADO / INVERTE SENTIDO DO MOTOR
+00C4   1C06           00294         btfss   S1
+00C5   2893           00295         goto    relay_desligado
+00C6   28C4           00296         goto    loop_5
+                      00297 ;==========================================
+                      00298 ;----ALTERA VELOCIDADE: PORTAO ABRINDO-----
+                      00299 ;==========================================
+00C7                  00300 velo_1: ;checa qual velocidade que está
+00C7   0815           00301         movf    CCPR1L,W
+00C8   3AB4           00302         xorlw   D'180'
+00C9   1903           00303         btfsc   STATUS,Z
+00CA   20CC           00304         call    velo_11
+00CB   20D5           00305         call    velo_12
+00CC                  00306 velo_11:        ;desliga PWM
+00CC   3000           00307         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+00CD   0615           00308         xorwf   CCPR1L,W
+00CE   0295           00309         subwf   CCPR1L  ;desincrementa CCPR1L
+                      00310 
+00CF   22BB           00311         call    delay_100ms
+                      00312 
+00D0   30FA           00313         movlw   D'250' ;TEMPO QUE FICA EM ESTADO ON
+00D1   0615           00314         xorwf   CCPR1L,W
+                      00315 
+00D2   0795           00316         addwf   CCPR1L  ;valor de duty cycle 100%
+00D3   22C8           00317         call    delay_500ms
+                      00318         ;call   abrir_fechar
+00D4   28AC           00319         goto    lop_s3
+00D5                  00320 velo_12:        ;desliga PWM
+00D5   3000           00321         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+00D6   0615           00322         xorwf   CCPR1L,W
+00D7   0295           00323         subwf   CCPR1L  ;desincrementa CCPR1L
+                      00324 
+00D8   22BB           00325         call    delay_100ms
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00326 
+00D9   30B4           00327         movlw   D'180' ;TEMPO QUE FICA EM ESTADO ON
+00DA   0615           00328         xorwf   CCPR1L,W
+                      00329 
+00DB   0795           00330         addwf   CCPR1L  ;valor de duty cycle 72%
+00DC   22C8           00331         call    delay_500ms
+                      00332         ;call   abrir_fechar
+00DD   28AC           00333         goto    lop_s3
+                      00334 
+                      00335 ;============================================================
+                      00336 ;------------------------ABRE O PORTÃO-----------------------
+                      00337 ;============================================================
+00DE                  00338 INIT_1: ;ABRE PORTÃO!!! s1
+                      00339 ;PWM PERIOD = [(PR2)+1] * 4 * TOSC * (TMR2 PRESCALE VALUE) ;PR2 = TMR2 PERIOD REGISTER, TOSC = PIC CLOCK
+                             PERIOD (FOSC = 1 / TOSC)
+                      00340 ;PWM DUTY CYCLE = (CCPR1L:CCP1CON<5:4>) * TOSC * (TMR2 PRESCALE VALUE)
+                      00341 ;;;SET PWM FREQUENCY;;;
+00DE   1683           00342         BSF STATUS, RP0 ;seleciona BANK 01
+00DF   30FA           00343         MOVLW D'250' ;coloca em PR2 o valor 128 em DECIMAL SO THE PWM PERIOD = 2064uS => PWM FREQUENCY =
+                             484Hz
+00E0   0092           00344         MOVWF PR2
+                      00345 
+00E1   1283           00346         bcf     STATUS,         RP0     ;select bank 0
+                      00347 
+00E2   0195           00348         CLRF CCPR1L 
+00E3   300C           00349         MOVLW B'00001100' 
+00E4   0097           00350         MOVWF CCP1CON
+                      00351 
+                      00352 ;;;SET PWM PIN TO OUTPUT MODE;;;
+00E5   1683           00353         BSF STATUS, RP0 ;SELECT BANK 01
+00E6   1107           00354         BCF TRISC, 2 ;SET RC2 AS OUTPUT, TO USE FOR PWM
+00E7   1283           00355         BCF STATUS, RP0  ;SELECT BANK 00
+                      00356 
+                      00357 ;;SET tempo 2 do PRESCALE;;;
+00E8   3002           00358         MOVLW B'00000010'
+00E9   0092           00359         MOVWF T2CON
+                      00360 
+                      00361 ;;;limpo TIMER 2;;;
+00EA   0191           00362         CLRF TMR2
+                      00363 
+                      00364 ;;;habilito TIMER 2;;;
+00EB   1512           00365         BSF T2CON, TMR2ON
+                      00366 
+00EC   01A3           00367         CLRF FADE_STATE
+                      00368 
+00ED                  00369 MAIN_1:
+                      00370         ;MOVLW 0x00
+                      00371         ;IORWF FADE_STATE, W
+                      00372         ;BTFSS STATUS, Z ;IF FADE_STATE == 0 GOTO INC_CCPR1L
+                      00373         ;GOTO DEC_CCPR1L ;ELSE GOTO DEC_CCPR1L
+00ED   30B4           00374         movlw   D'180' ;TEMPO QUE FICA EM ESTADO ON
+                      00375         
+00EE                  00376 INC_CCPR1L_1:
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00EE   0615           00377         xorwf   CCPR1L,W
+00EF   0795           00378         addwf   CCPR1L  ;INCREMENT CCPR1L
+                      00379         ;GOTO CHANGE_STATE_0 
+                      00380         ;CHANGE_STATE:
+00F0   09A3           00381         COMF FADE_STATE, F 
+                      00382 ;Esse primeiro loop é porque ele pode detectar o apertar do s1
+                      00383 ;ocorre por ser muito rapido
+00F1                  00384 lop_s1:
+00F1   1D86           00385         btfss   S4
+00F2   2916           00386         goto    desliga_1
+00F3   1D06           00387         btfss   S3
+00F4   291C           00388         goto    fechaportao_abrindo
+00F5   22C8           00389         call    delay_500ms
+                      00390 
+00F6                  00391 lop_s11:
+00F6   1D86           00392         btfss   S4
+00F7   2916           00393         goto    desliga_1
+00F8   1D06           00394         btfss   S3
+00F9   291C           00395         goto    fechaportao_abrindo
+00FA   229C           00396         call    delay_10ms
+                      00397 ;-------------------------------------------------------------
+00FB   297C           00398         goto    blue_abrindo    ;verifica entrada do bluetooth
+                      00399 ;-------------------------------------------------------------
+00FC                  00400 lop_s111:
+00FC   1C06           00401         btfss   S1
+00FD   28FF           00402         goto    velo_2
+00FE   28F6           00403         GOTO    lop_s11
+                      00404 ;==========================================
+                      00405 ;----ALTERA VELOCIDADE: PORTAO ABRINDO-----
+                      00406 ;==========================================
+00FF                  00407 velo_2: ;checa qual velocidade
+00FF   0815           00408         movf    CCPR1L,W
+0100   3AB4           00409         xorlw   D'180'
+0101   1903           00410         btfsc   STATUS,Z
+0102   2104           00411         call    velo_21
+0103   210D           00412         call    velo_22
+0104                  00413 velo_21:        ;desliga PWM
+0104   3000           00414         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+0105   0615           00415         xorwf   CCPR1L,W
+0106   0295           00416         subwf   CCPR1L  ;desliga PWM
+                      00417 
+0107   22BB           00418         call    delay_100ms
+                      00419 
+0108   30FA           00420         movlw   D'250' ;TEMPO QUE FICA EM ESTADO ON
+0109   0615           00421         xorwf   CCPR1L,W
+                      00422 
+010A   0795           00423         addwf   CCPR1L  ;valor do duty cicle: 100%
+010B   22C8           00424         call    delay_500ms
+010C   20F1           00425         call    lop_s1
+010D                  00426 velo_22:
+010D   3000           00427         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+010E   0615           00428         xorwf   CCPR1L,W
+010F   0295           00429         subwf   CCPR1L  ;desliga PWM
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00430 
+0110   22BB           00431         call    delay_100ms
+                      00432 
+0111   30B4           00433         movlw   D'180' ;TEMPO QUE FICA EM ESTADO ON
+0112   0615           00434         xorwf   CCPR1L,W
+                      00435 
+0113   0795           00436         addwf   CCPR1L  ;valor do duty cicle: 72%
+0114   22C8           00437         call    delay_500ms
+0115   20F1           00438         call    lop_s1
+                      00439 ;----------------------------------
+                      00440 ;DEMAIS COMPLEMENTOS
+                      00441 ;----------------------------------
+0116                  00442 desliga_1:
+0116   3000           00443         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+0117   0615           00444         xorwf   CCPR1L,W
+                      00445 
+0118   0295           00446         subwf   CCPR1L  ;desincrementa CCPR1L
+0119   3006           00447         movlw   D'6'
+011A   22D5           00448         call    delay_1s
+                      00449         ;--DEPOIS DO DELAY DE 1 SEGUNDO VOLTO PRO INICIO---;
+011B   2926           00450         goto loop_4
+                      00451 
+011C                  00452 fechaportao_abrindo:
+011C   3000           00453         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+011D   0615           00454         xorwf   CCPR1L,W
+011E   0295           00455         subwf   CCPR1L  ;desincrementa CCPR1L
+011F   22D5           00456         call    delay_1s
+                      00457 
+0120   2896           00458         goto    relay_ligado
+                      00459 
+0121                  00460 abreportao_fechando:
+0121   3000           00461         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+0122   0615           00462         xorwf   CCPR1L,W
+0123   0295           00463         subwf   CCPR1L  ;desincrementa CCPR1L
+0124   22D5           00464         call    delay_1s
+                      00465 
+0125   2893           00466         goto    relay_desligado
+                      00467 
+0126                  00468 loop_4: ;PORTÃO ABERTO / INVERTE ROTAÇÃO DO MOTOR
+0126   1D06           00469         btfss   S3
+0127   2896           00470         goto    relay_ligado
+0128   2926           00471         goto    loop_4
+                      00472 
+                      00473 
+0129                  00474 desliga_tudo: ;RESPONSÁVEL POR PARAR O PORTÃO
+0129   3000           00475         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+012A   0615           00476         xorwf   CCPR1L,W
+012B   0295           00477         subwf   CCPR1L  ;desincrementa CCPR1L
+012C   22D5           00478         call    delay_1s
+012D   2889           00479         goto    loop_1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                      00480 
+012E                  00481 fecha_suave_fodase:
+012E   3000           00482         movlw   D'0' ;TEMPO QUE FICA EM ESTADO ON
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+012F   0615           00483         xorwf   CCPR1L,W
+0130   0295           00484         subwf   CCPR1L  ;desliga PWM
+                      00485 
+0131   229C           00486         call    delay_10ms
+                      00487 
+0132   304B           00488         movlw   D'75' ;TEMPO QUE FICA EM ESTADO ON
+0133   0615           00489         xorwf   CCPR1L,W
+                      00490 
+0134   0795           00491         addwf   CCPR1L  ;valor do duty cicle: 100%
+                      00492 
+0135                  00493 suave_mesmo:
+0135   1C86           00494         btfss   S2
+0136   28BE           00495         goto    desliga
+0137   2935           00496         goto    suave_mesmo
+                      00497 
+                      00498 ;==================================
+                      00499 ;----------FIM DO PORTÃO-----------
+                      00500 ;==================================
+                      00501 
+                      00502 ;============================
+                      00503 ;-----leitura bluetooth------
+                      00504 ;============================
+                      00505 
+                      00506 ;============================
+                      00507 ;----------SENHA-------------
+                      00508 ;============================
+0138                  00509 RxTx1:  ;primeiro
+0138   230D           00510         call    RxCarUART1
+0139   1C3D           00511         btfss   flag_rx1,0      ;testa flag, se Rx Cmd pula
+013A   205E           00512         call    Lop1_teclado    ;se nao apertado, volta teclado
+013B   00B6           00513         movwf   dado_rx1        ;caracter do comando que recebeu\\
+013C   2066           00514         call    Lop2_teclado
+                      00515 
+013D                  00516 RxTx2:  ;segundo
+013D   2317           00517         call    RxCarUART2
+013E   1C3E           00518         btfss   flag_rx2,0      ;testa flag, se Rx Cmd pula
+013F   2066           00519         call    Lop2_teclado    ;se nao apertado, volta teclado
+0140   00B7           00520         movwf   dado_rx2        ;caracter do comando que recebeu\\
+0141   206E           00521         call    Lop3_teclado
+                      00522 
+0142                  00523 RxTx3:  ;terceiro
+0142   2321           00524         call    RxCarUART3
+0143   1C3F           00525         btfss   flag_rx3,0      ;testa flag, se Rx Cmd pula
+0144   206E           00526         call    Lop3_teclado    ;se nao apertado, volta teclado
+0145   00B8           00527         movwf   dado_rx3        ;caracter do comando que recebeu\\
+                      00528 
+0146                  00529 verificador_blue1:
+0146   2321           00530         call    RxCarUART3
+0147   1C3F           00531         btfss   flag_rx3,0      ;testa flag, se Rx dado pula
+0148   2946           00532         goto    $ - .2
+0149   3A0D           00533         xorlw   .13                     ;[Enter]
+014A   1D03           00534         btfss   STATUS,Z
+014B   2946           00535         goto    verificador_blue1               ;retorna se não for [Enter]
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+014C   21A8           00536         call    blue_1
+014D   0008           00537         return
+                      00538 
+                      00539 ;===============================================
+                      00540 ;-----------INICIO ABRIR E FECHAR---------------
+                      00541 ;-----------------------------------------------
+014E                  00542 verifica_se_caractere_entrou:
+014E   229C           00543         call    delay_10ms
+014F   0846           00544         movf    vb1,W
+0150   3A3F           00545         xorlw   '?'
+0151   229C           00546         call    delay_10ms
+0152   1903           00547         btfsc   STATUS,Z
+0153   2158           00548         call    verificador_enter_m1
+                      00549 
+0154   232B           00550         call    RxCarUART4
+0155   1C40           00551         btfss   flag_rx4,0      ;testa flag, se Rx Cmd pula
+0156   0008           00552         return                          ;se nao apertado, volta teclado
+0157   00B9           00553         movwf   dado_rx4        ;caracter do comando que recebeu\\
+                      00554         
+0158                  00555 verificador_enter_m1:
+0158   229C           00556         call    delay_10ms
+0159   303F           00557         movlw   '?'
+015A   00C6           00558         movwf   vb1
+015B   232B           00559         call    RxCarUART4
+015C   1C40           00560         btfss   flag_rx4,0      ;testa flag, se Rx dado pula
+015D   2959           00561         goto    $ - .4
+015E   3A0D           00562         xorlw   .13                     ;[Enter]
+015F   1D03           00563         btfss   STATUS,Z
+0160   2962           00564         goto    vb_inicio       ;retorna se não for [Enter] JOGA PARA FUNÇÃO CASO APERTE BACKSPACE
+0161   2B35           00565         goto    verifica_m1
+                      00566 
+0162                  00567 vb_inicio:
+0162   01C6           00568         clrf    vb1
+0163   01B9           00569         clrf    dado_rx4
+0164   23BC           00570         call    abrir_fechar
+0165   2889           00571         goto    loop_1
+                      00572 ;===============================================
+                      00573 ;----------------ENQUANTO FECHA-----------------
+                      00574 ;===============================================
+0166                  00575 blue_fechando:
+0166   229C           00576         call    delay_10ms
+0167   0847           00577         movf    vb2,W
+0168   3A3F           00578         xorlw   '?'
+0169   229C           00579         call    delay_10ms
+016A   1903           00580         btfsc   STATUS,Z
+016B   2170           00581         call    verificador_blue_fechando ;se caracter add, ele pula verificação e verifica só se enter 
+                            apertado
+                      00582 
+016C   234B           00583         call    RxCarUART5
+016D   1C41           00584         btfss   flag_rx5,0      ;testa flag, se Rx Cmd pula
+016E   0008           00585         return                          ;se nao apertado, volta teclado
+016F   00BA           00586         movwf   dado_rx5        ;caracter do comando que recebeu\\
+                      00587 
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0170                  00588 verificador_blue_fechando:
+0170   229C           00589         call    delay_10ms
+0171   303F           00590         movlw   '?'
+0172   00C7           00591         movwf   vb2
+0173   234B           00592         call    RxCarUART5
+0174   1C41           00593         btfss   flag_rx5,0      ;testa flag, se Rx dado pula
+0175   2971           00594         goto    $ - .4
+0176   3A0D           00595         xorlw   .13                     ;[Enter]
+0177   1D03           00596         btfss   STATUS,Z
+0178   297A           00597         goto    vbc                     ;retorna se não for [Enter]
+0179   2B55           00598         goto    verifica_blue_fechando
+                      00599 
+017A                  00600 vbc:
+017A   01C7           00601         clrf    vb2
+017B   28BB           00602         goto    lops_s333
+                      00603 
+                      00604 ;===============================================
+                      00605 ;----------------ENQUANTO ABRE-----------------
+                      00606 ;===============================================
+017C                  00607 blue_abrindo:
+017C   229C           00608         call    delay_10ms
+017D   0848           00609         movf    vb3,W
+017E   3A3F           00610         xorlw   '?'
+017F   229C           00611         call    delay_10ms
+0180   1903           00612         btfsc   STATUS,Z
+0181   2186           00613         call    verificador_blue_abrindo
+                      00614 
+0182   2372           00615         call    RxCarUART6
+0183   1C42           00616         btfss   flag_rx6,0      ;testa flag, se Rx Cmd pula
+0184   0008           00617         return                          ;se nao apertado, volta teclado
+0185   00BB           00618         movwf   dado_rx6        ;caracter do comando que recebeu\\
+                      00619 
+0186                  00620 verificador_blue_abrindo:
+0186   229C           00621         call    delay_10ms
+0187   303F           00622         movlw   '?'
+0188   00C8           00623         movwf   vb3
+0189   2372           00624         call    RxCarUART6
+018A   1C42           00625         btfss   flag_rx6,0      ;testa flag, se Rx dado pula
+018B   2987           00626         goto    $ - .4
+018C   3A0D           00627         xorlw   .13                     ;[Enter]
+018D   1D03           00628         btfss   STATUS,Z
+018E   2990           00629         goto    vba             ;retorna se não for [Enter] FUNÇÃO FEITA PARA CASO APERTE BACKSPACE
+018F   2B7C           00630         goto    verifica_blue_abrindo
+                      00631 
+0190                  00632 vba:
+0190   01C8           00633         clrf    vb3
+0191   28FC           00634         goto    lop_s111
+                      00635 
+                      00636 ;========================================================
+                      00637 ;-----------BIBLIOTECAS RELACIONADAS AO PORTAO-----------
+                      00638 ;========================================================
+                      00639         #include "senha.asm"
+0192                  00001 numero_senha:   
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0192   3039           00002         movlw   0x39
+0193   00B1           00003         movwf   dig1 ;coloca numero 9 como primeiro digito da senha
+0194   3037           00004         movlw   0x37
+0195   00B2           00005         movwf   dig2 ;coloca numero 7 como primeiro digito da senha
+0196   3034           00006         movlw   0x34
+0197   00B1           00007         movwf   dig1 ;coloca numero 4 como primeiro digito da senha
+0198   0008           00008         return
+                      00009 ;======================================
+                      00010 ;--VERIFICA SENHA DIGITADA NO TECLADO--
+                      00011 ;======================================
+0199                  00012 teclado_1:
+0199   082C           00013         movf    tecla1,W
+019A   3A39           00014         xorlw   0x39
+019B   1903           00015         btfsc   STATUS,Z
+019C   299E           00016         goto    teclado_2
+019D   29C7           00017         goto    errado1
+                      00018 
+019E                  00019 teclado_2:
+019E   082D           00020         movf    tecla2,W
+019F   3A37           00021         xorlw   0x37
+01A0   1903           00022         btfsc   STATUS,Z
+01A1   29A3           00023         goto    teclado_3
+01A2   29C7           00024         goto    errado1
+                      00025 
+01A3                  00026 teclado_3:
+01A3   082E           00027         movf    tecla3,W
+01A4   3A34           00028         xorlw   0x34
+01A5   1903           00029         btfsc   STATUS,Z
+01A6   29B7           00030         goto    certo1
+01A7   29C7           00031         goto    errado1
+                      00032 ;==================================
+                      00033 ;VERIFICA BLUETOOTH
+                      00034 ;==================================
+01A8                  00035 blue_1:
+01A8   0836           00036         movf    dado_rx1,W
+01A9   3A39           00037         xorlw   '9'
+01AA   1903           00038         btfsc   STATUS,Z
+01AB   29AD           00039         goto    blue_2
+01AC   29C7           00040         goto    errado1
+01AD                  00041 blue_2:
+01AD   0837           00042         movf    dado_rx2,W
+01AE   3A37           00043         xorlw   '7'
+01AF   1903           00044         btfsc   STATUS,Z
+01B0   29B2           00045         goto    blue_3
+01B1   29C7           00046         goto    errado1
+01B2                  00047 blue_3:
+01B2   0838           00048         movf    dado_rx3,W
+01B3   3A34           00049         xorlw   '4'
+01B4   1903           00050         btfsc   STATUS,Z
+01B5   29B7           00051         goto    certo1
+01B6   29C7           00052         goto    errado1
+                      00053 ;--------------------------------------
+                      00054 ;------------SENHA CORRETA-------------
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00055 ;--------------------------------------
+01B7                  00056 certo1:
+01B7   1283           00057         BCF STATUS, RP0 ;SELECT BANK 00
+01B8   1187           00058         bcf     PORTC,3 ;DESLIGA LED SENHA ERRADA
+01B9   1207           00059         bcf     PORTC,4 ;DESLIGA LED ENSIRA SENHA
+01BA   1687           00060         bsf     PORTC,5 ;LIGA LED SENHA CORRETA
+01BB   2423           00061         call    msg_senha_correta
+                      00062 ;delay de 3 segundos
+01BC   22D5           00063         call    delay_1s
+01BD   22D5           00064         call    delay_1s
+01BE   22D5           00065         call    delay_1s
+01BF   1287           00066         bcf             PORTC,5
+                      00067 ;limpa teclas
+01C0   01AC           00068         clrf tecla1
+01C1   01AD           00069         clrf tecla2
+01C2   01AE           00070         clrf tecla3
+                      00071 ;limpa bluetooth
+01C3   01B6           00072         clrf dado_rx1
+01C4   01B7           00073         clrf dado_rx2
+01C5   01B8           00074         clrf dado_rx3
+                      00075 ;--------------------------------------
+                      00076 ;--------CHAMA PRA ABRIR PORTAO--------
+                      00077 ;--------------------------------------
+01C6   2079           00078         call    PROGRAMA_PORTAO
+                      00079 
+                      00080 ;--------------------------------------
+                      00081 ;------------SENHA ERRADA--------------
+                      00082 ;--------------------------------------
+01C7                  00083 errado1:
+01C7   1283           00084         BCF STATUS, RP0 ;SELECT BANK 00
+01C8   1587           00085         bsf     PORTC,3 ;LIGA LED SENHA ERRADA
+01C9   1207           00086         bcf     PORTC,4 ;DESLIGA LED ENSIRA SENHA
+01CA   1287           00087         bcf     PORTC,5 ;DESLIGA LED SENHA CORRETA
+01CB   2406           00088         call    msg_senha_errada ;manda mensagem errada pro bluetooth
+                      00089 ;delay de 3 segundos
+01CC   22D5           00090         call    delay_1s
+01CD   22D5           00091         call    delay_1s
+01CE   22D5           00092         call    delay_1s
+                      00093 ;limpa teclas
+01CF   01AC           00094         clrf tecla1
+01D0   01AD           00095         clrf tecla2
+01D1   01AE           00096         clrf tecla3
+                      00097 ;limpa bluetooth
+01D2   01B6           00098         clrf dado_rx1
+01D3   01B7           00099         clrf dado_rx2
+01D4   01B8           00100         clrf dado_rx3
+                      00101 
+01D5   204D           00102         call    setup
+                      00640         #include "up_aritmetica_8b.asm"
+                      00001 ;======================================================
+                      00002 ; Multiplicação de operandos de 8 bits
+                      00003 ; Rpta2:Rpta1 = Mulcnd * Mulcdr
+                      00004 ;======================================================
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00005         cblock  
+  0000004D            00006                 Op1_H,Op1_L, Op2_H, Op2_L 
+  00000051            00007                 conta_m8, Rpta2, Rpta1
+                      00008         endc
+  0000004E            00009 Mulcnd  equ     Op1_L
+  00000050            00010 Mulcdr  equ     Op2_L
+                      00011 
+01D6                  00012 Multi8:
+01D6   01D3           00013         clrf    Rpta1
+01D7   01D2           00014         clrf    Rpta2
+01D8   3008           00015         movlw   .8
+01D9   00D1           00016         movwf   conta_m8
+01DA   084E           00017         movfw   Mulcnd
+01DB   1003           00018         bcf             STATUS, C
+01DC                  00019 lazo_m8:
+01DC   0CD0           00020         rrf             Mulcdr, F
+01DD   1803           00021         btfsc   STATUS, C
+01DE   07D2           00022         addwf   Rpta2, F
+01DF   0CD2           00023         rrf             Rpta2, F
+01E0   0CD3           00024         rrf             Rpta1, F
+01E1   0BD1           00025         decfsz  conta_m8, F
+01E2   29DC           00026         goto    lazo_m8
+01E3   0008           00027         return
+                      00028 
+                      00029 ;======================================================
+                      00030 ; Divisão de operandos de 8 bits
+                      00031 ; Dividendo = Quociente * Divisor + Resto 
+                      00032 ;======================================================
+  0000004E            00033 Dividendo       equ     Op1_L
+  00000050            00034 Divisor         equ     Op2_L
+  00000050            00035 Quociente       equ     Divisor
+  0000004E            00036 Resto           equ Dividendo
+                      00037 
+01E4                  00038 Divide8:
+01E4   0850           00039         movfw   Divisor
+01E5   01D0           00040         clrf    Quociente
+01E6                  00041 loopd
+01E6   02CE           00042         subwf   Resto, F
+01E7   1C03           00043         btfss   STATUS, C
+01E8   29EB           00044         goto    fimd
+01E9   0AD0           00045         incf    Quociente, F
+01EA   29E6           00046         goto    loopd
+01EB                  00047 fimd:
+01EB   07CE           00048         addwf   Resto, F
+01EC   0008           00049         return
+                      00641         #include "up_3BCD_bin8.asm"
+                      00001 ;********************************************************
+                      00002 ; Rotina para converter 3BCD para binário de 8 bits
+                      00003 ; O numero decimal: cent:deze:unid <= 255
+                      00004 ; O número binario: binario_L
+                      00005 ;********************************************************
+                      00006         cblock
+  00000054            00007                 binario8
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00008 ;               cent            ;digito centena
+                      00009 ;               deze            ;digito dezena
+                      00010 ;               unit            ;digito unidade
+                      00011         endc
+                      00012 
+01ED                  00013 BCD_2_bin8:
+01ED   0103           00014         clrw
+01EE   18D7           00015         btfsc   cent,1
+01EF   3EC8           00016         addlw   .200            ;se BCD(cent) = 2
+01F0   1857           00017         btfsc   cent,0
+01F1   3E64           00018         addlw   .100            ;se BCD(cent) = 1
+01F2   00D4           00019         movwf   binario8        ;= BCD(cent)
+                      00020 
+01F3   3030           00021         movlw   0x30
+01F4   02D8           00022         subwf   deze,F          ;BCD(deze) = ASCII(deze) - 0x30
+01F5   0858           00023         movf    deze,W
+01F6   0758           00024         addwf   deze,W          ;Wreg = 2*BCD(deze)
+01F7   07D8           00025         addwf   deze,F          ;3*BCD(deze)
+01F8   07D8           00026         addwf   deze,F          ;5*BCD(deze)    C=0
+01F9   0D58           00027         rlf             deze,W          ;Wreg = 10*BCD(deze)
+01FA   07D4           00028         addwf   binario8,F      ;= BCD(cent) + 10*BCD(deze)
+                      00029 
+01FB   3030           00030         movlw   0x30
+01FC   0259           00031         subwf   unid,W          ;BCD(unid)
+01FD   07D4           00032         addwf   binario8,F      ;= BCD(cent) + 10*BCD(deze) + BCD(unid)
+01FE   0008           00033         return
+                      00642         #include "up_Bin16_BCD.asm"
+                      00001 ;*********************************************************
+                      00002 ; Rotina para converter binário de 16 bits para 'BCD'
+                      00003 ; entrada: binario_H:binario_L = número binario de 16 bits
+                      00004 ; saída: dmil:umil:cent:deze:unid = equivalente decimal
+                      00005 ;
+                      00006 ; exemplo:
+                      00007 ; movlw  high .20568
+                      00008 ; movwf  binario_H
+                      00009 ; movlw  low .20568
+                      00010 ; movwf  binario_L
+                      00011 ; call    bin16_bcd
+                      00012 ;*********************************************************
+                      00013         cblock
+                      00014 ;               binario_H, binario_L
+  00000055            00015                 dmil            ;digito dezena de milhar
+  00000056            00016                 umil            ;digito unidade de milhar
+  00000057            00017                 cent            ;digito centena
+  00000058            00018                 deze            ;digito dezena
+  00000059            00019                 unid            ;digito unidade
+                      00020         endc
+  0000004D            00021 binario_H       equ     Op1_H
+  0000004E            00022 binario_L       equ     Op1_L
+                      00023 
+01FF                  00024 Bin16_2_BCD:
+01FF   01D5           00025         clrf      dmil
+0200   01D6           00026         clrf      umil
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0201   01D7           00027         clrf      cent
+0202   01D8           00028         clrf      deze
+0203   01D9           00029         clrf      unid                    
+0204   3027           00030 d_dmil movlw     0x27
+0205   024D           00031         subwf     binario_H,W
+0206   1C03           00032         btfss     STATUS,C
+0207   2A19           00033         goto      d_mil
+0208   1903           00034         btfsc     STATUS,Z
+0209   2A12           00035         goto      d2
+020A   00CD           00036         movwf     binario_H
+020B   3010           00037         movlw     0x10
+020C   024E           00038         subwf     binario_L,W
+020D   00CE           00039         movwf     binario_L
+020E   1C03           00040         btfss     STATUS,C
+020F   03CD           00041         decf      binario_H,F
+0210   0AD5           00042 d1  incf      dmil,F
+0211   2A04           00043         goto      d_dmil
+0212   3010           00044 d2  movlw     0x10
+0213   024E           00045         subwf     binario_L,W
+0214   1C03           00046         btfss     STATUS,C
+0215   2A19           00047         goto      d_mil
+0216   00CE           00048         movwf     binario_L
+0217   01CD           00049         clrf      binario_H
+0218   2A10           00050         goto      d1
+0219   3003           00051 d_mil  movlw     0x03
+021A   024D           00052         subwf     binario_H,W
+021B   1C03           00053         btfss     STATUS,C
+021C   2A2E           00054         goto      d_cent
+021D   1903           00055         btfsc     STATUS,Z
+021E   2A27           00056         goto      d4
+021F   00CD           00057         movwf     binario_H
+0220   30E8           00058         movlw     0xE8
+0221   024E           00059         subwf     binario_L,W
+0222   00CE           00060         movwf     binario_L
+0223   1C03           00061         btfss     STATUS,C
+0224   03CD           00062         decf      binario_H,F
+0225   0AD6           00063 d3  incf     umil,F
+0226   2A19           00064         goto      d_mil
+0227   30E8           00065 d4  movlw    0xE8
+0228   024E           00066         subwf     binario_L,W
+0229   1C03           00067         btfss     STATUS,C
+022A   2A2E           00068         goto      d_cent
+022B   00CE           00069         movwf     binario_L
+022C   01CD           00070         clrf      binario_H
+022D   2A25           00071         goto      d3
+022E   3064           00072 d_cent movlw     0x64
+022F   08CD           00073         movf      binario_H,F
+0230   1903           00074         btfsc     STATUS,Z
+0231   2A38           00075         goto      d5
+0232   024E           00076         subwf     binario_L,W
+0233   1C03           00077         btfss     STATUS,C
+0234   03CD           00078         decf      binario_H,F
+0235   00CE           00079         movwf     binario_L
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0236   0AD7           00080         incf      cent,F
+0237   2A2E           00081         goto      d_cent
+0238   3064           00082 d5  movlw     0x64
+0239   024E           00083         subwf     binario_L,W
+023A   1C03           00084         btfss     STATUS,C
+023B   2A3F           00085         goto      d_dec
+023C   0AD7           00086         incf      cent,F
+023D   00CE           00087         movwf     binario_L
+023E   2A38           00088         goto      d5
+023F   300A           00089 d_dec  movlw     0x0A
+0240   024E           00090         subwf     binario_L,W
+0241   1C03           00091         btfss     STATUS,C
+0242   2A46           00092         goto      d_unid
+0243   0AD8           00093         incf      deze,F
+0244   00CE           00094         movwf     binario_L
+0245   2A3F           00095         goto      d_dec
+0246   084E           00096 d_unid movf      binario_L,W
+0247   00D9           00097         movwf     unid
+0248   0008           00098         return
+                      00643         #include "up_md_lcd_driver.asm"
+                      00001         cblock
+  0000005A            00002           TEMPO1,TEMPO2
+                      00003         endc
+                      00004 
+                      00005 #define LCD_RS   PORTE,0
+                      00006 #define LCD_E    PORTE,1
+                      00007 #define LCD_DADO PORTD
+                      00008 
+  0000000C            00009 LCD_ON_NOCURSOR EQU     0x0C   ;Display on, cursor off
+  0000000E            00010 LCD_ON_CURSOR           EQU     0x0E   ;Display on, cursor on
+  0000000F            00011 LCD_ON_CURSOR_BLINK     EQU     0x0F   ;Display on, cursor on-blink
+  00000010            00012 CURSOR_A_ESQUERDA       EQU     0x10    ;Cursor à esquerda
+  00000014            00013 CURSOR_A_DIREITA        EQU     0x14    ;Cursor à direita
+  00000018            00014 MENSAJE_ESQUERDA        EQU     0x18    ;Mensagem à esquerda
+  0000001C            00015 MENSAJE_DIREITA EQU     0x1C    ;Mensagem à direita
+  00000001            00016 LCD_CLEAR               EQU     0x01   ;Limpa display e cursor home
+  00000008            00017 LCD_OFF                 EQU     0x008   ;desligar display
+  00000080            00018 LCD_Linha_1             EQU     0x80    ;primeira linha
+  000000C0            00019 LCD_Linha_2             EQU     0xC0    ;segunda linha
+                      00020 ;====================================================================
+0249                  00021 Inicia_LCD:
+                      00022         banco1
+0249   1683               M         bsf     STATUS,RP0
+024A   0188           00023         clrf    TRISD
+024B   0189           00024         clrf    TRISE
+                      00025         banco0
+024C   1283               M         bcf     STATUS,RP0
+024D   3038           00026         MOVLW   0x38            ;
+024E   225F           00027         CALL    EnviaCmdLCD
+024F   3038           00028         MOVLW   0x38            ;Modo 8b, 2 linhas de dados
+0250   225F           00029         CALL    EnviaCmdLCD
+0251   3006           00030         MOVLW   0x06            ;Cursor, deslocamento para a direita
+0252   225F           00031         CALL    EnviaCmdLCD
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0253   300C           00032         MOVLW   0x0C            ;Display on, cursor off
+0254   225F           00033         CALL    EnviaCmdLCD
+0255   3001           00034         MOVLW   0x01            ;Limpa display e cursor home
+0256   225F           00035         CALL    EnviaCmdLCD
+0257   0008           00036         RETURN  
+                      00037 
+0258                  00038 EnviaCarLCD:
+0258   1409           00039         BSF     LCD_RS
+0259   1489           00040         BSF     LCD_E
+025A   0088           00041         MOVWF   LCD_DADO
+025B   1089           00042         BCF     LCD_E
+025C   3006           00043         MOVLW  0x06
+025D   2266           00044         CALL    Delay_LCD       ;1.54ms
+025E   0008           00045         RETURN  
+                      00046 
+025F                  00047 EnviaCmdLCD:
+025F   1009           00048         BCF     LCD_RS          ;comando
+0260   1489           00049         BSF     LCD_E
+0261   0088           00050         MOVWF   LCD_DADO
+0262   1089           00051         BCF     LCD_E
+0263   3012           00052         MOVLW   0x12
+0264   2266           00053         CALL    Delay_LCD       ;4.6ms
+0265   0008           00054         RETURN
+                      00055 
+0266                  00056 Delay_LCD:
+0266   00DB           00057         MOVWF   TEMPO2     
+0267   30FF           00058         MOVLW   0xFF
+0268   00DA           00059         MOVWF   TEMPO1
+0269   0064           00060         CLRWDT
+026A   0BDA           00061         DECFSZ  TEMPO1,F
+026B   2A69           00062         GOTO    $-02               
+026C   0BDB           00063         DECFSZ  TEMPO2,F
+026D   2A67           00064         GOTO    $-06                
+026E   0008           00065         RETURN
+                      00644         #include "up_md_atrasos.asm"
+                      00001 ;******************************************************************
+                      00002 ;* Rotinas para gerar atrasos de tempo,
+                      00003 ;* reg. "contador1,2,3" para estabelecer o tempo de atraso
+                      00004 ;* frequência de clock = 16.000 Mhz
+                      00005 ; UFMT: Jun/2017
+                      00006 ;******************************************************************
+                      00007 
+026F                  00008 delay_1ms:      
+026F   302F           00009         movlw   D'47'
+0270   00A9           00010         movwf   contador1
+0271   3006           00011         movlw   D'6'
+0272   00AA           00012         movwf   contador2
+0273   0BA9           00013         decfsz  contador1,F     ;
+0274   2A73           00014         goto    $-1
+0275   0BAA           00015         decfsz  contador2,1
+0276   2A73           00016         goto    $-3
+0277   0008           00017         return  
+                      00018 
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0278                  00019 delay_2ms:      
+0278   3061           00020         movlw   D'97'
+0279   00A9           00021         movwf   contador1
+027A   300B           00022         movlw   D'11'
+027B   00AA           00023         movwf   contador2
+027C   0BA9           00024         decfsz  contador1,F     ;
+027D   2A7C           00025         goto    $-1
+027E   0BAA           00026         decfsz  contador2,1
+027F   2A7C           00027         goto    $-3
+0280   0008           00028         return  
+                      00029 
+0281                  00030 delay_3ms:      
+0281   3093           00031         movlw   D'147'
+0282   00A9           00032         movwf   contador1
+0283   3010           00033         movlw   D'16'
+0284   00AA           00034         movwf   contador2
+0285   0BA9           00035         decfsz  contador1,F     ;
+0286   2A85           00036         goto    $-1
+0287   0BAA           00037         decfsz  contador2,1
+0288   2A85           00038         goto    $-3
+0289   0008           00039         return  
+                      00040 
+028A                  00041 delay_4ms:      
+028A   30C5           00042         movlw   D'197'
+028B   00A9           00043         movwf   contador1
+028C   3015           00044         movlw   D'21'
+028D   00AA           00045         movwf   contador2
+028E   0BA9           00046         decfsz  contador1,F     ;
+028F   2A8E           00047         goto    $-1
+0290   0BAA           00048         decfsz  contador2,1
+0291   2A8E           00049         goto    $-3
+0292   0008           00050         return  
+                      00051 
+0293                  00052 delay_5ms:      
+0293   30F7           00053         movlw   D'247'
+0294   00A9           00054         movwf   contador1
+0295   301A           00055         movlw   D'26'
+0296   00AA           00056         movwf   contador2
+0297   0BA9           00057         decfsz  contador1,F     ;
+0298   2A97           00058         goto    $-1
+0299   0BAA           00059         decfsz  contador2,1
+029A   2A97           00060         goto    $-3
+029B   0008           00061         return  
+                      00062 
+029C                  00063 delay_10ms:
+029C   30F0           00064         movlw   D'240'
+029D   00A9           00065         movwf   contador1
+029E   3034           00066         movlw   D'52'
+029F   00AA           00067         movwf   contador2
+02A0   0BA9           00068         decfsz  contador1,1
+02A1   2AA0           00069         goto    $-1
+02A2   0BAA           00070         decfsz  contador2,1
+02A3   2AA0           00071         goto    $-3
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02A4   0008           00072         return  
+                      00073 
+02A5                  00074 delay_20ms:
+02A5   30E2           00075         movlw   D'226'
+02A6   00A9           00076         movwf   contador1
+02A7   3068           00077         movlw   D'104'
+02A8   00AA           00078         movwf   contador2
+02A9   0BA9           00079         decfsz  contador1,1
+02AA   2AA9           00080         goto    $-1
+02AB   0BAA           00081         decfsz  contador2,1
+02AC   2AA9           00082         goto    $-3
+02AD   0008           00083         return  
+                      00084 
+02AE                  00085 delay_50ms:
+02AE   30B9           00086         movlw   D'185'
+02AF   00A9           00087         movwf   contador1
+02B0   3004           00088         movlw   D'4'
+02B1   00AA           00089         movwf   contador2
+02B2   3002           00090         movlw   D'2'
+02B3   00AB           00091         movwf   contador3
+02B4   0BA9           00092         decfsz  contador1,1
+02B5   2AB4           00093         goto    $-1
+02B6   0BAA           00094         decfsz  contador2,1
+02B7   2AB4           00095         goto    $-3
+02B8   0BAB           00096         decfsz  contador3,1
+02B9   2AB4           00097         goto    $-5
+02BA   0008           00098         return
+                      00099 
+02BB                  00100 delay_100ms:
+02BB   3075           00101         movlw   D'117'
+02BC   00A9           00102         movwf   contador1
+02BD   3008           00103         movlw   D'8'
+02BE   00AA           00104         movwf   contador2
+02BF   3003           00105         movlw   D'3'
+02C0   00AB           00106         movwf   contador3
+02C1   0BA9           00107         decfsz  contador1,1
+02C2   2AC1           00108         goto    $-1
+02C3   0BAA           00109         decfsz  contador2,1
+02C4   2AC1           00110         goto    $-3
+02C5   0BAB           00111         decfsz  contador3,1
+02C6   2AC1           00112         goto    $-5
+02C7   0008           00113         return
+                      00114 
+02C8                  00115 delay_500ms:
+02C8   305C           00116         movlw   D'92'
+02C9   00A9           00117         movwf   contador1
+02CA   3026           00118         movlw   D'38'
+02CB   00AA           00119         movwf   contador2
+02CC   300B           00120         movlw   D'11'
+02CD   00AB           00121         movwf   contador3
+02CE   0BA9           00122         decfsz  contador1,F     ;
+02CF   2ACE           00123         goto    $-1
+02D0   0BAA           00124         decfsz  contador2,1
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02D1   2ACE           00125         goto    $-3
+02D2   0BAB           00126         decfsz  contador3,1
+02D3   2ACE           00127         goto    $-5
+02D4   0008           00128         return  
+                      00129 
+02D5                  00130 delay_1s:
+02D5   30BD           00131         movlw   D'189'
+02D6   00A9           00132         movwf   contador1
+02D7   304B           00133         movlw   D'75'
+02D8   00AA           00134         movwf   contador2
+02D9   3015           00135         movlw   D'21'
+02DA   00AB           00136         movwf   contador3
+02DB   0BA9           00137         decfsz  contador1,1
+02DC   2ADB           00138         goto    $-1
+02DD   0BAA           00139         decfsz  contador2,1
+02DE   2ADB           00140         goto    $-3
+02DF   0BAB           00141         decfsz  contador3,1
+02E0   2ADB           00142         goto    $-5
+02E1   0008           00143         return
+                      00645 ;--------------------------------------
+                      00646 
+                      00647 ;-----------------------------------------
+                      00648 ;--BIBLIOTECAS RELACIONADAS AO BLUETOOTH--
+                      00649 ;-----------------------------------------
+                      00650         #include "up_CAD.asm"
+                      00001 ;********************************************************
+                      00002 ; biblioteca para usar o modulo CAD
+                      00003 ; Resultado da amostragem em Binario10H:Binario10L
+                      00004 ;********************************************************
+                      00005         cblock
+  0000005C            00006                 Binario10H, Binario10L
+  0000005E            00007                 conta_ad
+                      00008         endc
+                      00009 
+02E2                  00010 Iniciar_AN0:                            ;Escolhe AN0 e inicia a aquisição
+02E2   3081           00011         movlw   0x81                    ;clock Fosc/32 (Max.20MHz), Ch0, CAD on
+02E3   009F           00012         movwf   ADCON0
+02E4   0008           00013         return
+02E5                  00014 Iniciar_AN1:                            ;Escolhe AN1 e inicia a aquisição
+02E5   3089           00015         movlw   0x89                    ;clock Fosc/32 (Max.20MHz), Ch1, CAD on
+02E6   009F           00016         movwf   ADCON0
+02E7   0008           00017         return
+02E8                  00018 Iniciar_AN3:                            ;Escolhe AN3 e inicia a aquisição
+02E8   3099           00019         movlw   0x99                    ;clock Fosc/32 (Max.20MHz), Ch3, CAD on
+02E9   009F           00020         movwf   ADCON0
+02EA   0008           00021         return
+02EB                  00022 Converte_AD:
+02EB   301A           00023         movlw   .26                             ;Tadq >= 20us (Fclock = 16MHz)
+02EC   00DE           00024         movwf   conta_ad
+02ED   0BDE           00025         decfsz  conta_ad,F              ;(3N+3)c   (inclui CALL)
+02EE   2AED           00026         goto    $ - 1                   ;aguarda tempo de aquisição
+02EF   151F           00027         bsf             ADCON0,GO_DONE  ;começa a conversão AD
+02F0   191F           00028         btfsc   ADCON0,GO_DONE  ;espera a conversão AD terminar
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02F1   2AF0           00029         goto    $ - 1
+02F2   081E           00030         movfw   ADRESH                  ;Carrega em W o valor de tensão convertido
+02F3   00DC           00031         movwf   Binario10H
+                      00032         banco1 
+02F4   1683               M         bsf     STATUS,RP0
+02F5   081E           00033         movf    ADRESL,W
+                      00034         banco0
+02F6   1283               M         bcf     STATUS,RP0
+02F7   00DD           00035         movwf   Binario10L      ;Resultado em Binario10
+02F8   0008           00036         return
+                      00651         #include "up_UART.asm"
+                      00001 ;=============================================
+                      00002 ;Bibliotecas para comunicação serial USART
+                      00003 ;PIC 16F877A            Cristal = 16 ou 20 MHz
+                      00004 ;=============================================
+                      00005         
+                      00006 ;=============================================
+                      00007 ;Configuração do USART
+                      00008 ;=============================================
+02F9                  00009 iniciar_UART
+02F9   1218           00010         bcf             RCSTA,CREN      ;limpa bit de erro por OVERRUN
+02FA   0000           00011         nop
+02FB   1618           00012         bsf             RCSTA,CREN
+                      00013 
+02FC   1683           00014         bsf             STATUS, RP0
+02FD   3020           00015         movlw   B'00100000'     ;Tx assíncrona, 8bits, Tx on, BRGH=0
+02FE   0098           00016         movwf   TXSTA
+02FF   3019           00017         movlw   k_spbrg         ;Vtx=9600 baudios
+0300   0099           00018         movwf   SPBRG
+0301   1283           00019         bcf             STATUS, RP0
+                      00020 
+0302   3090           00021         movlw   B'10010000'     ;hab. porta serial, 8bits, hab. Rx cont.
+0303   0098           00022         movwf   RCSTA           
+0304   0199           00023         clrf    TXREG           ;limpar buffers da porta serial
+0305   019A           00024         clrf    RCREG
+0306   0008           00025         return
+                      00026 
+                      00027 ;=============================================
+                      00028 ; Envia caracter - RS232 - hacia la PC
+                      00029 ; 1°) Carregar Wreg = ASCII do caracter
+                      00030 ; 2°) call  UART_TxCar
+                      00031 ;=============================================
+0307                  00032 TxCarUART
+0307                  00033 TxCmdUART
+0307   1683           00034         bsf             STATUS, RP0
+0308                  00035 TxCar1
+0308   1C98           00036         btfss   TXSTA,TRMT      ;verifica estado da Tx antes de enviar
+0309   2B08           00037         goto    TxCar1          ;se ainda não esta pronto, intentar de novo
+030A   1283           00038         bcf             STATUS, RP0
+030B   0099           00039         movwf   TXREG           ;transmitir o dado
+030C   0008           00040         return
+                      00041 
+                      00042 ;=============================================
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00043 ; Sub-rotina para Receber caracter 
+                      00044 ; 1°) call  UART_RxCar
+                      00045 ; 2°) Pegar o caracter do Wreg
+                      00046 ;=============================================
+                      00047 ;-------------CARACTERES DA SENHA-------------
+                      00048 ;=============================================
+030D                  00049 RxCarUART1 ; primeiro caractere
+030D   103D           00050         bcf             flag_rx1,0      ;limpa flag de recepção
+030E   3020           00051         movlw   B'00100000' ;0x06 = máscara de bits não desejados
+030F   0518           00052         andwf   RCSTA,W         ;para verificar bits de erro
+0310   1D03           00053         btfss   STATUS,Z
+0311   2B99           00054         goto    RxError         ;existe algum flag de erro = 1
+0312   1E8C           00055         btfss   PIR1,RCIF       ;verifica se dado está pronto
+0313   0008           00056         return                          ;retorna com flag regrx<0> = 0 
+0314   081A           00057         movf    RCREG,W         ;le o conteúdo do Reg. => Wreg
+0315   143D           00058         bsf             flag_rx1,0      ;regrx<0>  = 1, indica existe dado recebido
+0316   0008           00059         return
+                      00060 ;------------------------
+0317                  00061 RxCarUART2 ; segundo caractere
+0317   103E           00062         bcf             flag_rx2,0      ;limpa flag de recepção
+0318   3020           00063         movlw   B'00100000' ;0x06 = máscara de bits não desejados
+0319   0518           00064         andwf   RCSTA,W         ;para verificar bits de erro
+031A   1D03           00065         btfss   STATUS,Z
+031B   2B99           00066         goto    RxError         ;existe algum flag de erro = 1
+031C   1E8C           00067         btfss   PIR1,RCIF       ;verifica se dado está pronto
+031D   0008           00068         return                          ;retorna com flag regrx<0> = 0 
+031E   081A           00069         movf    RCREG,W         ;le o conteúdo do Reg. => Wreg
+031F   143E           00070         bsf             flag_rx2,0      ;regrx<0>  = 1, indica existe dado recebido
+0320   0008           00071         return
+                      00072 ;------------------------
+0321                  00073 RxCarUART3 ; primeiro caractere
+0321   103F           00074         bcf             flag_rx3,0      ;limpa flag de recepção
+0322   3020           00075         movlw   B'00100000' ;0x06 = máscara de bits não desejados
+0323   0518           00076         andwf   RCSTA,W         ;para verificar bits de erro
+0324   1D03           00077         btfss   STATUS,Z
+0325   2B99           00078         goto    RxError         ;existe algum flag de erro = 1
+0326   1E8C           00079         btfss   PIR1,RCIF       ;verifica se dado está pronto
+0327   0008           00080         return                          ;retorna com flag regrx<0> = 0 
+0328   081A           00081         movf    RCREG,W         ;le o conteúdo do Reg. => Wreg
+0329   143F           00082         bsf             flag_rx3,0      ;regrx<0>  = 1, indica existe dado recebido
+032A   0008           00083         return
+                      00084 
+                      00085 ;=============================================
+                      00086 ;-------ABRIR/FECHAR/PARA MOTOR INICIAL-------
+                      00087 ;=============================================
+032B                  00088 RxCarUART4: 
+032B   1040           00089         bcf             flag_rx4,0      ;limpa flag de recepção
+032C   3020           00090         movlw   B'00100000' ;0x06 = máscara de bits não desejados
+032D   0518           00091         andwf   RCSTA,W         ;para verificar bits de erro
+032E   1D03           00092         btfss   STATUS,Z
+032F   2B99           00093         goto    RxError         ;existe algum flag de erro = 1
+                      00094         ;call   delay_10ms
+0330   1E8C           00095         btfss   PIR1,RCIF       ;verifica se dado está pronto
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 28
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0331   2092           00096         call    end_function ;retorna com flag regrx<0> = 0
+0332   081A           00097         movf    RCREG,W         ;le o conteúdo do Reg. => Wreg
+0333   1440           00098         bsf             flag_rx4,0      ;regrx<0>  = 1, indica existe dado recebido
+0334   0008           00099         return
+                      00100 
+0335                  00101 verifica_m1:    ;Se O enviado atraves do bluetooth
+0335   0839           00102         movf    dado_rx4,W
+0336   3A4F           00103         xorlw   'O'     
+0337   1903           00104         btfsc   STATUS,Z
+0338   2B3F           00105         goto    comando_m1_O ;Desvia para abrir portão
+                      00106 
+0339                  00107 verifica_m2:    ;Se C enviado atraves do bluetooth
+0339   0839           00108         movf    dado_rx4,W
+033A   3A43           00109         xorlw   'C'
+033B   1903           00110         btfsc   STATUS,Z
+033C   2B43           00111         goto    comando_m1_C ;Desvia para fechar portão
+033D   2B47           00112         goto    caracter_errado
+                      00113 
+                      00114 ;===================================================
+                      00115 ;CRIAR FUNÇÃO NO MAIN SÓ PRA DESLIGAR PORTÃO
+                      00116 ;===================================================
+                      00117 ;verifica_m3:   ;Se S enviado atraves do bluetooth
+                      00118 ;       movf    dado_rx4,W
+                      00119 ;       xorlw   'S'
+                      00120 ;       btfsc   STATUS,Z
+                      00121 ;       goto    comando_m1_S ;Desvia para parar portão
+033E   2B47           00122         goto    caracter_errado
+                      00123 
+033F                  00124 comando_m1_O:
+033F   01C6           00125         clrf    vb1
+0340   01B9           00126         clrf    dado_rx4
+0341   23BC           00127         call    abrir_fechar
+0342   2093           00128         call    relay_desligado
+                      00129         
+0343                  00130 comando_m1_C:
+0343   01C6           00131         clrf    vb1
+0344   01B9           00132         clrf    dado_rx4
+0345   23BC           00133         call    abrir_fechar
+0346   2096           00134         call    relay_ligado
+                      00135 
+0347                  00136 caracter_errado:
+0347   01C6           00137         clrf    vb1
+0348   01B9           00138         clrf    dado_rx4
+0349   23BC           00139         call    abrir_fechar
+034A   2089           00140         call    loop_1
+                      00141 
+                      00142 ;=============================================
+                      00143 ;-----ABRIR/FECHAR/PARAR PORTÃO FECHANDO------
+                      00144 ;=============================================
+034B                  00145 RxCarUART5: ;primeiro caractere
+034B   1041           00146         bcf             flag_rx5,0      ;limpa flag de recepção
+034C   3020           00147         movlw   B'00100000' ;0x06 = máscara de bits não desejados
+034D   0518           00148         andwf   RCSTA,W         ;para verificar bits de erro
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+034E   1D03           00149         btfss   STATUS,Z
+034F   2B99           00150         goto    RxError         ;existe algum flag de erro = 1
+                      00151         ;call   delay_10ms
+0350   1E8C           00152         btfss   PIR1,RCIF       ;verifica se dado está pronto
+0351   20BB           00153         call    lops_s333       ;retorna com flag regrx<0> = 0
+0352   081A           00154         movf    RCREG,W         ;le o conteúdo do Reg. => Wreg
+0353   1441           00155         bsf             flag_rx5,0      ;regrx<0>  = 1, indica existe dado recebido
+0354   0008           00156         return
+                      00157 
+0355                  00158 verifica_blue_fechando:
+0355   083A           00159         movf    dado_rx5,W
+0356   3A43           00160         xorlw   'C'
+0357   1903           00161         btfsc   STATUS,Z
+0358   2B62           00162         goto    comando_blue_fechando ;Desvia acelerar ou aumentar velocidade de fechamento do portão
+                      00163 
+0359                  00164 verifica_m1_fechando:   ;Se O enviado atraves do bluetooth
+0359   083A           00165         movf    dado_rx5,W
+035A   3A4F           00166         xorlw   'O'     
+035B   1903           00167         btfsc   STATUS,Z
+035C   2B66           00168         goto    comando_m1_O_fechando ;Desvia para abrir portão
+                      00169 
+035D                  00170 verifica_m2_fechando:   ;Se C enviado atraves do bluetooth
+035D   083A           00171         movf    dado_rx5,W
+035E   3A53           00172         xorlw   'S'
+035F   1903           00173         btfsc   STATUS,Z
+0360   2B6A           00174         goto    comando_m1_S_fechando ;Desvia para parar portão
+0361   2B6E           00175         goto    caracter_errado_fechando
+                      00176 ;------------------------------------------------------------
+                      00177 ;------------------------------------------------------------
+0362                  00178 comando_blue_fechando:
+0362   01C7           00179         clrf    vb2
+0363   01BA           00180         clrf    dado_rx5
+0364   23BC           00181         call    abrir_fechar
+0365   20C7           00182         call    velo_1
+                      00183 
+0366                  00184 comando_m1_O_fechando:
+0366   01C7           00185         clrf    vb2
+0367   01BA           00186         clrf    dado_rx5
+0368   23BC           00187         call    abrir_fechar
+                      00188         ;call   delay_1s
+0369   2121           00189         call    abreportao_fechando
+                      00190 
+036A                  00191 comando_m1_S_fechando:
+036A   01C7           00192         clrf    vb2
+036B   01BA           00193         clrf    dado_rx5
+036C   23BC           00194         call    abrir_fechar
+036D   2129           00195         call    desliga_tudo
+                      00196 
+036E                  00197 caracter_errado_fechando:
+036E   01C7           00198         clrf    vb2
+036F   01BA           00199         clrf    dado_rx5
+0370   23BC           00200         call    abrir_fechar
+0371   20BB           00201         call    lops_s333       ;loop relacionado ao portão enquanto fecha
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 30
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00202 
+                      00203 ;=============================================
+                      00204 ;-----ABRIR/FECHAR/PARAR PORTÃO ABRINDO-------
+                      00205 ;=============================================
+0372                  00206 RxCarUART6 ; primeiro caractere
+0372   1042           00207         bcf             flag_rx6,0      ;limpa flag de recepção
+0373   3020           00208         movlw   B'00100000' ;0x06 = máscara de bits não desejados
+0374   0518           00209         andwf   RCSTA,W         ;para verificar bits de erro
+0375   1D03           00210         btfss   STATUS,Z
+0376   2B99           00211         goto    RxError         ;existe algum flag de erro = 1
+                      00212         ;call   delay_10ms
+0377   1E8C           00213         btfss   PIR1,RCIF       ;verifica se dado está pronto
+0378   20FC           00214         call    lop_s111        ;retorna com flag regrx<0> = 0
+0379   081A           00215         movf    RCREG,W         ;le o conteúdo do Reg. => Wreg
+037A   1442           00216         bsf             flag_rx6,0      ;regrx<0>  = 1, indica existe dado recebido
+037B   0008           00217         return
+                      00218 
+037C                  00219 verifica_blue_abrindo:
+037C   083B           00220         movf    dado_rx6,W
+037D   3A4F           00221         xorlw   'O'
+037E   1903           00222         btfsc   STATUS,Z
+037F   2B89           00223         goto    comando_blue_abrindo ;Desvia acelerar ou aumentar velocidade de fechamento do portão
+                      00224         ;call   abrir_fechar
+0380                  00225 verifica_m1_abrindo:    ;Se O enviado atraves do bluetooth
+0380   083B           00226         movf    dado_rx6,W
+0381   3A43           00227         xorlw   'C'     
+0382   1903           00228         btfsc   STATUS,Z
+0383   2B8D           00229         goto    comando_m1_C_abrindo ;Desvia para fechar portão
+                      00230 
+0384                  00231 verifica_m2_abrindo:    ;Se C enviado atraves do bluetooth
+0384   083B           00232         movf    dado_rx6,W
+0385   3A53           00233         xorlw   'S'
+0386   1903           00234         btfsc   STATUS,Z
+0387   2B91           00235         goto    comando_m1_S_abrindo ;Desvia para parar portão
+0388   2B95           00236         goto    caracter_errado_abrindo
+                      00237 ;----------------------------------------------------------
+                      00238 ;----------------------------------------------------------
+0389                  00239 comando_blue_abrindo:
+0389   01C8           00240         clrf    vb3
+038A   01BB           00241         clrf    dado_rx6
+038B   23BC           00242         call    abrir_fechar
+038C   20FF           00243         call    velo_2
+                      00244 
+038D                  00245 comando_m1_C_abrindo:
+038D   01C8           00246         clrf    vb3
+038E   01BB           00247         clrf    dado_rx6
+038F   23BC           00248         call    abrir_fechar
+                      00249         ;call   delay_1s
+0390   211C           00250         call    fechaportao_abrindo
+                      00251 
+0391                  00252 comando_m1_S_abrindo:
+0391   01C8           00253         clrf    vb3
+0392   01BB           00254         clrf    dado_rx6
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 31
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0393   23BC           00255         call    abrir_fechar
+0394   2129           00256         call    desliga_tudo
+                      00257 
+0395                  00258 caracter_errado_abrindo:
+0395   01C8           00259         clrf    vb3
+0396   01BB           00260         clrf    dado_rx6
+0397   23BC           00261         call    abrir_fechar
+0398   20FC           00262         call    lop_s111        ;loop relacionado ao portão enquanto fecha
+                      00263 ;====================================================== 
+0399                  00264 RxError:
+0399   1218           00265         bcf             RCSTA,CREN      ;limpa bit de erro por OVERRUN
+039A   0000           00266         nop
+039B   1618           00267         bsf             RCSTA,CREN
+039C   0008           00268         return
+                      00269         
+                      00270 
+                      00271         
+                      00652         #include "up_msg.asm"
+                      00001 ;============================================
+039D                  00002 msg_senha:
+039D   300D           00003         movlw   .13
+039E   2307           00004         call    TxCarUART
+039F   3045           00005         movlw   'E'
+03A0   2307           00006         call    TxCarUART
+03A1   306E           00007         movlw   'n'
+03A2   2307           00008         call    TxCarUART
+03A3   3073           00009         movlw   's'
+03A4   2307           00010         call    TxCarUART
+03A5   3069           00011         movlw   'i'
+03A6   2307           00012         call    TxCarUART
+03A7   3072           00013         movlw   'r'
+03A8   2307           00014         call    TxCarUART
+03A9   3061           00015         movlw   'a'
+03AA   2307           00016         call    TxCarUART
+03AB   3020           00017         movlw   ' '
+03AC   2307           00018         call    TxCarUART
+03AD   3073           00019         movlw   's'
+03AE   2307           00020         call    TxCarUART
+03AF   3065           00021         movlw   'e'
+03B0   2307           00022         call    TxCarUART
+03B1   306E           00023         movlw   'n'
+03B2   2307           00024         call    TxCarUART
+03B3   3068           00025         movlw   'h'
+03B4   2307           00026         call    TxCarUART
+03B5   3061           00027         movlw   'a'
+03B6   2307           00028         call    TxCarUART
+03B7   303A           00029         movlw   ':'
+03B8   2307           00030         call    TxCarUART
+03B9   3020           00031         movlw   ' '
+03BA   2307           00032         call    TxCarUART
+03BB   0008           00033         return
+                      00034 
+03BC                  00035 abrir_fechar:
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 32
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+03BC   300D           00036         movlw   .13
+03BD   2307           00037         call    TxCarUART
+03BE   3028           00038         movlw   '('
+03BF   2307           00039         call    TxCarUART
+03C0   304F           00040         movlw   'O'
+03C1   2307           00041         call    TxCarUART
+03C2   3029           00042         movlw   ')'
+03C3   2307           00043         call    TxCarUART
+03C4   3041           00044         movlw   'A'
+03C5   2307           00045         call    TxCarUART
+03C6   3062           00046         movlw   'b'
+03C7   2307           00047         call    TxCarUART
+03C8   3072           00048         movlw   'r'
+03C9   2307           00049         call    TxCarUART
+03CA   3069           00050         movlw   'i'
+03CB   2307           00051         call    TxCarUART
+03CC   3072           00052         movlw   'r'
+03CD   2307           00053         call    TxCarUART
+03CE   3020           00054         movlw   ' '
+03CF   2307           00055         call    TxCarUART
+03D0   302F           00056         movlw   '/'
+03D1   2307           00057         call    TxCarUART
+03D2   3020           00058         movlw   ' '
+03D3   2307           00059         call    TxCarUART
+03D4   3028           00060         movlw   '('
+03D5   2307           00061         call    TxCarUART
+03D6   3043           00062         movlw   'C'
+03D7   2307           00063         call    TxCarUART
+03D8   3029           00064         movlw   ')'
+03D9   2307           00065         call    TxCarUART
+03DA   3046           00066         movlw   'F'
+03DB   2307           00067         call    TxCarUART
+03DC   3065           00068         movlw   'e'
+03DD   2307           00069         call    TxCarUART
+03DE   3063           00070         movlw   'c'
+03DF   2307           00071         call    TxCarUART
+03E0   3068           00072         movlw   'h'
+03E1   2307           00073         call    TxCarUART
+03E2   3061           00074         movlw   'a'
+03E3   2307           00075         call    TxCarUART
+03E4   3072           00076         movlw   'r'
+03E5   2307           00077         call    TxCarUART
+03E6   3020           00078         movlw   ' '
+03E7   2307           00079         call    TxCarUART
+03E8   302F           00080         movlw   '/'
+03E9   2307           00081         call    TxCarUART
+03EA   3020           00082         movlw   ' '
+03EB   2307           00083         call    TxCarUART
+03EC   3028           00084         movlw   '('
+03ED   2307           00085         call    TxCarUART
+03EE   3053           00086         movlw   'S'
+03EF   2307           00087         call    TxCarUART
+03F0   3029           00088         movlw   ')'
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 33
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+03F1   2307           00089         call    TxCarUART
+03F2   3050           00090         movlw   'P'
+03F3   2307           00091         call    TxCarUART
+03F4   3061           00092         movlw   'a'
+03F5   2307           00093         call    TxCarUART
+03F6   3072           00094         movlw   'r'
+03F7   2307           00095         call    TxCarUART
+03F8   3061           00096         movlw   'a'
+03F9   2307           00097         call    TxCarUART
+03FA   3072           00098         movlw   'r'
+03FB   2307           00099         call    TxCarUART
+03FC   3020           00100         movlw   ' '
+03FD   2307           00101         call    TxCarUART
+03FE   303A           00102         movlw   ':'
+03FF   2307           00103         call    TxCarUART
+0400   3020           00104         movlw   ' '
+0401   2307           00105         call    TxCarUART
+0402   0008           00106         return
+                      00107 
+0403                  00108 limpa_tela
+0403   300C           00109         movlw   0x0C    
+0404   2307           00110         call    TxCarUART
+0405   0008           00111         return
+                      00112 
+                      00113 
+0406                  00114 msg_senha_errada:
+0406   300D           00115         movlw   .13
+0407   2307           00116         call    TxCarUART
+0408   3053           00117         movlw   'S'
+0409   2307           00118         call    TxCarUART
+040A   3065           00119         movlw   'e'
+040B   2307           00120         call    TxCarUART
+040C   306E           00121         movlw   'n'
+040D   2307           00122         call    TxCarUART
+040E   3068           00123         movlw   'h'
+040F   2307           00124         call    TxCarUART
+0410   3061           00125         movlw   'a'
+0411   2307           00126         call    TxCarUART
+0412   3020           00127         movlw   ' '
+0413   2307           00128         call    TxCarUART
+0414   3065           00129         movlw   'e'
+0415   2307           00130         call    TxCarUART
+0416   3072           00131         movlw   'r'
+0417   2307           00132         call    TxCarUART
+0418   3072           00133         movlw   'r'
+0419   2307           00134         call    TxCarUART
+041A   3061           00135         movlw   'a'
+041B   2307           00136         call    TxCarUART
+041C   3064           00137         movlw   'd'
+041D   2307           00138         call    TxCarUART
+041E   3061           00139         movlw   'a'
+041F   2307           00140         call    TxCarUART
+0420   3021           00141         movlw   '!'
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 34
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0421   2307           00142         call    TxCarUART
+0422   0008           00143         return
+                      00144 
+0423                  00145 msg_senha_correta:
+0423   300D           00146         movlw   .13
+0424   2307           00147         call    TxCarUART
+0425   3053           00148         movlw   'S'
+0426   2307           00149         call    TxCarUART
+0427   3065           00150         movlw   'e'
+0428   2307           00151         call    TxCarUART
+0429   306E           00152         movlw   'n'
+042A   2307           00153         call    TxCarUART
+042B   3068           00154         movlw   'h'
+042C   2307           00155         call    TxCarUART
+042D   3061           00156         movlw   'a'
+042E   2307           00157         call    TxCarUART
+042F   3020           00158         movlw   ' '
+0430   2307           00159         call    TxCarUART
+0431   3063           00160         movlw   'c'
+0432   2307           00161         call    TxCarUART
+0433   306F           00162         movlw   'o'
+0434   2307           00163         call    TxCarUART
+0435   3072           00164         movlw   'r'
+0436   2307           00165         call    TxCarUART
+0437   3072           00166         movlw   'r'
+0438   2307           00167         call    TxCarUART
+0439   3065           00168         movlw   'e'
+043A   2307           00169         call    TxCarUART
+043B   3074           00170         movlw   't'
+043C   2307           00171         call    TxCarUART
+043D   3061           00172         movlw   'a'
+043E   2307           00173         call    TxCarUART
+043F   3021           00174         movlw   '!'
+0440   2307           00175         call    TxCarUART
+0441   0008           00176         return
+                      00177 
+                      00653         end
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 35
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+BCD_2_bin8                        000001ED
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+Bin16_2_BCD                       000001FF
+Binario10H                        0000005C
+Binario10L                        0000005D
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 36
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CHS1                              00000004
+CHS2                              00000005
+CIS                               00000003
+CKE                               00000006
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CURSOR_A_DIREITA                  00000014
+CURSOR_A_ESQUERDA                 00000010
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+Col1                              PORTA,0
+Col2                              PORTA,1
+Col3                              PORTA,2
+Col4                              PORTA,3
+Converte_AD                       000002EB
+CounterA                          00000028
+CounterB                          00000027
+CounterC                          00000026
+D                                 00000005
+D1                                00000021
+D2                                00000022
+D3                                00000024
+DATA_ADDRESS                      00000005
+DC                                00000001
+D_A                               00000005
+D_NOT_A                           00000005
+Delay_LCD                         00000266
+Divide8                           000001E4
+Dividendo                         0000004E
+Divisor                           00000050
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+EnviaCarLCD                       00000258
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 37
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+EnviaCmdLCD                       0000025F
+F                                 00000001
+FADE_STATE                        00000023
+FERR                              00000002
+FSR                               00000004
+Fosc                              00F42400
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IBF                               00000007
+IBOV                              00000005
+INC_CCPR1L                        000000A9
+INC_CCPR1L_1                      000000EE
+INDF                              00000000
+INIT                              00000099
+INIT_1                            000000DE
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+Inicia_LCD                        00000249
+Inicia_teclado                    00000015
+Iniciar_AN0                       000002E2
+Iniciar_AN1                       000002E5
+Iniciar_AN3                       000002E8
+LCD_CLEAR                         00000001
+LCD_DADO                          PORTD
+LCD_E                             PORTE,1
+LCD_Linha_1                       00000080
+LCD_Linha_2                       000000C0
+LCD_OFF                           00000008
+LCD_ON_CURSOR                     0000000E
+LCD_ON_CURSOR_BLINK               0000000F
+LCD_ON_NOCURSOR                   0000000C
+LCD_RS                            PORTE,0
+Linha1                            PORTD,3
+Linha2                            PORTD,2
+Linha3                            PORTD,1
+Linha4                            PORTD,0
+Lop1_teclado                      0000005E
+Lop2_teclado                      00000066
+Lop3_teclado                      0000006E
+Loper                             00000020
+MAIN                              0000005C
+MAIN_0                            000000A8
+MAIN_1                            000000ED
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 38
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+MENSAJE_DIREITA                   0000001C
+MENSAJE_ESQUERDA                  00000018
+Mulcdr                            00000050
+Mulcnd                            0000004E
+Multi8                            000001D6
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+OPTION_REG                        00000081
+Op1_H                             0000004D
+Op1_L                             0000004E
+Op2_H                             0000004F
+Op2_L                             00000050
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PROGRAMA_PORTAO                   00000079
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSPIE                             00000007
+PSPIF                             00000007
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 39
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PSPMODE                           00000004
+Quociente                         00000050
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 40
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+R_NOT_W                           00000002
+R_W                               00000002
+Resto                             0000004E
+Rpta1                             00000053
+Rpta2                             00000052
+RxCarUART1                        0000030D
+RxCarUART2                        00000317
+RxCarUART3                        00000321
+RxCarUART4                        0000032B
+RxCarUART5                        0000034B
+RxCarUART6                        00000372
+RxError                           00000399
+RxTx1                             00000138
+RxTx2                             0000013D
+RxTx3                             00000142
+S                                 00000003
+S1                                PORTB,RB0
+S2                                PORTB,RB1
+S3                                PORTB,RB2
+S4                                PORTB,RB3
+S5                                PORTB,RB4
+SEN                               00000000
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1                                00000025
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 41
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T2CKPS1                           00000001
+T2CON                             00000012
+TEMPO1                            0000005A
+TEMPO2                            0000005B
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 42
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+TxCar1                            00000308
+TxCarUART                         00000307
+TxCmdUART                         00000307
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 43
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F876A                         00000001
+abreportao_fechando               00000121
+abrir_fechar                      000003BC
+ascii_key                         00000004
+banco0                            
+banco1                            
+bank0                             bcf     STATUS,RB0
+bank1                             bsf     STATUS,RB0
+baudrate                          00002580
+bcd_k                             
+binario8                          00000054
+binario_H                         0000004D
+binario_L                         0000004E
+blue_1                            000001A8
+blue_2                            000001AD
+blue_3                            000001B2
+blue_abrindo                      0000017C
+blue_fechando                     00000166
+calculadora                       0000005C
+caracter_errado                   00000347
+caracter_errado_abrindo           00000395
+caracter_errado_fechando          0000036E
+cent                              00000057
+certo1                            000001B7
+codifica                          0000003E
+comando_blue_abrindo              00000389
+comando_blue_fechando             00000362
+comando_m1_C                      00000343
+comando_m1_C_abrindo              0000038D
+comando_m1_O                      0000033F
+comando_m1_O_fechando             00000366
+comando_m1_S_abrindo              00000391
+comando_m1_S_fechando             0000036A
+conta_ad                          0000005E
+conta_dig                         00000030
+conta_kp                          0000004A
+conta_m8                          00000051
+contador                          00000035
+contador1                         00000029
+contador2                         0000002A
+contador3                         0000002B
+d1                                00000210
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 44
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+d2                                00000212
+d3                                00000225
+d4                                00000227
+d5                                00000238
+d_cent                            0000022E
+d_dec                             0000023F
+d_dmil                            00000204
+d_mil                             00000219
+d_unid                            00000246
+dado_rx1                          00000036
+dado_rx2                          00000037
+dado_rx3                          00000038
+dado_rx4                          00000039
+dado_rx5                          0000003A
+dado_rx6                          0000003B
+delay_100ms                       000002BB
+delay_10ms                        0000029C
+delay_1ms                         0000026F
+delay_1s                          000002D5
+delay_20ms                        000002A5
+delay_2ms                         00000278
+delay_3ms                         00000281
+delay_4ms                         0000028A
+delay_500ms                       000002C8
+delay_50ms                        000002AE
+delay_5ms                         00000293
+desliga                           000000BE
+desliga_1                         00000116
+desliga_tudo                      00000129
+deze                              00000058
+dig1                              00000031
+dig2                              00000032
+dig3                              00000033
+dmil                              00000055
+end_function                      00000092
+errado1                           000001C7
+fecha_suave_fodase                0000012E
+fechaportao_abrindo               0000011C
+fimd                              000001EB
+flag_rx                           0000003C
+flag_rx1                          0000003D
+flag_rx2                          0000003E
+flag_rx3                          0000003F
+flag_rx4                          00000040
+flag_rx5                          00000041
+flag_rx6                          00000042
+fpress                            0000004B
+giga                              00000034
+iniciar_UART                      000002F9
+je_rl                             
+k_spbrg                           00000019
+lazo_m8                           000001DC
+ld_deb                            00000043
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 45
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+led1                              TRISB,RB5
+limpa_tela                        00000403
+loop02                            0000008D
+loop_1                            00000089
+loop_4                            00000126
+loop_5                            000000C4
+loopd                             000001E6
+lop_s1                            000000F1
+lop_s11                           000000F6
+lop_s111                          000000FC
+lop_s3                            000000AC
+lops_s33                          000000B3
+lops_s333                         000000BB
+msg_senha                         0000039D
+msg_senha_correta                 00000423
+msg_senha_errada                  00000406
+numero_senha                      00000192
+ptr_car                           0000004C
+relay_desligado                   00000093
+relay_ligado                      00000096
+scan_cols                         00000031
+setup                             0000004D
+suave_mesmo                       00000135
+tecla                             00000049
+tecla1                            0000002C
+tecla2                            0000002D
+tecla3                            0000002E
+teclado                           0000001D
+teclado_1                         00000199
+teclado_2                         0000019E
+teclado_3                         000001A3
+teste1                            0000002F
+umil                              00000056
+unid                              00000059
+v1                                00000043
+v2                                00000044
+v3                                00000045
+vb1                               00000046
+vb2                               00000047
+vb3                               00000048
+vb_inicio                         00000162
+vba                               00000190
+vbc                               0000017A
+velo_1                            000000C7
+velo_11                           000000CC
+velo_12                           000000D5
+velo_2                            000000FF
+velo_21                           00000104
+velo_22                           0000010D
+verifica_blue_abrindo             0000037C
+verifica_blue_fechando            00000355
+verifica_m1                       00000335
+verifica_m1_abrindo               00000380
+MPASM  5.51                          MAIN.ASM   9-6-2021  12:14:25         PAGE 46
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+verifica_m1_fechando              00000359
+verifica_m2                       00000339
+verifica_m2_abrindo               00000384
+verifica_m2_fechando              0000035D
+verifica_se_caractere_entrou      0000014E
+verificador_blue1                 00000146
+verificador_blue_abrindo          00000186
+verificador_blue_fechando         00000170
+verificador_enter_m1              00000158
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+00C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0100 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0140 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0180 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+01C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0200 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0240 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0280 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+02C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0300 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0340 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0380 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+03C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0400 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0440 : XX-------------- ---------------- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:  1087
+Program Memory Words Free:  7105
+
+
+Errors   :     0
+Warnings :     1 reported,     0 suppressed
+Messages :     1 reported,    32 suppressed
+
+

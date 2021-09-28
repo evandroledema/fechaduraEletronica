@@ -1,0 +1,19 @@
+# MPLAB IDE generated this makefile for use with Microsoft `nmake'.
+# Project: source_file_aula41.mcp
+# Date: Tue Aug 17 20:29:37 2021
+
+AS = MPASMWIN.exe
+CC = 
+LD = mplink.exe
+AR = mplib.exe
+RM = del
+
+"main.cof" : "..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.o"
+	$(CC) /p16F876A "..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.o" /z__MPLAB_BUILD=1 /o"main.cof" /M"main.map" /W /x
+
+"..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.o" : "main.asm" "..\..\..\..\..\..\Program Files (x86)\Microchip\MPASM Suite\P16F877A.INC" "macros.inc" "up_md_teclado_4x4.asm" "up_aritmetica_8b.asm" "up_3BCD_bin8.asm" "up_Bin16_BCD.asm" "up_md_lcd_driver.asm" "up_md_atrasos.asm"
+	$(AS) /q /p16F876A "main.asm" /l"main.lst" /e"main.err"
+
+"clean" : 
+	$(CC) "..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.o" "..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.hex" "..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.err" "..\..\..\..\Google Drive\ufmt\Micro\wr_PWM\main.lst" "main.cof"
+

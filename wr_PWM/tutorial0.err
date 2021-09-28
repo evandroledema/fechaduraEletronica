@@ -1,0 +1,5 @@
+Warning[205] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\TUTORIAL0.ASM 1 : Found directive in column 1. (LIST)
+Message[301] C:\PROGRAM FILES (X86)\MICROCHIP\MPASM SUITE\P16F628.INC 33 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Warning[205] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\TUTORIAL0.ASM 5 : Found directive in column 1. (cblock)
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\TUTORIAL0.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\WAR\GOOGLE DRIVE\UFMT\MICRO\WR_PWM\TUTORIAL0.ASM 21 : Register in operand not in bank 0.  Ensure that bank bits are correct.

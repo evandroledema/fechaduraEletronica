@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+INC_CCPR1L	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	163;"	l	line:163
+INC_CCPR1L_1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	242;"	l	line:242
+INIT	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	122;"	l	line:122
+INIT_1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	202;"	l	line:202
+MAIN	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	155;"	l	line:155
+MAIN_1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	234;"	l	line:234
+PROCESSOR	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	6;"	l	line:6
+desliga	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	179;"	l	line:179
+desliga_1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	256;"	l	line:256
+h1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	267;"	l	line:267
+h2	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	190;"	l	line:190
+loop01	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	55;"	l	line:55
+loop02	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	64;"	l	line:64
+loop_1	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	78;"	l	line:78
+loop_2	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	89;"	l	line:89
+loop_3	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	95;"	l	line:95
+relay_desligado	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	101;"	l	line:101
+relay_ligado	C:\Users\War\Google Drive\ufmt\Micro\wr_PWM\source_file_aula41.asm	110;"	l	line:110
