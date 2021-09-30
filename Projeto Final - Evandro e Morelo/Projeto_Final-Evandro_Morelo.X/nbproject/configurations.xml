@@ -85,7 +85,7 @@
         <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
       </MPASMWIN-LD>
       <VSMViewerPlatformTool>
-        <property key="design.file" value="../fechadura_eletronica.pdsprj"/>
+        <property key="design.file" value="../fechadura_eletronica_final.pdsprj"/>
         <property key="target.ip.address" value="localhost"/>
         <property key="target.ip.port" value="8001"/>
       </VSMViewerPlatformTool>
