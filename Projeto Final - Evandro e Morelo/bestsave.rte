@@ -1,0 +1,621 @@
+ (routes 
+  (resolution mm 100000)
+  (parser
+  )
+  (parser
+  )
+  (structure_out
+   (layer TOP (type signal)
+   )
+   (layer I1 (type signal)
+   )
+   (layer I2 (type signal)
+   )
+   (layer I3 (type signal)
+   )
+   (layer I4 (type signal)
+   )
+   (layer I5 (type signal)
+   )
+   (layer I6 (type signal)
+   )
+   (layer I7 (type signal)
+   )
+   (layer I8 (type signal)
+   )
+   (layer I9 (type signal)
+   )
+   (layer I10 (type signal)
+   )
+   (layer I11 (type signal)
+   )
+   (layer I12 (type signal)
+   )
+   (layer I13 (type signal)
+   )
+   (layer I14 (type signal)
+   )
+   (layer BOT (type signal)
+   )
+  )
+  (library_out
+  (padstack $VIA#0_SIGNAL
+   (shape (circ TOP 76200 0 0))
+   (shape (circ I1 76200 0 0))
+   (shape (circ I2 76200 0 0))
+   (shape (circ I3 76200 0 0))
+   (shape (circ I4 76200 0 0))
+   (shape (circ I5 76200 0 0))
+   (shape (circ I6 76200 0 0))
+   (shape (circ I7 76200 0 0))
+   (shape (circ I8 76200 0 0))
+   (shape (circ I9 76200 0 0))
+   (shape (circ I10 76200 0 0))
+   (shape (circ I11 76200 0 0))
+   (shape (circ I12 76200 0 0))
+   (shape (circ I13 76200 0 0))
+   (shape (circ I14 76200 0 0))
+   (shape (circ BOT 76200 0 0))
+  )
+  (padstack $VIA#0_POWER
+   (shape (circ TOP 76200 0 0))
+   (shape (circ I1 76200 0 0))
+   (shape (circ I2 76200 0 0))
+   (shape (circ I3 76200 0 0))
+   (shape (circ I4 76200 0 0))
+   (shape (circ I5 76200 0 0))
+   (shape (circ I6 76200 0 0))
+   (shape (circ I7 76200 0 0))
+   (shape (circ I8 76200 0 0))
+   (shape (circ I9 76200 0 0))
+   (shape (circ I10 76200 0 0))
+   (shape (circ I11 76200 0 0))
+   (shape (circ I12 76200 0 0))
+   (shape (circ I13 76200 0 0))
+   (shape (circ I14 76200 0 0))
+   (shape (circ BOT 76200 0 0))
+  )
+  )
+  (network_out
+   (Net #00080 
+   (rule
+   )
+   (wire (path BOT 25400  -4614000 1531000 -4953000 1531000 -4953000 1968500
+     -4727000 1968500 -4727000 2288000)
+    (connect (terminal pin RELAY-4) (terminal pin LED-YELLOW-1))
+   )
+   )
+   (Net #00081 
+   (rule
+   )
+   (wire (path BOT 25400  -7195000 -2144000 -7195000 -1758133 -7117000 -1758133
+     -7117000 -1303000)
+    (connect (terminal pin R3-1) (terminal pin BC547-1))
+   )
+   )
+   (Net #00082 
+   (rule
+   )
+   (wire (path BOT 25400  -7175500 317500 -7244000 317500 -7244000 -1430000)
+    (connect (terminal wire) (terminal pin BC547-0))
+   )
+   (wire (path BOT 25400  -5864000 331000 -6096000 331000 -6096000 317500
+     -7175500 317500)
+    (connect (terminal pin RELAY-1) (terminal wire))
+   )
+   (wire (path BOT 25400  -7175500 317500 -7175500 571500 -7515000 571500
+     -7515000 343000)
+    (connect (terminal wire) (terminal pin DIODO-REL-0))
+   )
+   )
+   (Net #00083 
+   (rule
+   )
+   (wire (path BOT 25400  -6064000 931000 -5521000 931000 -5521000 -231000)
+    (connect (terminal pin RELAY-2) (terminal pin R13-1))
+   )
+   )
+   (Net #00087 
+   (rule
+   )
+   (wire (path BOT 25400  -4025000 -1991000 -4025000 -1714500 -4016000 -1714500
+     -4016000 -1469000)
+    (connect (terminal pin LED-RED-0) (terminal pin R14-0))
+   )
+   )
+   (Net GND 
+   (rule
+   )
+   (wire (path BOT 25400  334000 2526000 -3618054 2526000 -3618054 -762000
+     -4826000 -762000 -4826000 -3048000)
+    (connect (terminal pin POTENTIOMETER-0) (terminal wire))
+   )
+   (wire (path BOT 25400  508000 3175000 1562000 3175000 1562000 2984000)
+    (connect (terminal wire) (terminal pin LCD1-4))
+   )
+   (wire (path BOT 25400  -1778000 -1382000 105383 -1382000 105383 -1143000
+     2286000 -1143000 2286000 1839764 2730500 1839764 2730500 2984000
+     2578000 2984000)
+    (connect (terminal pin PIC16F-11) (terminal pin LCD1-0))
+   )
+   (wire (path BOT 25400  508000 3175000 508000 3302000 -7338000 3302000
+     -7338000 2669000)
+    (connect (terminal wire) (terminal pin L7805-1))
+   )
+   (wire (path BOT 25400  -7810500 762000 -7747000 762000 -7747000 -2286000
+     -6990000 -2286000 -6990000 -1430000)
+    (connect (terminal wire) (terminal pin BC547-2))
+   )
+   (wire (path BOT 25400  -7338000 2669000 -7338000 2413000 -7874000 2413000
+     -7874000 2794000 -8953500 2794000 -8953500 2413000 -8810000 2413000
+     -8810000 2110000)
+    (connect (terminal pin L7805-1) (terminal pin GND-0))
+   )
+   (wire (path BOT 25400  -1778000 -1382000 -2540000 -1382000 -2540000 -1890000
+     -3302000 -1890000)
+    (connect (terminal pin PIC16F-11) (terminal pin PIC16F-30))
+   )
+   (wire (path BOT 25400  -5521000 -1247000 -5778500 -1247000 -5778500 -1430000
+     -6990000 -1430000)
+    (connect (terminal pin R13-0) (terminal pin BC547-2))
+   )
+   (wire (path BOT 25400  -4025000 -2245000 -3873500 -2245000 -3873500 -1890000
+     -3302000 -1890000)
+    (connect (terminal pin LED-RED-1) (terminal pin PIC16F-30))
+   )
+   (wire (path BOT 25400  -8060000 1856000 -8318500 1856000 -8318500 1651000
+     -8810000 1651000 -8810000 2110000)
+    (connect (terminal pin C1-0) (terminal pin GND-0))
+   )
+   (wire (path BOT 25400  508000 3175000 508000 2526000 334000 2526000)
+    (connect (terminal wire) (terminal pin POTENTIOMETER-0))
+   )
+   (wire (path BOT 25400  -7810500 762000 -7874000 762000 -7874000 710000
+     -8050000 710000)
+    (connect (terminal wire) (terminal pin C2-0))
+   )
+   (wire (path BOT 25400  -5790000 -3048000 -6286500 -3048000 -6286500 -4000500
+     -4025000 -4000500 -4025000 -2245000)
+    (connect (terminal wire) (terminal pin LED-RED-1))
+   )
+   (wire (path BOT 25400  -4826000 -3048000 -5790000 -3048000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 25400  -5790000 -3048000 -5790000 -3245000)
+    (connect (terminal wire) (terminal pin C3-0))
+   )
+   (wire (path BOT 25400  -5790000 -3745000 -4826000 -3745000 -4826000 -3048000)
+    (connect (terminal pin C4-0) (terminal wire))
+   )
+   (wire (path BOT 25400  -7810500 762000 -7810500 1587500 -8060000 1587500
+     -8060000 1856000)
+    (connect (terminal wire) (terminal pin C1-0))
+   )
+   )
+   (Net KEYPAD1 
+   (rule
+   )
+   (wire (path BOT 25400  2411000 -2034000 2222500 -2034000 2222500 -2082000
+     1624000 -2082000)
+    (connect (terminal pin R2-0) (terminal pin R7-1))
+   )
+   (wire (path BOT 25400  2325000 -1660000 2476500 -1660000 2476500 -1905000
+     2411000 -1905000 2411000 -2034000)
+    (connect (terminal pin KEYPAD-1-0) (terminal pin R2-0))
+   )
+   )
+   (Net KEYPAD2 
+   (rule
+   )
+   (wire (path BOT 25400  1460500 -2222500 1460500 -1905000 2125000 -1905000
+     2125000 -1660000)
+    (connect (terminal wire) (terminal pin KEYPAD-1-1))
+   )
+   (wire (path BOT 25400  1626000 -2391000 2032000 -2391000 2032000 -2367000
+     2411000 -2367000)
+    (connect (terminal pin R6-1) (terminal pin R10-0))
+   )
+   (wire (path BOT 25400  1460500 -2222500 1460500 -2391000 1626000 -2391000)
+    (connect (terminal wire) (terminal pin R6-1))
+   )
+   )
+   (Net KEYPAD3 
+   (rule
+   )
+   (wire (path BOT 25400  1925000 -1660000 1925000 -1524000 2667000 -1524000
+     2667000 -2718000 2421000 -2718000)
+    (connect (terminal pin KEYPAD-1-2) (terminal pin R11-0))
+   )
+   (wire (path BOT 25400  1614000 -2703000 2027710 -2703000 2027710 -2718000
+     2421000 -2718000)
+    (connect (terminal pin R5-1) (terminal pin R11-0))
+   )
+   )
+   (Net KEYPAD4 
+   (rule
+   )
+   (wire (path BOT 25400  1397000 -2921000 1397000 -3535000 522000 -3535000)
+    (connect (terminal wire) (terminal pin R12-0))
+   )
+   (wire (path BOT 25400  1397000 -2921000 1397000 -1660000 1725000 -1660000)
+    (connect (terminal wire) (terminal pin KEYPAD-1-3))
+   )
+   (wire (path BOT 25400  1604000 -3031000 1460500 -3031000 1460500 -2921000
+     1397000 -2921000)
+    (connect (terminal pin R4-1) (terminal wire))
+   )
+   )
+   (Net KEYPADA 
+   (rule
+   )
+   (wire (path BOT 25400  2440000 -722000 2967000 -722000 2967000 -478000)
+    (connect (terminal pin DIODO4-0) (terminal pin KEYPAD-A-0))
+   )
+   )
+   (Net KEYPADB 
+   (rule
+   )
+   (wire (path BOT 25400  2967000 -278000 2763500 -278000 2763500 -230000
+     2440000 -230000)
+    (connect (terminal pin KEYPAD-A-1) (terminal pin DIODO3-0))
+   )
+   )
+   (Net KEYPADC 
+   (rule
+   )
+   (wire (path BOT 25400  2967000 -78000 2440000 -78000 2440000 262000)
+    (connect (terminal pin KEYPAD-A-2) (terminal pin DIODO2-0))
+   )
+   )
+   (Net KEYPADD 
+   (rule
+   )
+   (wire (path BOT 25400  2967000 122000 2967000 381000 2794000 381000
+     2794000 754000 2448000 754000)
+    (connect (terminal pin KEYPAD-A-3) (terminal pin DIODO1-0))
+   )
+   )
+   (Net OSC1 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 -1128000 -1994176 -1128000 -1994176 -1206500
+     -3098529 -1206500 -3098529 -1270000 -3429000 -1270000 -3429000 -1524000
+     -3111500 -1524000 -3111500 -1778000 -3619500 -1778000 -3619500 -1270000
+     -4254500 -1270000 -4254500 -3937000 -6223000 -3937000 -6223000 -3429000
+     -6044000 -3429000)
+    (connect (terminal pin PIC16F-12) (terminal wire))
+   )
+   (wire (path BOT 25400  -6044000 -3429000 -6044000 -3245000)
+    (connect (terminal wire) (terminal pin C3-1))
+   )
+   (wire (path BOT 25400  -5060000 -3480000 -6044000 -3480000)
+    (connect (terminal pin CRYSTAL-16MHZ-1) (terminal wire))
+   )
+   (wire (path BOT 25400  -6044000 -3480000 -6044000 -3429000)
+    (connect (terminal wire) (terminal wire))
+   )
+   )
+   (Net OSC2 
+   (rule
+   )
+   (wire (path BOT 25400  -4552000 -3480000 -4552000 -1016000 -2349500 -1016000
+     -2349500 -874000 -1778000 -874000)
+    (connect (terminal pin CRYSTAL-16MHZ-0) (terminal pin PIC16F-13))
+   )
+   (wire (path BOT 25400  -6044000 -3745000 -6044000 -3873500 -4552000 -3873500
+     -4552000 -3480000)
+    (connect (terminal pin C4-1) (terminal pin CRYSTAL-16MHZ-0))
+   )
+   )
+   (Net RA0 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 -3922000 -2032000 -3922000 -2032000 -3810000
+     -3683000 -3810000 -3683000 -4127500 -6413500 -4127500 -6413500 -2413000
+     -6179000 -2413000 -6179000 -2144000)
+    (connect (terminal pin PIC16F-1) (terminal pin R3-0))
+   )
+   )
+   (Net RA1 
+   (rule
+   )
+   (wire (path BOT 25400  -4016000 -453000 -5207000 -453000 -5207000 -1799485
+     -6477000 -1799485 -6477000 -4191000 -3556000 -4191000 -3556000 -4064000
+     -1651000 -4064000 -1651000 -3668000 -1778000 -3668000)
+    (connect (terminal pin R14-1) (terminal pin PIC16F-2))
+   )
+   )
+   (Net RA2 
+   (rule
+   )
+   )
+   (Net RA3 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 -3160000 -1778000 -2906000)
+    (connect (terminal pin PIC16F-4) (terminal pin PIC16F-5))
+   )
+   )
+   (Net RA5 
+   (rule
+   )
+   )
+   (Net RB0 
+   (rule
+   )
+   (wire (path BOT 25400  608000 -2082000 127000 -2082000 127000 -2032000
+     -2095500 -2032000 -2095500 -2398000 -3302000 -2398000)
+    (connect (terminal pin R7-0) (terminal pin PIC16F-32))
+   )
+   )
+   (Net RB1 
+   (rule
+   )
+   (wire (path BOT 25400  610000 -2391000 317500 -2391000 317500 -2540000
+     -1905000 -2540000 -1905000 -2652000 -3302000 -2652000)
+    (connect (terminal pin R6-0) (terminal pin PIC16F-33))
+   )
+   )
+   (Net RB2 
+   (rule
+   )
+   (wire (path BOT 25400  -3302000 -2906000 -3048000 -2906000 -3048000 -2753600
+     243652 -2753600 243652 -2703000 598000 -2703000)
+    (connect (terminal pin PIC16F-34) (terminal pin R5-0))
+   )
+   )
+   (Net RB3 
+   (rule
+   )
+   (wire (path BOT 25400  -3302000 -3160000 -3048000 -3160000 -3048000 -3302000
+     317500 -3302000 317500 -3031000 588000 -3031000)
+    (connect (terminal pin PIC16F-35) (terminal pin R4-0))
+   )
+   )
+   (Net RB4 
+   (rule
+   )
+   )
+   (Net RB5 
+   (rule
+   )
+   )
+   (Net RB6 
+   (rule
+   )
+   )
+   (Net RB7 
+   (rule
+   )
+   )
+   (Net RC0 
+   (rule
+   )
+   (wire (path BOT 25400  1424000 -722000 -1524000 -722000 -1524000 -620000
+     -1778000 -620000)
+    (connect (terminal pin DIODO4-1) (terminal pin PIC16F-14))
+   )
+   )
+   (Net RC1 
+   (rule
+   )
+   (wire (path BOT 25400  1424000 -230000 1143000 -230000 1143000 -366000
+     -1778000 -366000)
+    (connect (terminal pin DIODO3-1) (terminal pin PIC16F-15))
+   )
+   )
+   (Net RC2 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 -112000 485127 -112000 485127 262000
+     1424000 262000)
+    (connect (terminal pin PIC16F-16) (terminal pin DIODO2-1))
+   )
+   )
+   (Net RC3 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 142000 63500 142000 63500 754000
+     1432000 754000)
+    (connect (terminal pin PIC16F-17) (terminal pin DIODO1-1))
+   )
+   )
+   (Net RC4 
+   (rule
+   )
+   )
+   (Net RC5 
+   (rule
+   )
+   )
+   (Net RC6 
+   (rule
+   )
+   )
+   (Net RC7 
+   (rule
+   )
+   )
+   (Net RD0 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 396000 -1905000 396000 -1905000 2286000
+     708755 2286000 708755 2984000 1054000 2984000)
+    (connect (terminal pin PIC16F-18) (terminal pin LCD1-6))
+   )
+   )
+   (Net RD1 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 650000 -1778000 1871363 762000 1871363
+     762000 2730000 1054000 2730000)
+    (connect (terminal pin PIC16F-19) (terminal pin LCD1-7))
+   )
+   )
+   (Net RD2 
+   (rule
+   )
+   (wire (path BOT 25400  1308000 2730000 1308000 1714500 -977091 1714500
+     -977091 254000 -2095500 254000 -2095500 650000 -3302000 650000)
+    (connect (terminal pin LCD1-8) (terminal pin PIC16F-20))
+   )
+   )
+   (Net RD3 
+   (rule
+   )
+   (wire (path BOT 25400  1562000 2730000 1562000 508000 317500 508000
+     317500 0 -2222500 0 -2222500 254000 -3048000 254000
+     -3048000 396000 -3302000 396000)
+    (connect (terminal pin LCD1-9) (terminal pin PIC16F-21))
+   )
+   )
+   (Net RD4 
+   (rule
+   )
+   (wire (path BOT 25400  -3302000 -874000 -2476500 -874000 -2476500 -508000
+     1651000 -508000 1651000 2540000 1816000 2540000 1816000 2730000)
+    (connect (terminal pin PIC16F-26) (terminal pin LCD1-10))
+   )
+   )
+   (Net RD5 
+   (rule
+   )
+   (wire (path BOT 25400  2070000 2730000 2070000 -1016000 -2188847 -1016000
+     -2188847 -1128000 -3302000 -1128000)
+    (connect (terminal pin LCD1-11) (terminal pin PIC16F-27))
+   )
+   )
+   (Net RD6 
+   (rule
+   )
+   (wire (path BOT 25400  2324000 2730000 2324000 2540000 2222500 2540000
+     2222500 -1079500 -871664 -1079500 -871664 -1270000 -2781365 -1270000
+     -2781365 -1382000 -3302000 -1382000)
+    (connect (terminal pin LCD1-12) (terminal pin PIC16F-28))
+   )
+   )
+   (Net RD7 
+   (rule
+   )
+   )
+   (Net RE0 
+   (rule
+   )
+   (wire (path BOT 25400  -1778000 -2398000 63500 -2398000 239000 -2222500
+     1206500 -2222500 1270000 -2159000 1270000 -1340000 3160000 -1340000
+     3430000 -1070000 3430000 3160000 3250000 3340000 1981000 3340000
+     1816000 3175000 1816000 2984000)
+    (connect (terminal pin PIC16F-7) (terminal pin LCD1-3))
+    (type protect)
+   )
+   )
+   (Net RE1 
+   (rule
+   )
+   (wire (path BOT 25400  1308000 2984000 1308000 3492500 3556000 3492500
+     3556000 -1397000 1333500 -1397000 1333500 -2857500 381000 -2857500
+     381000 -2804400 -1968500 -2804400 -1968500 -3048000 -3429000 -3048000
+     -3429000 -2540000 -2032000 -2540000 -2032000 -2144000 -1778000 -2144000)
+    (connect (terminal pin LCD1-5) (terminal pin PIC16F-8))
+   )
+   )
+   (Net RE2 
+   (rule
+   )
+   )
+   (Net VCC/VDD 
+   (rule
+   )
+   (wire (path BOT 25400  -3302000 -2144000 -2349500 -2144000 -2349500 -1636000
+     -1778000 -1636000)
+    (connect (terminal pin PIC16F-31) (terminal pin PIC16F-10))
+   )
+   )
+   (Net VEELCD 
+   (rule
+   )
+   (wire (path BOT 25400  334000 2780000 -3762740 2780000 -3762740 -698500
+     -4953000 -698500 -4953000 -2540000 -6350000 -2540000 -6350000 -4064000
+     -3810000 -4064000 -3810000 -2032000 -2476500 -2032000 -2476500 -1524000
+     501405 -1524000 501405 -1206500 2857500 -1206500 2857500 -952500
+     3111500 -952500 3111500 3238500 2070000 3238500 2070000 2984000)
+    (connect (terminal pin POTENTIOMETER-2) (terminal pin LCD1-2))
+   )
+   )
+   (Net VIN 
+   (rule
+   )
+   (wire (path BOT 25400  -7429500 1587500 -7429500 1841500)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 25400  -8060000 2110000 -8060000 2610000 -8810000 2610000)
+    (connect (terminal pin C1-1) (terminal pin VIN-0))
+   )
+   (wire (path BOT 25400  -7084000 2669000 -7084000 2095500 -7429500 2095500)
+    (connect (terminal pin L7805-0) (terminal wire))
+   )
+   (wire (path BOT 25400  -7429500 1587500 -7515000 1587500 -7515000 1359000)
+    (connect (terminal wire) (terminal pin DIODO-REL-1))
+   )
+   (wire (path BOT 25400  -7429500 1587500 -7429500 1531000 -5864000 1531000)
+    (connect (terminal wire) (terminal pin RELAY-0))
+   )
+   (wire (path BOT 25400  -7429500 2095500 -7556500 2095500 -7556500 2110000
+     -8060000 2110000)
+    (connect (terminal wire) (terminal pin C1-1))
+   )
+   (wire (path BOT 25400  -7429500 1841500 -7429500 2095500)
+    (connect (terminal wire) (terminal wire))
+   )
+   )
+   (Net VL7805 
+   (rule
+   )
+   (wire (path BOT 25400  2324000 2984000 2324000 3175000 3175000 3175000
+     3175000 -1016000 2984500 -1016000 2984500 -1270000 924289 -1270000
+     924289 -1778000 -2222500 -1778000 -2222500 -2286000 -3556000 -2286000
+     -3556000 -3556000 -1587500 -3556000 -1587500 -3683000)
+    (connect (terminal pin LCD1-1) (terminal wire))
+   )
+   (wire (path BOT 25400  -1778000 -4176000 -2032000 -4176000 -2032000 -4381500
+     -6540500 -4381500 -6540500 -2349500)
+    (connect (terminal pin PIC16F-0) (terminal wire))
+   )
+   (wire (path BOT 25400  -6540500 -2349500 -8255000 -2349500 -8255000 964000
+     -8050000 964000)
+    (connect (terminal wire) (terminal pin C2-1))
+   )
+   (wire (path BOT 25400  -6540500 -2349500 -6540500 -1651000 -5270500 -1651000
+     -5270500 2540000 -4473000 2540000 -4473000 2288000)
+    (connect (terminal wire) (terminal pin LED-YELLOW-0))
+   )
+   (wire (path BOT 25400  -4473000 2288000 -4027433 2288000 -4027433 3034000
+     334000 3034000)
+    (connect (terminal pin LED-YELLOW-0) (terminal pin POTENTIOMETER-1))
+   )
+   (wire (path BOT 25400  -1587500 -3683000 1538000 -3683000 1538000 -3535000)
+    (connect (terminal wire) (terminal pin R12-1))
+   )
+   (wire (path BOT 25400  -1587500 -3683000 -1587500 -4176000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 25400  1538000 -3535000 3437000 -3535000 3437000 -2718000)
+    (connect (terminal pin R12-1) (terminal pin R11-1))
+   )
+   (wire (path BOT 25400  -7592000 2669000 -7592000 2921000 -9080500 2921000
+     -9080500 1437224 -8050000 1437224 -8050000 964000)
+    (connect (terminal pin L7805-2) (terminal pin C2-1))
+   )
+   (wire (path BOT 25400  3437000 -2718000 3427000 -2718000 3427000 -2367000)
+    (connect (terminal pin R11-1) (terminal pin R10-1))
+   )
+   (wire (path BOT 25400  3427000 -2367000 3427000 -2034000)
+    (connect (terminal pin R10-1) (terminal pin R2-1))
+   )
+   (wire (path BOT 25400  -1778000 -4176000 -1778000 -4175999 -1651000 -4175999
+     -1651000 -4176000 -1587500 -4176000)
+    (connect (terminal pin PIC16F-0) (terminal wire))
+   )
+   )
+  )
+ )
