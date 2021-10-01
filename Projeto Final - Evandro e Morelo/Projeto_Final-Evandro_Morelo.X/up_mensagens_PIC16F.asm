@@ -523,3 +523,105 @@ Exibir_novo_user_LCD:
 	CALL	EnviaCarLCD
 	call	delay_1s
 	return
+	
+Exibir_old_pass_LCD:
+	MOVLW	LCD_CLEAR
+	CALL	EnviaCmdLCD
+	MOVLW	LCD_Linha_1	;1 linha
+	CALL	EnviaCmdLCD
+	MOVLW	'S'
+	CALL	EnviaCarLCD    
+	MOVLW	'E'
+	CALL	EnviaCarLCD  
+	MOVLW	'N'
+	CALL	EnviaCarLCD  
+	MOVLW	'H'
+	CALL	EnviaCarLCD  
+	MOVLW	'A'
+	CALL	EnviaCarLCD  
+	MOVLW	' '
+	CALL	EnviaCarLCD
+	MOVLW	'A'
+	CALL	EnviaCarLCD   
+	MOVLW	'T'
+	CALL	EnviaCarLCD    
+	MOVLW	'U'
+	CALL	EnviaCarLCD  
+	MOVLW	'A'
+	CALL	EnviaCarLCD  
+	MOVLW	'L'
+	CALL	EnviaCarLCD  
+	MOVLW	':'
+	CALL	EnviaCarLCD  
+	MOVLW	LCD_Linha_2	;2 linha
+	CALL	EnviaCmdLCD
+	return
+	
+Exibir_NEW_pass_LCD:
+	MOVLW	LCD_CLEAR
+	CALL	EnviaCmdLCD
+	MOVLW	LCD_Linha_1	;1 linha
+	CALL	EnviaCmdLCD
+	MOVLW	'N'
+	CALL	EnviaCarLCD    
+	MOVLW	'O'
+	CALL	EnviaCarLCD  
+	MOVLW	'V'
+	CALL	EnviaCarLCD  
+	MOVLW	'A'
+	CALL	EnviaCarLCD  
+	MOVLW	' '
+	CALL	EnviaCarLCD  
+	MOVLW	'S'
+	CALL	EnviaCarLCD
+	MOVLW	'E'
+	CALL	EnviaCarLCD   
+	MOVLW	'N'
+	CALL	EnviaCarLCD    
+	MOVLW	'H'
+	CALL	EnviaCarLCD  
+	MOVLW	'A'
+	CALL	EnviaCarLCD  
+	MOVLW	':'
+	CALL	EnviaCarLCD  
+	MOVLW	LCD_Linha_2	;2 linha
+	CALL	EnviaCmdLCD
+	return
+	
+Exibir_senha_alterada_LCD:
+    	MOVLW	LCD_CLEAR
+	CALL	EnviaCmdLCD
+	MOVLW	LCD_Linha_1	;1 linha
+	CALL	EnviaCmdLCD
+	MOVLW	'S'
+	CALL	EnviaCarLCD    
+	MOVLW	'E'
+	CALL	EnviaCarLCD  
+	MOVLW	'N'
+	CALL	EnviaCarLCD  
+	MOVLW	'H'
+	CALL	EnviaCarLCD  
+	MOVLW	'A'
+	CALL	EnviaCarLCD  
+	MOVLW	' '
+	CALL	EnviaCarLCD
+	MOVLW	'A'
+	CALL	EnviaCarLCD   
+	MOVLW	'L'
+	CALL	EnviaCarLCD    
+	MOVLW	'T'
+	CALL	EnviaCarLCD  
+	MOVLW	'E'
+	CALL	EnviaCarLCD  
+	MOVLW	'R'
+	CALL	EnviaCarLCD  
+	MOVLW	'A'
+	CALL	EnviaCarLCD
+	MOVLW	'D'
+	CALL	EnviaCarLCD
+	MOVLW	'A'
+	CALL	EnviaCarLCD
+	MOVLW	':'
+	CALL	EnviaCarLCD
+	call	delay_1s
+	return

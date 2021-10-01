@@ -592,9 +592,305 @@ Opcao2:
 	xorwf	tecla,W		; tecla [=]
 	btfss	STATUS,Z
 	goto	Loop3
-	;desenvolver aqui para mudar senha
+	call	envia_msg_entrar_LCD
+	
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	
+	movlw	LCD_Linha_2	;2 linha
+	call	EnviaCmdLCD
+;=============================================================
+;Lê 1° operando
+Loop_user_change_pass1:
+	call	teclado		; para ler operador
+	btfss	fpress,0	
+	goto	Loop_user_change_pass1		; fica no loop até ler BCD1
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0
+	goto	Loop_user_change_pass1		; BCD1 inválido, retorna
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_user_change_pass1		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	user1		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;=============================================================
+Loop_user_change_pass2:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	Loop_user_change_pass2		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_user_change_pass2		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	user2		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;==============================================================
+Loop_user_change_pass3:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	Loop_user_change_pass3		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_user_change_pass3		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	user3		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+Enviar_user_change_pass:			;valida operador ON/C
+	movlw	'E'
+	xorwf	tecla,W		; tecla [=]
+	btfss	STATUS,Z
+	goto	Enviar_user_change_pass - .3	; operador inválido, retorna
+	call	Verify_user		; MENU
+	btfsc	flag_user_err,F
+	goto	Usuario_erro_change_pass
+	goto	Enviar_msg_senha_change_Pass
+	
+Usuario_erro_change_pass:
+	call	envia_msg_erro_LCD
+	call	envia_msg_entrar_LCD
+	movlw	LCD_Linha_2	
+	call	EnviaCmdLCD
+	bcf	user1,F
+	bcf	user2,F
+	bcf	user3,F
+	goto	Loop_user_change_pass1
 
-    
+Enviar_msg_senha_change_Pass:
+	call	Exibir_old_pass_LCD
+;=============================================================
+;Lê 1° operando
+Loop_change_user_pass1:
+	call	teclado		; para ler operador
+	btfss	fpress,0	
+	goto	Loop_change_user_pass1		; fica no loop até ler BCD1
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0
+	goto	Loop_change_user_pass1		; BCD1 inválido, retorna
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_change_user_pass1		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig1		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;=============================================================
+Loop_change_user_pass2:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	Loop_change_user_pass2		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_change_user_pass2		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig2		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;==============================================================
+Loop_change_user_pass3:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	Loop_change_user_pass3		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_change_user_pass3		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig3		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+Loop_change_user_pass4:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	Loop_change_user_pass4		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_change_user_pass4		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig4		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+Loop_change_user_pass5:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	Loop_change_user_pass5		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	Loop_change_user_pass5		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig5		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+Enviar_senha_pass_change:			;valida operador ON/C
+	movlw	'E'
+	xorwf	tecla,W		; tecla [=]
+	btfss	STATUS,Z
+	goto	Enviar_senha_pass_change - .3	; operador inválido, retorna
+	
+;flag testa e envia para um dos labels de senha
+	btfsc	flag_user1,F
+	goto	Pass_change1
+	btfsc	flag_user2,F
+	goto	Pass_change2
+	btfsc	flag_user3,F
+	goto	Pass_change3
+	btfsc	flag_user4,F
+	goto	Pass_change4
+	btfsc	flag_user5,F
+	goto	Pass_change5
+	goto	Change_pass_return
+Pass_change1:
+	call	Verify_password
+	goto	Change_pass_return
+Pass_change2:
+	call	Verify_password2
+	goto	Change_pass_return
+Pass_change3:
+	call	Verify_password3
+	goto	Change_pass_return
+Pass_change4:
+	call	Verify_password4
+	goto	Change_pass_return
+Pass_change5:
+	call	Verify_password5
+Change_pass_return:
+	btfsc	flag_error,F
+	goto	Senha_erro_pass_changer
+	goto	Pass_changer_routine
+	
+Senha_erro_pass_changer:
+	call	envia_msg_senha_erro_LCD
+	call	Exibir_old_pass_LCD
+	goto	Loop_change_user_pass1
+	
+Pass_changer_routine:
+	call	Exibir_NEW_pass_LCD
+;=======================================================================================	
+New_pass1:
+	call	teclado		; para ler operador
+	btfss	fpress,0	
+	goto	New_pass1		; fica no loop até ler BCD1
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0
+	goto	Lop2		; BCD1 inválido, retorna
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	New_pass1		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig1		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;=============================================================
+New_pass2:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	New_pass2		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	New_pass2		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig2		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;==============================================================
+New_pass3:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	New_pass3		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	New_pass3		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig3		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+New_pass4:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	New_pass4		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	New_pass4		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig4		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+New_pass5:
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+	call	checa_BCD		; tecla = [0x30,0x39]
+	btfss	fpress,0		; pula de BCD2 válido
+	goto	New_pass5		; vai verificar se é operador
+	movfw	tecla	
+	xorlw	0x30
+	btfsc	STATUS,Z
+	goto	New_pass5		; BCD1 = 0, retorna
+	movfw	tecla	
+	movwf	dig5		; cent = ASCII(BCD1)
+	call	EnviaCarLCD
+;===============================================================
+
+	call	teclado		; para ler operador
+	btfss	fpress,0		; lê BCD2 da senha
+	goto	$-2		; fica no loop até ler BCD2 ...
+Send_pass:			;valida operador ON/C
+	movlw	'E'
+	xorwf	tecla,W		; tecla [=]
+	btfss	STATUS,Z
+	goto	Send_pass - .3	; operador inválido, retorna
+	call	New_password
+	call	Exibir_senha_alterada_LCD
+	MOVLW	LCD_CLEAR
+	CALL	EnviaCmdLCD
+	call	envia_msg_LCD
+	goto	main
+	
+
+	    
 	#include	"up_md_lcd_driver_PIC16F.asm"
 	#include	"up_mensagens_PIC16F.asm"
 	#include	"up_md_atrasos.asm"

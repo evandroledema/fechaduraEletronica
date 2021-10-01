@@ -1,12 +1,12 @@
 MPLINK 5.09, LINKER
-Linker Map File - Created Thu Sep 30 11:54:48 2021
+Linker Map File - Created Fri Oct 01 11:14:07 2021
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                    .org_0       code   0x000000    program   0x000002
                    .cinit    romdata   0x000001    program   0x000004
-                   .org_1       code   0x000004    program   0x000ba2
+                   .org_1       code   0x000004    program   0x000ece
 .config_2007_BUILD/DEFAULT/DEBUG/_EXT/1478086       code   0x002007    program   0x000002
 
 
@@ -15,9 +15,9 @@ Linker Map File - Created Thu Sep 30 11:54:48 2021
                                Start         End      
                            ---------   ---------      
                             0x000000    0x000002      
-                            0x000004    0x0005d4      
+                            0x000004    0x00076a      
                             0x002007    0x002007      
-            1493 out of 8454 program addresses used, program memory utilization is 17%
+            1899 out of 8454 program addresses used, program memory utilization is 22%
 
 
 
@@ -25,29 +25,50 @@ Linker Map File - Created Thu Sep 30 11:54:48 2021
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
           Abrir_fechadura   0x000114    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+       Change_pass_return   0x0002ab    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
      Change_user_password   0x00016c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-                Delay_LCD   0x00022b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-              EnviaCarLCD   0x00021d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-              EnviaCmdLCD   0x000224    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-     Envia_cmd_fechar_LCD   0x000356    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-Enviar_msg_change_user2_LCD   0x0003ca    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+                Delay_LCD   0x00031d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+              EnviaCarLCD   0x00030f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+              EnviaCmdLCD   0x000316    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+     Envia_cmd_fechar_LCD   0x000448    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+Enviar_msg_change_user2_LCD   0x0004bc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+Enviar_msg_change_user_LCD   0x0004a1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
          Enviar_msg_senha   0x0000ad    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+Enviar_msg_senha_change_Pass   0x00024e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
           Enviar_new_user   0x000200    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Enviar_senha   0x0000f4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+ Enviar_senha_pass_change   0x000293    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
               Enviar_user   0x00009d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Enviar_user2   0x00015c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-     Exibir_novo_user_LCD   0x0003ef    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-               Inicia_LCD   0x00020e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+  Enviar_user_change_pass   0x00023e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+      Exibir_NEW_pass_LCD   0x00052e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+     Exibir_novo_user_LCD   0x0004e1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      Exibir_old_pass_LCD   0x00050f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+Exibir_senha_alterada_LCD   0x00054b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+               Inicia_LCD   0x000300    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
            Inicia_teclado   0x000015    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_teclado_4x4.asm
-           Iniciar_senhas   0x00052f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+           Iniciar_senhas   0x0006c5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
                     Loop3   0x000128    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass1   0x00024f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass2   0x00025c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass3   0x000269    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass4   0x000276    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass5   0x000283    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_user_change_pass1   0x000214    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_user_change_pass2   0x000221    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_user_change_pass3   0x00022e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                      Lop1   0x000073    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                      Lop2   0x0000b0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                      Lop4   0x000132    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                Lop_user_1   0x00016f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                Mudar_user   0x0001d3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-                 New_user   0x0005a7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                New_pass1   0x0002b2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass2   0x0002bf    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass3   0x0002cc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass4   0x0002d9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass5   0x0002e6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             New_password   0x000683    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+                 New_user   0x00073d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
                 New_user1   0x0001d6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                 New_user2   0x0001e3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                 New_user3   0x0001f0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
@@ -58,8 +79,15 @@ Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Deskt
                    Pass_3   0x0001c6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                    Pass_4   0x0001c8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                    Pass_5   0x0001ca    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change1   0x0002a2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change2   0x0002a4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change3   0x0002a6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change4   0x0002a8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change5   0x0002aa    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+     Pass_changer_routine   0x0002b1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                 Relay_off   0x00011e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                  Relay_on   0x00011a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                Send_pass   0x0002f6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
            Send_user_pass   0x0001b3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                    Senha1   0x000103    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                    Senha2   0x000105    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
@@ -71,11 +99,12 @@ Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Deskt
                Senha_4dig   0x0000d7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                Senha_5dig   0x0000e4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                Senha_erro   0x00010f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+  Senha_erro_pass_changer   0x0002ae    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Senha_user_2   0x00017c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Senha_user_3   0x000189    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Senha_user_4   0x000196    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Senha_user_5   0x0001a3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-             Set_password   0x00048e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+             Set_password   0x0005e2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
                 TECLA_1_2   0x000069    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                   Testa_2   0x000123    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
           User_pass_error   0x0001ce    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
@@ -86,12 +115,13 @@ Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Deskt
              Usuario_5dig   0x00014c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
      Usuario_change_error   0x000164    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              Usuario_erro   0x0000a5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-          Verify_password   0x0004c1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password2   0x0004d7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password3   0x0004ed    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password4   0x000503    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password5   0x000519    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-              Verify_user   0x00054e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+ Usuario_erro_change_pass   0x000246    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+          Verify_password   0x000615    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password2   0x00062b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password3   0x000641    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password4   0x000657    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password5   0x00066d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+              Verify_user   0x0006e4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
              _.org_1_0063   0x000063    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              _.org_1_0082   0x000082    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              _.org_1_008F   0x00008f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
@@ -114,61 +144,80 @@ Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Deskt
              _.org_1_01E5   0x0001e5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              _.org_1_01F2   0x0001f2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
              _.org_1_01FF   0x0001ff    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-             _.org_1_0230   0x000230    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-             _.org_1_0232   0x000232    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-             _.org_1_0420   0x000420    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0422   0x000422    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0429   0x000429    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_042B   0x00042b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0432   0x000432    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0434   0x000434    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_043B   0x00043b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_043D   0x00043d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0444   0x000444    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0446   0x000446    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_044D   0x00044d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_044F   0x00044f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0456   0x000456    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0458   0x000458    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0461   0x000461    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0463   0x000463    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0465   0x000465    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_046E   0x00046e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0470   0x000470    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0472   0x000472    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_047B   0x00047b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_047D   0x00047d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_047F   0x00047f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0488   0x000488    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_048A   0x00048a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_048C   0x00048c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0211   0x000211    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0223   0x000223    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0230   0x000230    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_023D   0x00023d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_025E   0x00025e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_026B   0x00026b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0278   0x000278    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0285   0x000285    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0292   0x000292    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02C1   0x0002c1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02CE   0x0002ce    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02DB   0x0002db    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02E8   0x0002e8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02F5   0x0002f5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0322   0x000322    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+             _.org_1_0324   0x000324    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+             _.org_1_0574   0x000574    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0576   0x000576    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_057D   0x00057d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_057F   0x00057f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0586   0x000586    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0588   0x000588    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_058F   0x00058f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0591   0x000591    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0598   0x000598    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_059A   0x00059a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05A1   0x0005a1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05A3   0x0005a3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05AA   0x0005aa    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05AC   0x0005ac    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05B5   0x0005b5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05B7   0x0005b7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05B9   0x0005b9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05C2   0x0005c2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05C4   0x0005c4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05C6   0x0005c6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05CF   0x0005cf    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05D1   0x0005d1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05D3   0x0005d3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05DC   0x0005dc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05DE   0x0005de    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05E0   0x0005e0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
                 ascii_key   0x000004    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_teclado_4x4.asm
-                 change_A   0x0005b9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_B   0x0005c0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_C   0x0005c7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_D   0x0005ce    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_U   0x0005b2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_A   0x00074f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_B   0x000756    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_C   0x00075d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_D   0x000764    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_U   0x000748    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+            change_pass_A   0x000699    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_B   0x0006a4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_C   0x0006af    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_D   0x0006ba    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_U   0x00068e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
                 checa_BCD   0x000048    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                  codifica   0x00003a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_teclado_4x4.asm
-              delay_100ms   0x000467    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-               delay_10ms   0x000448    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_1ms   0x00041b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                 delay_1s   0x000481    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-               delay_20ms   0x000451    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_2ms   0x000424    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_3ms   0x00042d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_4ms   0x000436    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-              delay_500ms   0x000474    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-               delay_50ms   0x00045a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_5ms   0x00043f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-            envia_msg_LCD   0x000234    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-      envia_msg_abrir_LCD   0x000330    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-     envia_msg_entrar_LCD   0x0002b0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-       envia_msg_erro_LCD   0x0002c5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-       envia_msg_menu_LCD   0x00026d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-      envia_msg_opcao_LCD   0x000376    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-      envia_msg_senha_LCD   0x0002f9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
- envia_msg_senha_erro_LCD   0x00030a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+              delay_100ms   0x0005bb    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+               delay_10ms   0x00059c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_1ms   0x00056f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                 delay_1s   0x0005d5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+               delay_20ms   0x0005a5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_2ms   0x000578    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_3ms   0x000581    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_4ms   0x00058a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+              delay_500ms   0x0005c8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+               delay_50ms   0x0005ae    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_5ms   0x000593    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+            envia_msg_LCD   0x000326    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      envia_msg_abrir_LCD   0x000422    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+     envia_msg_entrar_LCD   0x0003a2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+       envia_msg_erro_LCD   0x0003b7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+       envia_msg_menu_LCD   0x00035f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      envia_msg_opcao_LCD   0x000468    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      envia_msg_senha_LCD   0x0003eb    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+ envia_msg_senha_erro_LCD   0x0003fc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
                    ld_deb   0x00003e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_teclado_4x4.asm
                      main   0x000061    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                   retorno   0x00010c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
@@ -263,74 +312,123 @@ Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Deskt
              _.org_1_01FF   0x0001ff    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
           Enviar_new_user   0x000200    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
                    Opcao2   0x00020a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
-               Inicia_LCD   0x00020e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-              EnviaCarLCD   0x00021d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-              EnviaCmdLCD   0x000224    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-                Delay_LCD   0x00022b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-             _.org_1_0230   0x000230    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-             _.org_1_0232   0x000232    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
-            envia_msg_LCD   0x000234    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-       envia_msg_menu_LCD   0x00026d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-     envia_msg_entrar_LCD   0x0002b0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-       envia_msg_erro_LCD   0x0002c5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-      envia_msg_senha_LCD   0x0002f9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
- envia_msg_senha_erro_LCD   0x00030a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-      envia_msg_abrir_LCD   0x000330    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-     Envia_cmd_fechar_LCD   0x000356    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-      envia_msg_opcao_LCD   0x000376    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-Enviar_msg_change_user_LCD   0x0003af    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-Enviar_msg_change_user2_LCD   0x0003ca    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-     Exibir_novo_user_LCD   0x0003ef    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
-                delay_1ms   0x00041b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0420   0x000420    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0422   0x000422    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_2ms   0x000424    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0429   0x000429    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_042B   0x00042b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_3ms   0x00042d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0432   0x000432    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0434   0x000434    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_4ms   0x000436    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_043B   0x00043b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_043D   0x00043d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                delay_5ms   0x00043f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0444   0x000444    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0446   0x000446    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-               delay_10ms   0x000448    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_044D   0x00044d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_044F   0x00044f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-               delay_20ms   0x000451    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0456   0x000456    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0458   0x000458    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-               delay_50ms   0x00045a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0461   0x000461    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0463   0x000463    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0465   0x000465    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-              delay_100ms   0x000467    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_046E   0x00046e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0470   0x000470    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0472   0x000472    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-              delay_500ms   0x000474    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_047B   0x00047b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_047D   0x00047d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_047F   0x00047f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-                 delay_1s   0x000481    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_0488   0x000488    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_048A   0x00048a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             _.org_1_048C   0x00048c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
-             Set_password   0x00048e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-          Verify_password   0x0004c1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password2   0x0004d7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password3   0x0004ed    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password4   0x000503    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-         Verify_password5   0x000519    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
-           Iniciar_senhas   0x00052f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-              Verify_user   0x00054e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 New_user   0x0005a7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_U   0x0005b2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_A   0x0005b9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_B   0x0005c0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_C   0x0005c7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
-                 change_D   0x0005ce    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+             _.org_1_0211   0x000211    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_user_change_pass1   0x000214    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_user_change_pass2   0x000221    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0223   0x000223    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_user_change_pass3   0x00022e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0230   0x000230    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_023D   0x00023d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+  Enviar_user_change_pass   0x00023e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+ Usuario_erro_change_pass   0x000246    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+Enviar_msg_senha_change_Pass   0x00024e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass1   0x00024f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass2   0x00025c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_025E   0x00025e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass3   0x000269    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_026B   0x00026b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass4   0x000276    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0278   0x000278    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+   Loop_change_user_pass5   0x000283    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0285   0x000285    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_0292   0x000292    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+ Enviar_senha_pass_change   0x000293    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change1   0x0002a2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change2   0x0002a4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change3   0x0002a6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change4   0x0002a8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             Pass_change5   0x0002aa    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+       Change_pass_return   0x0002ab    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+  Senha_erro_pass_changer   0x0002ae    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+     Pass_changer_routine   0x0002b1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass1   0x0002b2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass2   0x0002bf    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02C1   0x0002c1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass3   0x0002cc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02CE   0x0002ce    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass4   0x0002d9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02DB   0x0002db    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                New_pass5   0x0002e6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02E8   0x0002e8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+             _.org_1_02F5   0x0002f5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+                Send_pass   0x0002f6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\main.asm
+               Inicia_LCD   0x000300    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+              EnviaCarLCD   0x00030f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+              EnviaCmdLCD   0x000316    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+                Delay_LCD   0x00031d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+             _.org_1_0322   0x000322    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+             _.org_1_0324   0x000324    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_lcd_driver_PIC16F.asm
+            envia_msg_LCD   0x000326    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+       envia_msg_menu_LCD   0x00035f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+     envia_msg_entrar_LCD   0x0003a2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+       envia_msg_erro_LCD   0x0003b7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      envia_msg_senha_LCD   0x0003eb    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+ envia_msg_senha_erro_LCD   0x0003fc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      envia_msg_abrir_LCD   0x000422    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+     Envia_cmd_fechar_LCD   0x000448    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      envia_msg_opcao_LCD   0x000468    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+Enviar_msg_change_user_LCD   0x0004a1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+Enviar_msg_change_user2_LCD   0x0004bc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+     Exibir_novo_user_LCD   0x0004e1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      Exibir_old_pass_LCD   0x00050f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+      Exibir_NEW_pass_LCD   0x00052e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+Exibir_senha_alterada_LCD   0x00054b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_mensagens_PIC16F.asm
+                delay_1ms   0x00056f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0574   0x000574    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0576   0x000576    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_2ms   0x000578    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_057D   0x00057d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_057F   0x00057f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_3ms   0x000581    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0586   0x000586    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0588   0x000588    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_4ms   0x00058a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_058F   0x00058f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0591   0x000591    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                delay_5ms   0x000593    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_0598   0x000598    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_059A   0x00059a    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+               delay_10ms   0x00059c    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05A1   0x0005a1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05A3   0x0005a3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+               delay_20ms   0x0005a5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05AA   0x0005aa    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05AC   0x0005ac    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+               delay_50ms   0x0005ae    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05B5   0x0005b5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05B7   0x0005b7    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05B9   0x0005b9    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+              delay_100ms   0x0005bb    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05C2   0x0005c2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05C4   0x0005c4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05C6   0x0005c6    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+              delay_500ms   0x0005c8    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05CF   0x0005cf    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05D1   0x0005d1    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05D3   0x0005d3    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+                 delay_1s   0x0005d5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05DC   0x0005dc    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05DE   0x0005de    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             _.org_1_05E0   0x0005e0    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\up_md_atrasos.asm
+             Set_password   0x0005e2    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+          Verify_password   0x000615    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password2   0x00062b    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password3   0x000641    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password4   0x000657    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+         Verify_password5   0x00066d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+             New_password   0x000683    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_U   0x00068e    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_A   0x000699    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_B   0x0006a4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_C   0x0006af    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+            change_pass_D   0x0006ba    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\verify_password.asm
+           Iniciar_senhas   0x0006c5    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+              Verify_user   0x0006e4    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 New_user   0x00073d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_U   0x000748    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_A   0x00074f    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_B   0x000756    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_C   0x00075d    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
+                 change_D   0x000764    program     static C:\Users\evand\Desktop\FechaduraEletronica\Projeto Final - Evandro e Morelo\Projeto_Final-Evandro_Morelo.X\user.asm
 
 

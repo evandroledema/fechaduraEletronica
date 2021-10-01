@@ -1,4 +1,4 @@
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  1
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00005 
                       00006 #Define     Col1        PORTB,0
                       00007 #Define     Col2        PORTB,1
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  2
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00051 
                       00052 ;Varredura das 4 colunas para detectar tecla pressionada
                       00053 ;Testa se algum pino de PORTB<3:0> está em zero
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  3
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -175,7 +175,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0052                  00045 setup:  
 0052   2???           00046         call    Inicia_teclado  ;configura PORTB e PORTC
 0053   2???           00047         call    Inicia_LCD              ;configura o módulo LCD e Portas
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  4
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -234,7 +234,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 007B   1903           00095         btfsc   STATUS,Z
 007C   2???           00096         goto    Lop1            ; BCD1 = 0, retorna
 007D   0829           00097         movfw   tecla   
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  5
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -293,7 +293,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00A8   2???           00148         call    EnviaCmdLCD
 00A9   10A5           00149         bcf     user1,F
 00AA   10A6           00150         bcf     user2,F
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  6
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -352,7 +352,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4   0829           00201         movfw   tecla   
 00D5   00A2           00202         movwf   dig3            ; cent = ASCII(BCD1)
 00D6   2???           00203         call    EnviaCarLCD
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  7
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -411,7 +411,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0100   18E0           00254         btfsc   flag_user5,F
 0101   2???           00255         goto    Senha5
 0102   2???           00256         goto    retorno
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  8
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -470,7 +470,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0126   2???           00307         goto    TECLA_1_2               ; operadores inválidos, retorna
 0127   2???           00308         call    envia_msg_opcao_LCD
 0128                  00309 Loop3:  
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE  9
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -529,7 +529,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0152   0829           00360         movfw   tecla   
 0153   3A30           00361         xorlw   0x30
 0154   1903           00362         btfsc   STATUS,Z
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 10
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -588,7 +588,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00413 ;=============================================================
 017C                  00414 Senha_user_2:
 017C   2???           00415         call    teclado         ; para ler operador
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 11
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -647,7 +647,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01A9   0829           00466         movfw   tecla   
 01AA   3A30           00467         xorlw   0x30
 01AB   1903           00468         btfsc   STATUS,Z
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 12
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -706,7 +706,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01D0   30C0           00519         movlw   LCD_Linha_2     
 01D1   2???           00520         call    EnviaCmdLCD
 01D2   2???           00521         goto    Lop_user_1
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 13
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -765,7 +765,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01FC   2???           00572         call    EnviaCarLCD
                       00573 ;===============================================================
 01FD   2???           00574         call    teclado         ; para ler operador
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 14
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -791,10 +791,342 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 020B   0629           00592         xorwf   tecla,W         ; tecla [=]
 020C   1D03           00593         btfss   STATUS,Z
 020D   2???           00594         goto    Loop3
-                      00595         ;desenvolver aqui para mudar senha
-                      00596 
-                      00597     
-                      00598         #include        "up_md_lcd_driver_PIC16F.asm"
+020E   2???           00595         call    envia_msg_entrar_LCD
+                      00596         
+020F   2???           00597         call    teclado         ; para ler operador
+0210   1C2B           00598         btfss   fpress,0                ; lê BCD2 da senha
+0211   2???           00599         goto    $-2             ; fica no loop até ler BCD2 ...
+                      00600         
+0212   30C0           00601         movlw   LCD_Linha_2     ;2 linha
+0213   2???           00602         call    EnviaCmdLCD
+                      00603 ;=============================================================
+                      00604 ;Lê 1° operando
+0214                  00605 Loop_user_change_pass1:
+0214   2???           00606         call    teclado         ; para ler operador
+0215   1C2B           00607         btfss   fpress,0        
+0216   2???           00608         goto    Loop_user_change_pass1          ; fica no loop até ler BCD1
+0217   2???           00609         call    checa_BCD               ; tecla = [0x30,0x39]
+0218   1C2B           00610         btfss   fpress,0
+0219   2???           00611         goto    Loop_user_change_pass1          ; BCD1 inválido, retorna
+021A   0829           00612         movfw   tecla   
+021B   3A30           00613         xorlw   0x30
+021C   1903           00614         btfsc   STATUS,Z
+021D   2???           00615         goto    Loop_user_change_pass1          ; BCD1 = 0, retorna
+021E   0829           00616         movfw   tecla   
+021F   00A5           00617         movwf   user1           ; cent = ASCII(BCD1)
+0220   2???           00618         call    EnviaCarLCD
+                      00619 ;=============================================================
+0221                  00620 Loop_user_change_pass2:
+0221   2???           00621         call    teclado         ; para ler operador
+0222   1C2B           00622         btfss   fpress,0                ; lê BCD2 da senha
+0223   2???           00623         goto    $-2             ; fica no loop até ler BCD2 ...
+0224   2???           00624         call    checa_BCD               ; tecla = [0x30,0x39]
+0225   1C2B           00625         btfss   fpress,0                ; pula de BCD2 válido
+0226   2???           00626         goto    Loop_user_change_pass2          ; vai verificar se é operador
+0227   0829           00627         movfw   tecla   
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0228   3A30           00628         xorlw   0x30
+0229   1903           00629         btfsc   STATUS,Z
+022A   2???           00630         goto    Loop_user_change_pass2          ; BCD1 = 0, retorna
+022B   0829           00631         movfw   tecla   
+022C   00A6           00632         movwf   user2           ; cent = ASCII(BCD1)
+022D   2???           00633         call    EnviaCarLCD
+                      00634 ;==============================================================
+022E                  00635 Loop_user_change_pass3:
+022E   2???           00636         call    teclado         ; para ler operador
+022F   1C2B           00637         btfss   fpress,0                ; lê BCD2 da senha
+0230   2???           00638         goto    $-2             ; fica no loop até ler BCD2 ...
+0231   2???           00639         call    checa_BCD               ; tecla = [0x30,0x39]
+0232   1C2B           00640         btfss   fpress,0                ; pula de BCD2 válido
+0233   2???           00641         goto    Loop_user_change_pass3          ; vai verificar se é operador
+0234   0829           00642         movfw   tecla   
+0235   3A30           00643         xorlw   0x30
+0236   1903           00644         btfsc   STATUS,Z
+0237   2???           00645         goto    Loop_user_change_pass3          ; BCD1 = 0, retorna
+0238   0829           00646         movfw   tecla   
+0239   00A7           00647         movwf   user3           ; cent = ASCII(BCD1)
+023A   2???           00648         call    EnviaCarLCD
+                      00649 ;===============================================================
+023B   2???           00650         call    teclado         ; para ler operador
+023C   1C2B           00651         btfss   fpress,0                ; lê BCD2 da senha
+023D   2???           00652         goto    $-2             ; fica no loop até ler BCD2 ...
+023E                  00653 Enviar_user_change_pass:                        ;valida operador ON/C
+023E   3045           00654         movlw   'E'
+023F   0629           00655         xorwf   tecla,W         ; tecla [=]
+0240   1D03           00656         btfss   STATUS,Z
+0241   2???           00657         goto    Enviar_user_change_pass - .3    ; operador inválido, retorna
+0242   2???           00658         call    Verify_user             ; MENU
+0243   18CC           00659         btfsc   flag_user_err,F
+0244   2???           00660         goto    Usuario_erro_change_pass
+0245   2???           00661         goto    Enviar_msg_senha_change_Pass
+                      00662         
+0246                  00663 Usuario_erro_change_pass:
+0246   2???           00664         call    envia_msg_erro_LCD
+0247   2???           00665         call    envia_msg_entrar_LCD
+0248   30C0           00666         movlw   LCD_Linha_2     
+0249   2???           00667         call    EnviaCmdLCD
+024A   10A5           00668         bcf     user1,F
+024B   10A6           00669         bcf     user2,F
+024C   10A7           00670         bcf     user3,F
+024D   2???           00671         goto    Loop_user_change_pass1
+                      00672 
+024E                  00673 Enviar_msg_senha_change_Pass:
+024E   2???           00674         call    Exibir_old_pass_LCD
+                      00675 ;=============================================================
+                      00676 ;Lê 1° operando
+024F                  00677 Loop_change_user_pass1:
+024F   2???           00678         call    teclado         ; para ler operador
+0250   1C2B           00679         btfss   fpress,0        
+0251   2???           00680         goto    Loop_change_user_pass1          ; fica no loop até ler BCD1
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0252   2???           00681         call    checa_BCD               ; tecla = [0x30,0x39]
+0253   1C2B           00682         btfss   fpress,0
+0254   2???           00683         goto    Loop_change_user_pass1          ; BCD1 inválido, retorna
+0255   0829           00684         movfw   tecla   
+0256   3A30           00685         xorlw   0x30
+0257   1903           00686         btfsc   STATUS,Z
+0258   2???           00687         goto    Loop_change_user_pass1          ; BCD1 = 0, retorna
+0259   0829           00688         movfw   tecla   
+025A   00A0           00689         movwf   dig1            ; cent = ASCII(BCD1)
+025B   2???           00690         call    EnviaCarLCD
+                      00691 ;=============================================================
+025C                  00692 Loop_change_user_pass2:
+025C   2???           00693         call    teclado         ; para ler operador
+025D   1C2B           00694         btfss   fpress,0                ; lê BCD2 da senha
+025E   2???           00695         goto    $-2             ; fica no loop até ler BCD2 ...
+025F   2???           00696         call    checa_BCD               ; tecla = [0x30,0x39]
+0260   1C2B           00697         btfss   fpress,0                ; pula de BCD2 válido
+0261   2???           00698         goto    Loop_change_user_pass2          ; vai verificar se é operador
+0262   0829           00699         movfw   tecla   
+0263   3A30           00700         xorlw   0x30
+0264   1903           00701         btfsc   STATUS,Z
+0265   2???           00702         goto    Loop_change_user_pass2          ; BCD1 = 0, retorna
+0266   0829           00703         movfw   tecla   
+0267   00A1           00704         movwf   dig2            ; cent = ASCII(BCD1)
+0268   2???           00705         call    EnviaCarLCD
+                      00706 ;==============================================================
+0269                  00707 Loop_change_user_pass3:
+0269   2???           00708         call    teclado         ; para ler operador
+026A   1C2B           00709         btfss   fpress,0                ; lê BCD2 da senha
+026B   2???           00710         goto    $-2             ; fica no loop até ler BCD2 ...
+026C   2???           00711         call    checa_BCD               ; tecla = [0x30,0x39]
+026D   1C2B           00712         btfss   fpress,0                ; pula de BCD2 válido
+026E   2???           00713         goto    Loop_change_user_pass3          ; vai verificar se é operador
+026F   0829           00714         movfw   tecla   
+0270   3A30           00715         xorlw   0x30
+0271   1903           00716         btfsc   STATUS,Z
+0272   2???           00717         goto    Loop_change_user_pass3          ; BCD1 = 0, retorna
+0273   0829           00718         movfw   tecla   
+0274   00A2           00719         movwf   dig3            ; cent = ASCII(BCD1)
+0275   2???           00720         call    EnviaCarLCD
+                      00721 ;===============================================================
+0276                  00722 Loop_change_user_pass4:
+0276   2???           00723         call    teclado         ; para ler operador
+0277   1C2B           00724         btfss   fpress,0                ; lê BCD2 da senha
+0278   2???           00725         goto    $-2             ; fica no loop até ler BCD2 ...
+0279   2???           00726         call    checa_BCD               ; tecla = [0x30,0x39]
+027A   1C2B           00727         btfss   fpress,0                ; pula de BCD2 válido
+027B   2???           00728         goto    Loop_change_user_pass4          ; vai verificar se é operador
+027C   0829           00729         movfw   tecla   
+027D   3A30           00730         xorlw   0x30
+027E   1903           00731         btfsc   STATUS,Z
+027F   2???           00732         goto    Loop_change_user_pass4          ; BCD1 = 0, retorna
+0280   0829           00733         movfw   tecla   
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0281   00A3           00734         movwf   dig4            ; cent = ASCII(BCD1)
+0282   2???           00735         call    EnviaCarLCD
+                      00736 ;===============================================================
+0283                  00737 Loop_change_user_pass5:
+0283   2???           00738         call    teclado         ; para ler operador
+0284   1C2B           00739         btfss   fpress,0                ; lê BCD2 da senha
+0285   2???           00740         goto    $-2             ; fica no loop até ler BCD2 ...
+0286   2???           00741         call    checa_BCD               ; tecla = [0x30,0x39]
+0287   1C2B           00742         btfss   fpress,0                ; pula de BCD2 válido
+0288   2???           00743         goto    Loop_change_user_pass5          ; vai verificar se é operador
+0289   0829           00744         movfw   tecla   
+028A   3A30           00745         xorlw   0x30
+028B   1903           00746         btfsc   STATUS,Z
+028C   2???           00747         goto    Loop_change_user_pass5          ; BCD1 = 0, retorna
+028D   0829           00748         movfw   tecla   
+028E   00A4           00749         movwf   dig5            ; cent = ASCII(BCD1)
+028F   2???           00750         call    EnviaCarLCD
+                      00751 ;===============================================================
+                      00752 
+0290   2???           00753         call    teclado         ; para ler operador
+0291   1C2B           00754         btfss   fpress,0                ; lê BCD2 da senha
+0292   2???           00755         goto    $-2             ; fica no loop até ler BCD2 ...
+0293                  00756 Enviar_senha_pass_change:                       ;valida operador ON/C
+0293   3045           00757         movlw   'E'
+0294   0629           00758         xorwf   tecla,W         ; tecla [=]
+0295   1D03           00759         btfss   STATUS,Z
+0296   2???           00760         goto    Enviar_senha_pass_change - .3   ; operador inválido, retorna
+                      00761         
+                      00762 ;flag testa e envia para um dos labels de senha
+0297   18DC           00763         btfsc   flag_user1,F
+0298   2???           00764         goto    Pass_change1
+0299   18DD           00765         btfsc   flag_user2,F
+029A   2???           00766         goto    Pass_change2
+029B   18DE           00767         btfsc   flag_user3,F
+029C   2???           00768         goto    Pass_change3
+029D   18DF           00769         btfsc   flag_user4,F
+029E   2???           00770         goto    Pass_change4
+029F   18E0           00771         btfsc   flag_user5,F
+02A0   2???           00772         goto    Pass_change5
+02A1   2???           00773         goto    Change_pass_return
+02A2                  00774 Pass_change1:
+02A2   2???           00775         call    Verify_password
+02A3   2???           00776         goto    Change_pass_return
+02A4                  00777 Pass_change2:
+02A4   2???           00778         call    Verify_password2
+02A5   2???           00779         goto    Change_pass_return
+02A6                  00780 Pass_change3:
+02A6   2???           00781         call    Verify_password3
+02A7   2???           00782         goto    Change_pass_return
+02A8                  00783 Pass_change4:
+02A8   2???           00784         call    Verify_password4
+02A9   2???           00785         goto    Change_pass_return
+02AA                  00786 Pass_change5:
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02AA   2???           00787         call    Verify_password5
+02AB                  00788 Change_pass_return:
+02AB   18B2           00789         btfsc   flag_error,F
+02AC   2???           00790         goto    Senha_erro_pass_changer
+02AD   2???           00791         goto    Pass_changer_routine
+                      00792         
+02AE                  00793 Senha_erro_pass_changer:
+02AE   2???           00794         call    envia_msg_senha_erro_LCD
+02AF   2???           00795         call    Exibir_old_pass_LCD
+02B0   2???           00796         goto    Loop_change_user_pass1
+                      00797         
+02B1                  00798 Pass_changer_routine:
+02B1   2???           00799         call    Exibir_NEW_pass_LCD
+                      00800 ;=======================================================================================        
+02B2                  00801 New_pass1:
+02B2   2???           00802         call    teclado         ; para ler operador
+02B3   1C2B           00803         btfss   fpress,0        
+02B4   2???           00804         goto    New_pass1               ; fica no loop até ler BCD1
+02B5   2???           00805         call    checa_BCD               ; tecla = [0x30,0x39]
+02B6   1C2B           00806         btfss   fpress,0
+02B7   2???           00807         goto    Lop2            ; BCD1 inválido, retorna
+02B8   0829           00808         movfw   tecla   
+02B9   3A30           00809         xorlw   0x30
+02BA   1903           00810         btfsc   STATUS,Z
+02BB   2???           00811         goto    New_pass1               ; BCD1 = 0, retorna
+02BC   0829           00812         movfw   tecla   
+02BD   00A0           00813         movwf   dig1            ; cent = ASCII(BCD1)
+02BE   2???           00814         call    EnviaCarLCD
+                      00815 ;=============================================================
+02BF                  00816 New_pass2:
+02BF   2???           00817         call    teclado         ; para ler operador
+02C0   1C2B           00818         btfss   fpress,0                ; lê BCD2 da senha
+02C1   2???           00819         goto    $-2             ; fica no loop até ler BCD2 ...
+02C2   2???           00820         call    checa_BCD               ; tecla = [0x30,0x39]
+02C3   1C2B           00821         btfss   fpress,0                ; pula de BCD2 válido
+02C4   2???           00822         goto    New_pass2               ; vai verificar se é operador
+02C5   0829           00823         movfw   tecla   
+02C6   3A30           00824         xorlw   0x30
+02C7   1903           00825         btfsc   STATUS,Z
+02C8   2???           00826         goto    New_pass2               ; BCD1 = 0, retorna
+02C9   0829           00827         movfw   tecla   
+02CA   00A1           00828         movwf   dig2            ; cent = ASCII(BCD1)
+02CB   2???           00829         call    EnviaCarLCD
+                      00830 ;==============================================================
+02CC                  00831 New_pass3:
+02CC   2???           00832         call    teclado         ; para ler operador
+02CD   1C2B           00833         btfss   fpress,0                ; lê BCD2 da senha
+02CE   2???           00834         goto    $-2             ; fica no loop até ler BCD2 ...
+02CF   2???           00835         call    checa_BCD               ; tecla = [0x30,0x39]
+02D0   1C2B           00836         btfss   fpress,0                ; pula de BCD2 válido
+02D1   2???           00837         goto    New_pass3               ; vai verificar se é operador
+02D2   0829           00838         movfw   tecla   
+02D3   3A30           00839         xorlw   0x30
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02D4   1903           00840         btfsc   STATUS,Z
+02D5   2???           00841         goto    New_pass3               ; BCD1 = 0, retorna
+02D6   0829           00842         movfw   tecla   
+02D7   00A2           00843         movwf   dig3            ; cent = ASCII(BCD1)
+02D8   2???           00844         call    EnviaCarLCD
+                      00845 ;===============================================================
+02D9                  00846 New_pass4:
+02D9   2???           00847         call    teclado         ; para ler operador
+02DA   1C2B           00848         btfss   fpress,0                ; lê BCD2 da senha
+02DB   2???           00849         goto    $-2             ; fica no loop até ler BCD2 ...
+02DC   2???           00850         call    checa_BCD               ; tecla = [0x30,0x39]
+02DD   1C2B           00851         btfss   fpress,0                ; pula de BCD2 válido
+02DE   2???           00852         goto    New_pass4               ; vai verificar se é operador
+02DF   0829           00853         movfw   tecla   
+02E0   3A30           00854         xorlw   0x30
+02E1   1903           00855         btfsc   STATUS,Z
+02E2   2???           00856         goto    New_pass4               ; BCD1 = 0, retorna
+02E3   0829           00857         movfw   tecla   
+02E4   00A3           00858         movwf   dig4            ; cent = ASCII(BCD1)
+02E5   2???           00859         call    EnviaCarLCD
+                      00860 ;===============================================================
+02E6                  00861 New_pass5:
+02E6   2???           00862         call    teclado         ; para ler operador
+02E7   1C2B           00863         btfss   fpress,0                ; lê BCD2 da senha
+02E8   2???           00864         goto    $-2             ; fica no loop até ler BCD2 ...
+02E9   2???           00865         call    checa_BCD               ; tecla = [0x30,0x39]
+02EA   1C2B           00866         btfss   fpress,0                ; pula de BCD2 válido
+02EB   2???           00867         goto    New_pass5               ; vai verificar se é operador
+02EC   0829           00868         movfw   tecla   
+02ED   3A30           00869         xorlw   0x30
+02EE   1903           00870         btfsc   STATUS,Z
+02EF   2???           00871         goto    New_pass5               ; BCD1 = 0, retorna
+02F0   0829           00872         movfw   tecla   
+02F1   00A4           00873         movwf   dig5            ; cent = ASCII(BCD1)
+02F2   2???           00874         call    EnviaCarLCD
+                      00875 ;===============================================================
+                      00876 
+02F3   2???           00877         call    teclado         ; para ler operador
+02F4   1C2B           00878         btfss   fpress,0                ; lê BCD2 da senha
+02F5   2???           00879         goto    $-2             ; fica no loop até ler BCD2 ...
+02F6                  00880 Send_pass:                      ;valida operador ON/C
+02F6   3045           00881         movlw   'E'
+02F7   0629           00882         xorwf   tecla,W         ; tecla [=]
+02F8   1D03           00883         btfss   STATUS,Z
+02F9   2???           00884         goto    Send_pass - .3  ; operador inválido, retorna
+02FA   2???           00885         call    New_password
+02FB   2???           00886         call    Exibir_senha_alterada_LCD
+02FC   3001           00887         MOVLW   LCD_CLEAR
+02FD   2???           00888         CALL    EnviaCmdLCD
+02FE   2???           00889         call    envia_msg_LCD
+02FF   2???           00890         goto    main
+                      00891         
+                      00892 
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00893             
+                      00894         #include        "up_md_lcd_driver_PIC16F.asm"
                       00001         cblock
   0000002D            00002           TEMPO1,TEMPO2
                       00003         endc
@@ -815,644 +1147,760 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   00000080            00018 LCD_Linha_1             EQU     0x80    ;primeira linha
   000000C0            00019 LCD_Linha_2             EQU     0xC0    ;segunda linha
                       00020 ;====================================================================
-020E                  00021 Inicia_LCD:
+0300                  00021 Inicia_LCD:
                       00022         banco1
-020E   1683               M         bsf     STATUS, RP0
-020F   0188           00023         clrf    TRISD
-0210   0189           00024         clrf    TRISE
+0300   1683               M         bsf     STATUS, RP0
+0301   0188           00023         clrf    TRISD
+0302   0189           00024         clrf    TRISE
                       00025         banco0
-0211   1283               M         bcf     STATUS, RP0
-0212   3038           00026         MOVLW   0x38            ;
-0213   2???           00027         CALL    EnviaCmdLCD
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 15
+0303   1283               M         bcf     STATUS, RP0
+0304   3038           00026         MOVLW   0x38            ;
+0305   2???           00027         CALL    EnviaCmdLCD
+0306   3038           00028         MOVLW   0x38            ;Modo 8b, 2 linhas de dados
+0307   2???           00029         CALL    EnviaCmdLCD
+0308   3006           00030         MOVLW   0x06            ;Cursor, deslocamento para a direita
+0309   2???           00031         CALL    EnviaCmdLCD
+030A   300C           00032         MOVLW   0x0C            ;Display on, cursor off
+030B   2???           00033         CALL    EnviaCmdLCD
+030C   3001           00034         MOVLW   0x01            ;Limpa display e cursor home
+030D   2???           00035         CALL    EnviaCmdLCD
+030E   0008           00036         RETURN  
+                      00037 
+030F                  00038 EnviaCarLCD:
+030F   1409           00039         BSF     LCD_RS
+0310   1489           00040         BSF     LCD_E
+0311   0088           00041         MOVWF   LCD_DADO
+0312   1089           00042         BCF     LCD_E
+0313   3006           00043         MOVLW   0x06
+0314   2???           00044         CALL    Delay_LCD               ;1.54ms
+0315   0008           00045         RETURN  
+                      00046 
+0316                  00047 EnviaCmdLCD:
+0316   1009           00048         BCF     LCD_RS          ;comando
+0317   1489           00049         BSF     LCD_E
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0214   3038           00028         MOVLW   0x38            ;Modo 8b, 2 linhas de dados
-0215   2???           00029         CALL    EnviaCmdLCD
-0216   3006           00030         MOVLW   0x06            ;Cursor, deslocamento para a direita
-0217   2???           00031         CALL    EnviaCmdLCD
-0218   300C           00032         MOVLW   0x0C            ;Display on, cursor off
-0219   2???           00033         CALL    EnviaCmdLCD
-021A   3001           00034         MOVLW   0x01            ;Limpa display e cursor home
-021B   2???           00035         CALL    EnviaCmdLCD
-021C   0008           00036         RETURN  
-                      00037 
-021D                  00038 EnviaCarLCD:
-021D   1409           00039         BSF     LCD_RS
-021E   1489           00040         BSF     LCD_E
-021F   0088           00041         MOVWF   LCD_DADO
-0220   1089           00042         BCF     LCD_E
-0221   3006           00043         MOVLW   0x06
-0222   2???           00044         CALL    Delay_LCD               ;1.54ms
-0223   0008           00045         RETURN  
-                      00046 
-0224                  00047 EnviaCmdLCD:
-0224   1009           00048         BCF     LCD_RS          ;comando
-0225   1489           00049         BSF     LCD_E
-0226   0088           00050         MOVWF   LCD_DADO
-0227   1089           00051         BCF     LCD_E
-0228   3012           00052         MOVLW   0x12
-0229   2???           00053         CALL    Delay_LCD               ;4.6ms
-022A   0008           00054         RETURN
+0318   0088           00050         MOVWF   LCD_DADO
+0319   1089           00051         BCF     LCD_E
+031A   3012           00052         MOVLW   0x12
+031B   2???           00053         CALL    Delay_LCD               ;4.6ms
+031C   0008           00054         RETURN
                       00055 
-022B                  00056 Delay_LCD:
-022B   00AE           00057         MOVWF   TEMPO2     
-022C   30FF           00058         MOVLW   0xFF
-022D   00AD           00059         MOVWF   TEMPO1
-022E   0064           00060         CLRWDT
-022F   0BAD           00061         DECFSZ  TEMPO1,F
-0230   2???           00062         GOTO    $-02               
-0231   0BAE           00063         DECFSZ  TEMPO2,F
-0232   2???           00064         GOTO    $-06                
-0233   0008           00065         RETURN
-                      00599         #include        "up_mensagens_PIC16F.asm"
+031D                  00056 Delay_LCD:
+031D   00AE           00057         MOVWF   TEMPO2     
+031E   30FF           00058         MOVLW   0xFF
+031F   00AD           00059         MOVWF   TEMPO1
+0320   0064           00060         CLRWDT
+0321   0BAD           00061         DECFSZ  TEMPO1,F
+0322   2???           00062         GOTO    $-02               
+0323   0BAE           00063         DECFSZ  TEMPO2,F
+0324   2???           00064         GOTO    $-06                
+0325   0008           00065         RETURN
+                      00895         #include        "up_mensagens_PIC16F.asm"
                       00001 ;**********************************************************************
                       00002 ; Rotinas para as mensagens de texto a serem enviadas no LCD
                       00003 ;**********************************************************************
-0234                  00004 envia_msg_LCD:
-0234   3080           00005         MOVLW   LCD_Linha_1     ;1 linha
-0235   2???           00006         CALL    EnviaCmdLCD
+0326                  00004 envia_msg_LCD:
+0326   3080           00005         MOVLW   LCD_Linha_1     ;1 linha
+0327   2???           00006         CALL    EnviaCmdLCD
                       00007         
-0236   3050           00008         MOVLW   'P'
-0237   2???           00009         CALL    EnviaCarLCD    
-0238   3052           00010         MOVLW   'R'
-0239   2???           00011         CALL    EnviaCarLCD  
-023A   3045           00012         MOVLW   'E'
-023B   2???           00013         CALL    EnviaCarLCD  
-023C   3053           00014         MOVLW   'S'
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 16
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-023D   2???           00015         CALL    EnviaCarLCD  
-023E   3053           00016         MOVLW   'S'
-023F   2???           00017         CALL    EnviaCarLCD  
-0240   3049           00018         MOVLW   'I'
-0241   2???           00019         CALL    EnviaCarLCD  
-0242   304F           00020         MOVLW   'O'
-0243   2???           00021         CALL    EnviaCarLCD  
-0244   304E           00022         MOVLW   'N'
-0245   2???           00023         CALL    EnviaCarLCD  
-0246   3045           00024         MOVLW   'E'
-0247   2???           00025         CALL    EnviaCarLCD  
-0248   3020           00026         MOVLW   ' '
-0249   2???           00027         CALL    EnviaCarLCD  
-024A   304F           00028         MOVLW   'O'
-024B   2???           00029         CALL    EnviaCarLCD  
-024C   304E           00030         MOVLW   'N'
-024D   2???           00031         CALL    EnviaCarLCD  
-024E   302F           00032         MOVLW   '/'
-024F   2???           00033         CALL    EnviaCarLCD  
-0250   3043           00034         MOVLW   'C'
-0251   2???           00035         CALL    EnviaCarLCD  
+0328   3050           00008         MOVLW   'P'
+0329   2???           00009         CALL    EnviaCarLCD    
+032A   3052           00010         MOVLW   'R'
+032B   2???           00011         CALL    EnviaCarLCD  
+032C   3045           00012         MOVLW   'E'
+032D   2???           00013         CALL    EnviaCarLCD  
+032E   3053           00014         MOVLW   'S'
+032F   2???           00015         CALL    EnviaCarLCD  
+0330   3053           00016         MOVLW   'S'
+0331   2???           00017         CALL    EnviaCarLCD  
+0332   3049           00018         MOVLW   'I'
+0333   2???           00019         CALL    EnviaCarLCD  
+0334   304F           00020         MOVLW   'O'
+0335   2???           00021         CALL    EnviaCarLCD  
+0336   304E           00022         MOVLW   'N'
+0337   2???           00023         CALL    EnviaCarLCD  
+0338   3045           00024         MOVLW   'E'
+0339   2???           00025         CALL    EnviaCarLCD  
+033A   3020           00026         MOVLW   ' '
+033B   2???           00027         CALL    EnviaCarLCD  
+033C   304F           00028         MOVLW   'O'
+033D   2???           00029         CALL    EnviaCarLCD  
+033E   304E           00030         MOVLW   'N'
+033F   2???           00031         CALL    EnviaCarLCD  
+0340   302F           00032         MOVLW   '/'
+0341   2???           00033         CALL    EnviaCarLCD  
+0342   3043           00034         MOVLW   'C'
+0343   2???           00035         CALL    EnviaCarLCD  
                       00036         
-0252   30C0           00037         MOVLW   LCD_Linha_2     ;2 linha
-0253   2???           00038         CALL    EnviaCmdLCD
-0254   3050           00039         MOVLW   'P'
-0255   2???           00040         CALL    EnviaCarLCD  
-0256   3041           00041         MOVLW   'A'
-0257   2???           00042         CALL    EnviaCarLCD  
-0258   3052           00043         MOVLW   'R'
-0259   2???           00044         CALL    EnviaCarLCD  
-025A   3041           00045         MOVLW   'A'
-025B   2???           00046         CALL    EnviaCarLCD  
-025C   3020           00047         MOVLW   ' '
-025D   2???           00048         CALL    EnviaCarLCD  
-025E   3049           00049         MOVLW   'I'
-025F   2???           00050         CALL    EnviaCarLCD  
-0260   304E           00051         MOVLW   'N'
-0261   2???           00052         CALL    EnviaCarLCD  
-0262   3049           00053         MOVLW   'I'
-0263   2???           00054         CALL    EnviaCarLCD  
-0264   3043           00055         MOVLW   'C'
-0265   2???           00056         CALL    EnviaCarLCD  
-0266   3049           00057         MOVLW   'I'
-0267   2???           00058         CALL    EnviaCarLCD  
-0268   3041           00059         MOVLW   'A'
-0269   2???           00060         CALL    EnviaCarLCD  
-026A   3052           00061         MOVLW   'R'
-026B   2???           00062         CALL    EnviaCarLCD  
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0344   30C0           00037         MOVLW   LCD_Linha_2     ;2 linha
+0345   2???           00038         CALL    EnviaCmdLCD
+0346   3050           00039         MOVLW   'P'
+0347   2???           00040         CALL    EnviaCarLCD  
+0348   3041           00041         MOVLW   'A'
+0349   2???           00042         CALL    EnviaCarLCD  
+034A   3052           00043         MOVLW   'R'
+034B   2???           00044         CALL    EnviaCarLCD  
+034C   3041           00045         MOVLW   'A'
+034D   2???           00046         CALL    EnviaCarLCD  
+034E   3020           00047         MOVLW   ' '
+034F   2???           00048         CALL    EnviaCarLCD  
+0350   3049           00049         MOVLW   'I'
+0351   2???           00050         CALL    EnviaCarLCD  
+0352   304E           00051         MOVLW   'N'
+0353   2???           00052         CALL    EnviaCarLCD  
+0354   3049           00053         MOVLW   'I'
+0355   2???           00054         CALL    EnviaCarLCD  
+0356   3043           00055         MOVLW   'C'
+0357   2???           00056         CALL    EnviaCarLCD  
+0358   3049           00057         MOVLW   'I'
+0359   2???           00058         CALL    EnviaCarLCD  
+035A   3041           00059         MOVLW   'A'
+035B   2???           00060         CALL    EnviaCarLCD  
+035C   3052           00061         MOVLW   'R'
+035D   2???           00062         CALL    EnviaCarLCD  
                       00063         
-026C   0008           00064         RETURN  
+035E   0008           00064         RETURN  
                       00065 ;+++++++++++++++++++++++++++++++++++++++++++++
-026D                  00066 envia_msg_menu_LCD:
-026D   3080           00067         MOVLW   LCD_Linha_1     ;1 linha
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 17
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-026E   2???           00068         CALL    EnviaCmdLCD
+035F                  00066 envia_msg_menu_LCD:
+035F   3080           00067         MOVLW   LCD_Linha_1     ;1 linha
+0360   2???           00068         CALL    EnviaCmdLCD
                       00069         
-026F   304D           00070         MOVLW   'M'
-0270   2???           00071         CALL    EnviaCarLCD    
-0271   3045           00072         MOVLW   'E'
-0272   2???           00073         CALL    EnviaCarLCD  
-0273   304E           00074         MOVLW   'N'
-0274   2???           00075         CALL    EnviaCarLCD  
-0275   3055           00076         MOVLW   'U'
-0276   2???           00077         CALL    EnviaCarLCD  
-0277   303A           00078         MOVLW   ':'
-0278   2???           00079         CALL    EnviaCarLCD  
-0279   3020           00080         MOVLW   ' '
-027A   2???           00081         CALL    EnviaCarLCD  
-027B   3050           00082         MOVLW   'P'
-027C   2???           00083         CALL    EnviaCarLCD  
-027D   3052           00084         MOVLW   'R'
-027E   2???           00085         CALL    EnviaCarLCD  
-027F   3045           00086         MOVLW   'E'
-0280   2???           00087         CALL    EnviaCarLCD  
-0281   3053           00088         MOVLW   'S'
-0282   2???           00089         CALL    EnviaCarLCD  
-0283   3053           00090         MOVLW   'S'
-0284   2???           00091         CALL    EnviaCarLCD  
-0285   3049           00092         MOVLW   'I'
-0286   2???           00093         CALL    EnviaCarLCD  
-0287   304F           00094         MOVLW   'O'
-0288   2???           00095         CALL    EnviaCarLCD  
-0289   304E           00096         MOVLW   'N'
-028A   2???           00097         CALL    EnviaCarLCD  
-028B   3045           00098         MOVLW   'E'
-028C   2???           00099         CALL    EnviaCarLCD  
+0361   304D           00070         MOVLW   'M'
+0362   2???           00071         CALL    EnviaCarLCD    
+0363   3045           00072         MOVLW   'E'
+0364   2???           00073         CALL    EnviaCarLCD  
+0365   304E           00074         MOVLW   'N'
+0366   2???           00075         CALL    EnviaCarLCD  
+0367   3055           00076         MOVLW   'U'
+0368   2???           00077         CALL    EnviaCarLCD  
+0369   303A           00078         MOVLW   ':'
+036A   2???           00079         CALL    EnviaCarLCD  
+036B   3020           00080         MOVLW   ' '
+036C   2???           00081         CALL    EnviaCarLCD  
+036D   3050           00082         MOVLW   'P'
+036E   2???           00083         CALL    EnviaCarLCD  
+036F   3052           00084         MOVLW   'R'
+0370   2???           00085         CALL    EnviaCarLCD  
+0371   3045           00086         MOVLW   'E'
+0372   2???           00087         CALL    EnviaCarLCD  
+0373   3053           00088         MOVLW   'S'
+0374   2???           00089         CALL    EnviaCarLCD  
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0375   3053           00090         MOVLW   'S'
+0376   2???           00091         CALL    EnviaCarLCD  
+0377   3049           00092         MOVLW   'I'
+0378   2???           00093         CALL    EnviaCarLCD  
+0379   304F           00094         MOVLW   'O'
+037A   2???           00095         CALL    EnviaCarLCD  
+037B   304E           00096         MOVLW   'N'
+037C   2???           00097         CALL    EnviaCarLCD  
+037D   3045           00098         MOVLW   'E'
+037E   2???           00099         CALL    EnviaCarLCD  
                       00100         
-028D   30C0           00101         MOVLW   LCD_Linha_2     ;2 linha
-028E   2???           00102         CALL    EnviaCmdLCD
-028F   3031           00103         MOVLW   '1'
-0290   2???           00104         CALL    EnviaCarLCD  
-0291   302D           00105         MOVLW   '-'
-0292   2???           00106         CALL    EnviaCarLCD  
-0293   3041           00107         MOVLW   'A'
-0294   2???           00108         CALL    EnviaCarLCD  
-0295   3042           00109         MOVLW   'B'
-0296   2???           00110         CALL    EnviaCarLCD  
-0297   3052           00111         MOVLW   'R'
-0298   2???           00112         CALL    EnviaCarLCD  
-0299   3049           00113         MOVLW   'I'
-029A   2???           00114         CALL    EnviaCarLCD  
-029B   3052           00115         MOVLW   'R'
-029C   2???           00116         CALL    EnviaCarLCD  
-029D   302C           00117         MOVLW   ','
-029E   2???           00118         CALL    EnviaCarLCD  
-029F   3032           00119         MOVLW   '2'
-02A0   2???           00120         CALL    EnviaCarLCD  
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 18
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-02A1   302D           00121         MOVLW   '-'
-02A2   2???           00122         CALL    EnviaCarLCD  
-02A3   304F           00123         MOVLW   'O'
-02A4   2???           00124         CALL    EnviaCarLCD  
-02A5   3050           00125         MOVLW   'P'
-02A6   2???           00126         CALL    EnviaCarLCD  
-02A7   3043           00127         MOVLW   'C'
-02A8   2???           00128         CALL    EnviaCarLCD  
-02A9   304F           00129         MOVLW   'O'
-02AA   2???           00130         CALL    EnviaCarLCD  
-02AB   3045           00131         MOVLW   'E'
-02AC   2???           00132         CALL    EnviaCarLCD  
-02AD   3053           00133         MOVLW   'S'
-02AE   2???           00134         CALL    EnviaCarLCD  
-02AF   0008           00135         RETURN
+037F   30C0           00101         MOVLW   LCD_Linha_2     ;2 linha
+0380   2???           00102         CALL    EnviaCmdLCD
+0381   3031           00103         MOVLW   '1'
+0382   2???           00104         CALL    EnviaCarLCD  
+0383   302D           00105         MOVLW   '-'
+0384   2???           00106         CALL    EnviaCarLCD  
+0385   3041           00107         MOVLW   'A'
+0386   2???           00108         CALL    EnviaCarLCD  
+0387   3042           00109         MOVLW   'B'
+0388   2???           00110         CALL    EnviaCarLCD  
+0389   3052           00111         MOVLW   'R'
+038A   2???           00112         CALL    EnviaCarLCD  
+038B   3049           00113         MOVLW   'I'
+038C   2???           00114         CALL    EnviaCarLCD  
+038D   3052           00115         MOVLW   'R'
+038E   2???           00116         CALL    EnviaCarLCD  
+038F   302C           00117         MOVLW   ','
+0390   2???           00118         CALL    EnviaCarLCD  
+0391   3032           00119         MOVLW   '2'
+0392   2???           00120         CALL    EnviaCarLCD  
+0393   302D           00121         MOVLW   '-'
+0394   2???           00122         CALL    EnviaCarLCD  
+0395   304F           00123         MOVLW   'O'
+0396   2???           00124         CALL    EnviaCarLCD  
+0397   3050           00125         MOVLW   'P'
+0398   2???           00126         CALL    EnviaCarLCD  
+0399   3043           00127         MOVLW   'C'
+039A   2???           00128         CALL    EnviaCarLCD  
+039B   304F           00129         MOVLW   'O'
+039C   2???           00130         CALL    EnviaCarLCD  
+039D   3045           00131         MOVLW   'E'
+039E   2???           00132         CALL    EnviaCarLCD  
+039F   3053           00133         MOVLW   'S'
+03A0   2???           00134         CALL    EnviaCarLCD  
+03A1   0008           00135         RETURN
                       00136 ;++++++++++++++++++++++++++++++++++++++++++++++++++    
-02B0                  00137 envia_msg_entrar_LCD:
-02B0   3001           00138         MOVLW   LCD_CLEAR
-02B1   2???           00139         CALL    EnviaCmdLCD
-02B2   3080           00140         MOVLW   LCD_Linha_1     ;1 linha
-02B3   2???           00141         CALL    EnviaCmdLCD
-02B4   3055           00142         MOVLW   'U'
-02B5   2???           00143         CALL    EnviaCarLCD    
-02B6   3053           00144         MOVLW   'S'
-02B7   2???           00145         CALL    EnviaCarLCD  
-02B8   3055           00146         MOVLW   'U'
-02B9   2???           00147         CALL    EnviaCarLCD  
-02BA   3041           00148         MOVLW   'A'
-02BB   2???           00149         CALL    EnviaCarLCD  
-02BC   3052           00150         MOVLW   'R'
-02BD   2???           00151         CALL    EnviaCarLCD  
-02BE   3049           00152         MOVLW   'I'
-02BF   2???           00153         CALL    EnviaCarLCD  
-02C0   304F           00154         MOVLW   'O'
-02C1   2???           00155         CALL    EnviaCarLCD  
-02C2   303A           00156         MOVLW   ':'
-02C3   2???           00157         CALL    EnviaCarLCD  
-02C4   0008           00158         RETURN
+03A2                  00137 envia_msg_entrar_LCD:
+03A2   3001           00138         MOVLW   LCD_CLEAR
+03A3   2???           00139         CALL    EnviaCmdLCD
+03A4   3080           00140         MOVLW   LCD_Linha_1     ;1 linha
+03A5   2???           00141         CALL    EnviaCmdLCD
+03A6   3055           00142         MOVLW   'U'
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+03A7   2???           00143         CALL    EnviaCarLCD    
+03A8   3053           00144         MOVLW   'S'
+03A9   2???           00145         CALL    EnviaCarLCD  
+03AA   3055           00146         MOVLW   'U'
+03AB   2???           00147         CALL    EnviaCarLCD  
+03AC   3041           00148         MOVLW   'A'
+03AD   2???           00149         CALL    EnviaCarLCD  
+03AE   3052           00150         MOVLW   'R'
+03AF   2???           00151         CALL    EnviaCarLCD  
+03B0   3049           00152         MOVLW   'I'
+03B1   2???           00153         CALL    EnviaCarLCD  
+03B2   304F           00154         MOVLW   'O'
+03B3   2???           00155         CALL    EnviaCarLCD  
+03B4   303A           00156         MOVLW   ':'
+03B5   2???           00157         CALL    EnviaCarLCD  
+03B6   0008           00158         RETURN
                       00159 ;++++++++++++++++++++++++++++++++++++++++++++++++++++
-02C5                  00160 envia_msg_erro_LCD:
-02C5   3001           00161         MOVLW   LCD_CLEAR
-02C6   2???           00162         CALL    EnviaCmdLCD
-02C7   3080           00163         MOVLW   LCD_Linha_1     ;1 linha
-02C8   2???           00164         CALL    EnviaCmdLCD
-02C9   3055           00165         MOVLW   'U'
-02CA   2???           00166         CALL    EnviaCarLCD    
-02CB   3053           00167         MOVLW   'S'
-02CC   2???           00168         CALL    EnviaCarLCD  
-02CD   3055           00169         MOVLW   'U'
-02CE   2???           00170         CALL    EnviaCarLCD  
-02CF   3041           00171         MOVLW   'A'
-02D0   2???           00172         CALL    EnviaCarLCD  
-02D1   3052           00173         MOVLW   'R'
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 19
+03B7                  00160 envia_msg_erro_LCD:
+03B7   3001           00161         MOVLW   LCD_CLEAR
+03B8   2???           00162         CALL    EnviaCmdLCD
+03B9   3080           00163         MOVLW   LCD_Linha_1     ;1 linha
+03BA   2???           00164         CALL    EnviaCmdLCD
+03BB   3055           00165         MOVLW   'U'
+03BC   2???           00166         CALL    EnviaCarLCD    
+03BD   3053           00167         MOVLW   'S'
+03BE   2???           00168         CALL    EnviaCarLCD  
+03BF   3055           00169         MOVLW   'U'
+03C0   2???           00170         CALL    EnviaCarLCD  
+03C1   3041           00171         MOVLW   'A'
+03C2   2???           00172         CALL    EnviaCarLCD  
+03C3   3052           00173         MOVLW   'R'
+03C4   2???           00174         CALL    EnviaCarLCD  
+03C5   3049           00175         MOVLW   'I'
+03C6   2???           00176         CALL    EnviaCarLCD  
+03C7   304F           00177         MOVLW   'O'
+03C8   2???           00178         CALL    EnviaCarLCD  
+03C9   3020           00179         MOVLW   ' '
+03CA   2???           00180         CALL    EnviaCarLCD  
+03CB   304E           00181         MOVLW   'N'
+03CC   2???           00182         CALL    EnviaCarLCD  
+03CD   3041           00183         MOVLW   'A'
+03CE   2???           00184         CALL    EnviaCarLCD  
+03CF   304F           00185         MOVLW   'O'
+03D0   2???           00186         CALL    EnviaCarLCD
+03D1   30C0           00187         MOVLW   LCD_Linha_2     ;1 linha
+03D2   2???           00188         CALL    EnviaCmdLCD
+03D3   3045           00189         MOVLW   'E'
+03D4   2???           00190         CALL    EnviaCarLCD
+03D5   304E           00191         MOVLW   'N'
+03D6   2???           00192         CALL    EnviaCarLCD
+03D7   3043           00193         MOVLW   'C'
+03D8   2???           00194         CALL    EnviaCarLCD
+03D9   304F           00195         MOVLW   'O'
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-02D2   2???           00174         CALL    EnviaCarLCD  
-02D3   3049           00175         MOVLW   'I'
-02D4   2???           00176         CALL    EnviaCarLCD  
-02D5   304F           00177         MOVLW   'O'
-02D6   2???           00178         CALL    EnviaCarLCD  
-02D7   3020           00179         MOVLW   ' '
-02D8   2???           00180         CALL    EnviaCarLCD  
-02D9   304E           00181         MOVLW   'N'
-02DA   2???           00182         CALL    EnviaCarLCD  
-02DB   3041           00183         MOVLW   'A'
-02DC   2???           00184         CALL    EnviaCarLCD  
-02DD   304F           00185         MOVLW   'O'
-02DE   2???           00186         CALL    EnviaCarLCD
-02DF   30C0           00187         MOVLW   LCD_Linha_2     ;1 linha
-02E0   2???           00188         CALL    EnviaCmdLCD
-02E1   3045           00189         MOVLW   'E'
-02E2   2???           00190         CALL    EnviaCarLCD
-02E3   304E           00191         MOVLW   'N'
-02E4   2???           00192         CALL    EnviaCarLCD
-02E5   3043           00193         MOVLW   'C'
-02E6   2???           00194         CALL    EnviaCarLCD
-02E7   304F           00195         MOVLW   'O'
-02E8   2???           00196         CALL    EnviaCarLCD
-02E9   304E           00197         MOVLW   'N'
-02EA   2???           00198         CALL    EnviaCarLCD
-02EB   3054           00199         MOVLW   'T'
-02EC   2???           00200         CALL    EnviaCarLCD
-02ED   3052           00201         MOVLW   'R'
-02EE   2???           00202         CALL    EnviaCarLCD
-02EF   3041           00203         MOVLW   'A'
-02F0   2???           00204         CALL    EnviaCarLCD
-02F1   3044           00205         MOVLW   'D'
-02F2   2???           00206         CALL    EnviaCarLCD
-02F3   304F           00207         MOVLW   'O'
-02F4   2???           00208         CALL    EnviaCarLCD
-02F5   1485           00209         bsf     PORTA,1
-02F6   2???           00210         call    delay_1s
-02F7   1085           00211         bcf     PORTA,1
-02F8   0008           00212         RETURN
+03DA   2???           00196         CALL    EnviaCarLCD
+03DB   304E           00197         MOVLW   'N'
+03DC   2???           00198         CALL    EnviaCarLCD
+03DD   3054           00199         MOVLW   'T'
+03DE   2???           00200         CALL    EnviaCarLCD
+03DF   3052           00201         MOVLW   'R'
+03E0   2???           00202         CALL    EnviaCarLCD
+03E1   3041           00203         MOVLW   'A'
+03E2   2???           00204         CALL    EnviaCarLCD
+03E3   3044           00205         MOVLW   'D'
+03E4   2???           00206         CALL    EnviaCarLCD
+03E5   304F           00207         MOVLW   'O'
+03E6   2???           00208         CALL    EnviaCarLCD
+03E7   1485           00209         bsf     PORTA,1
+03E8   2???           00210         call    delay_1s
+03E9   1085           00211         bcf     PORTA,1
+03EA   0008           00212         RETURN
                       00213 ;+++++++++++++++++++++++++++++++++++++++++++++++++
-02F9                  00214 envia_msg_senha_LCD:
-02F9   3001           00215         MOVLW   LCD_CLEAR
-02FA   2???           00216         CALL    EnviaCmdLCD
-02FB   3080           00217         MOVLW   LCD_Linha_1     ;1 linha
-02FC   2???           00218         CALL    EnviaCmdLCD
-02FD   3053           00219         MOVLW   'S'
-02FE   2???           00220         CALL    EnviaCarLCD    
-02FF   3045           00221         MOVLW   'E'
-0300   2???           00222         CALL    EnviaCarLCD  
-0301   304E           00223         MOVLW   'N'
-0302   2???           00224         CALL    EnviaCarLCD  
-0303   3048           00225         MOVLW   'H'
-0304   2???           00226         CALL    EnviaCarLCD  
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 20
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-0305   3041           00227         MOVLW   'A'  
-0306   2???           00228         CALL    EnviaCarLCD  
-0307   303A           00229         MOVLW   ':'
-0308   2???           00230         CALL    EnviaCarLCD  
-0309   0008           00231         RETURN
+03EB                  00214 envia_msg_senha_LCD:
+03EB   3001           00215         MOVLW   LCD_CLEAR
+03EC   2???           00216         CALL    EnviaCmdLCD
+03ED   3080           00217         MOVLW   LCD_Linha_1     ;1 linha
+03EE   2???           00218         CALL    EnviaCmdLCD
+03EF   3053           00219         MOVLW   'S'
+03F0   2???           00220         CALL    EnviaCarLCD    
+03F1   3045           00221         MOVLW   'E'
+03F2   2???           00222         CALL    EnviaCarLCD  
+03F3   304E           00223         MOVLW   'N'
+03F4   2???           00224         CALL    EnviaCarLCD  
+03F5   3048           00225         MOVLW   'H'
+03F6   2???           00226         CALL    EnviaCarLCD  
+03F7   3041           00227         MOVLW   'A'  
+03F8   2???           00228         CALL    EnviaCarLCD  
+03F9   303A           00229         MOVLW   ':'
+03FA   2???           00230         CALL    EnviaCarLCD  
+03FB   0008           00231         RETURN
                       00232 ;++++++++++++++++++++++++++++++++++++++++++++++++++=
-030A                  00233 envia_msg_senha_erro_LCD:
-030A   3001           00234         MOVLW   LCD_CLEAR
-030B   2???           00235         CALL    EnviaCmdLCD
-030C   3080           00236         MOVLW   LCD_Linha_1     ;1 linha
-030D   2???           00237         CALL    EnviaCmdLCD
-030E   3053           00238         MOVLW   'S'
-030F   2???           00239         CALL    EnviaCarLCD    
-0310   3045           00240         MOVLW   'E'
-0311   2???           00241         CALL    EnviaCarLCD  
-0312   304E           00242         MOVLW   'N'
-0313   2???           00243         CALL    EnviaCarLCD  
-0314   3048           00244         MOVLW   'H'
-0315   2???           00245         CALL    EnviaCarLCD  
-0316   3041           00246         MOVLW   'A'
-0317   2???           00247         CALL    EnviaCarLCD  
-0318   30C0           00248         MOVLW   LCD_Linha_2     ;1 linha
-0319   2???           00249         CALL    EnviaCmdLCD
-031A   3049           00250         MOVLW   'I'
-031B   2???           00251         CALL    EnviaCarLCD
-031C   304E           00252         MOVLW   'N'
-031D   2???           00253         CALL    EnviaCarLCD
-031E   3043           00254         MOVLW   'C'
-031F   2???           00255         CALL    EnviaCarLCD
-0320   304F           00256         MOVLW   'O'
-0321   2???           00257         CALL    EnviaCarLCD
-0322   3052           00258         MOVLW   'R'
-0323   2???           00259         CALL    EnviaCarLCD
-0324   3052           00260         MOVLW   'R'
-0325   2???           00261         CALL    EnviaCarLCD
-0326   3045           00262         MOVLW   'E'
-0327   2???           00263         CALL    EnviaCarLCD
-0328   3054           00264         MOVLW   'T'
-0329   2???           00265         CALL    EnviaCarLCD
-032A   3041           00266         MOVLW   'A'
-032B   2???           00267         CALL    EnviaCarLCD
-032C   1485           00268         bsf     PORTA,1
-032D   2???           00269         call    delay_1s
-032E   1085           00270         bcf     PORTA,1
-032F   0008           00271         RETURN
+03FC                  00233 envia_msg_senha_erro_LCD:
+03FC   3001           00234         MOVLW   LCD_CLEAR
+03FD   2???           00235         CALL    EnviaCmdLCD
+03FE   3080           00236         MOVLW   LCD_Linha_1     ;1 linha
+03FF   2???           00237         CALL    EnviaCmdLCD
+0400   3053           00238         MOVLW   'S'
+0401   2???           00239         CALL    EnviaCarLCD    
+0402   3045           00240         MOVLW   'E'
+0403   2???           00241         CALL    EnviaCarLCD  
+0404   304E           00242         MOVLW   'N'
+0405   2???           00243         CALL    EnviaCarLCD  
+0406   3048           00244         MOVLW   'H'
+0407   2???           00245         CALL    EnviaCarLCD  
+0408   3041           00246         MOVLW   'A'
+0409   2???           00247         CALL    EnviaCarLCD  
+040A   30C0           00248         MOVLW   LCD_Linha_2     ;1 linha
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+040B   2???           00249         CALL    EnviaCmdLCD
+040C   3049           00250         MOVLW   'I'
+040D   2???           00251         CALL    EnviaCarLCD
+040E   304E           00252         MOVLW   'N'
+040F   2???           00253         CALL    EnviaCarLCD
+0410   3043           00254         MOVLW   'C'
+0411   2???           00255         CALL    EnviaCarLCD
+0412   304F           00256         MOVLW   'O'
+0413   2???           00257         CALL    EnviaCarLCD
+0414   3052           00258         MOVLW   'R'
+0415   2???           00259         CALL    EnviaCarLCD
+0416   3052           00260         MOVLW   'R'
+0417   2???           00261         CALL    EnviaCarLCD
+0418   3045           00262         MOVLW   'E'
+0419   2???           00263         CALL    EnviaCarLCD
+041A   3054           00264         MOVLW   'T'
+041B   2???           00265         CALL    EnviaCarLCD
+041C   3041           00266         MOVLW   'A'
+041D   2???           00267         CALL    EnviaCarLCD
+041E   1485           00268         bsf     PORTA,1
+041F   2???           00269         call    delay_1s
+0420   1085           00270         bcf     PORTA,1
+0421   0008           00271         RETURN
                       00272 ;++++++++++++++++++++++++++++++++++++++++++++++++++=
-0330                  00273 envia_msg_abrir_LCD:
-0330   3001           00274         MOVLW   LCD_CLEAR
-0331   2???           00275         CALL    EnviaCmdLCD
-0332   3080           00276         MOVLW   LCD_Linha_1     ;1 linha
-0333   2???           00277         CALL    EnviaCmdLCD
-0334   3046           00278         MOVLW   'F'
-0335   2???           00279         CALL    EnviaCarLCD    
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 21
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-0336   3045           00280         MOVLW   'E'
-0337   2???           00281         CALL    EnviaCarLCD  
-0338   3043           00282         MOVLW   'C'
-0339   2???           00283         CALL    EnviaCarLCD  
-033A   3048           00284         MOVLW   'H'
-033B   2???           00285         CALL    EnviaCarLCD  
-033C   3041           00286         MOVLW   'A'
-033D   2???           00287         CALL    EnviaCarLCD  
-033E   3044           00288         MOVLW   'D'
-033F   2???           00289         CALL    EnviaCarLCD  
-0340   3055           00290         MOVLW   'U'
-0341   2???           00291         CALL    EnviaCarLCD  
-0342   3052           00292         MOVLW   'R'
-0343   2???           00293         CALL    EnviaCarLCD  
-0344   3041           00294         MOVLW   'A'
-0345   2???           00295         CALL    EnviaCarLCD  
+0422                  00273 envia_msg_abrir_LCD:
+0422   3001           00274         MOVLW   LCD_CLEAR
+0423   2???           00275         CALL    EnviaCmdLCD
+0424   3080           00276         MOVLW   LCD_Linha_1     ;1 linha
+0425   2???           00277         CALL    EnviaCmdLCD
+0426   3046           00278         MOVLW   'F'
+0427   2???           00279         CALL    EnviaCarLCD    
+0428   3045           00280         MOVLW   'E'
+0429   2???           00281         CALL    EnviaCarLCD  
+042A   3043           00282         MOVLW   'C'
+042B   2???           00283         CALL    EnviaCarLCD  
+042C   3048           00284         MOVLW   'H'
+042D   2???           00285         CALL    EnviaCarLCD  
+042E   3041           00286         MOVLW   'A'
+042F   2???           00287         CALL    EnviaCarLCD  
+0430   3044           00288         MOVLW   'D'
+0431   2???           00289         CALL    EnviaCarLCD  
+0432   3055           00290         MOVLW   'U'
+0433   2???           00291         CALL    EnviaCarLCD  
+0434   3052           00292         MOVLW   'R'
+0435   2???           00293         CALL    EnviaCarLCD  
+0436   3041           00294         MOVLW   'A'
+0437   2???           00295         CALL    EnviaCarLCD  
                       00296         
-0346   30C0           00297         MOVLW   LCD_Linha_2     ;1 linha
-0347   2???           00298         CALL    EnviaCmdLCD
-0348   3041           00299         MOVLW   'A'
-0349   2???           00300         CALL    EnviaCarLCD
-034A   3042           00301         MOVLW   'B'
-034B   2???           00302         CALL    EnviaCarLCD
-034C   3045           00303         MOVLW   'E'
-034D   2???           00304         CALL    EnviaCarLCD
-034E   3052           00305         MOVLW   'R'
-034F   2???           00306         CALL    EnviaCarLCD
-0350   3054           00307         MOVLW   'T'
-0351   2???           00308         CALL    EnviaCarLCD
-0352   3041           00309         MOVLW   'A'
-0353   2???           00310         CALL    EnviaCarLCD
-0354   2???           00311         CALL    delay_1s
-0355   0008           00312         RETURN
+0438   30C0           00297         MOVLW   LCD_Linha_2     ;1 linha
+0439   2???           00298         CALL    EnviaCmdLCD
+043A   3041           00299         MOVLW   'A'
+043B   2???           00300         CALL    EnviaCarLCD
+043C   3042           00301         MOVLW   'B'
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+043D   2???           00302         CALL    EnviaCarLCD
+043E   3045           00303         MOVLW   'E'
+043F   2???           00304         CALL    EnviaCarLCD
+0440   3052           00305         MOVLW   'R'
+0441   2???           00306         CALL    EnviaCarLCD
+0442   3054           00307         MOVLW   'T'
+0443   2???           00308         CALL    EnviaCarLCD
+0444   3041           00309         MOVLW   'A'
+0445   2???           00310         CALL    EnviaCarLCD
+0446   2???           00311         CALL    delay_1s
+0447   0008           00312         RETURN
                       00313 ;++++++++++++++++++++++++++++++++++++++++++++++++++
-0356                  00314 Envia_cmd_fechar_LCD:
-0356   3001           00315         MOVLW   LCD_CLEAR
-0357   2???           00316         CALL    EnviaCmdLCD
-0358   3080           00317         MOVLW   LCD_Linha_1     ;1 linha
-0359   2???           00318         CALL    EnviaCmdLCD
-035A   3031           00319         MOVLW   '1'
-035B   2???           00320         CALL    EnviaCarLCD    
-035C   3020           00321         MOVLW   ' '
-035D   2???           00322         CALL    EnviaCarLCD  
-035E   3050           00323         MOVLW   'P'
-035F   2???           00324         CALL    EnviaCarLCD  
-0360   3041           00325         MOVLW   'A'
-0361   2???           00326         CALL    EnviaCarLCD  
-0362   3052           00327         MOVLW   'R'
-0363   2???           00328         CALL    EnviaCarLCD  
-0364   3041           00329         MOVLW   'A'
-0365   2???           00330         CALL    EnviaCarLCD  
+0448                  00314 Envia_cmd_fechar_LCD:
+0448   3001           00315         MOVLW   LCD_CLEAR
+0449   2???           00316         CALL    EnviaCmdLCD
+044A   3080           00317         MOVLW   LCD_Linha_1     ;1 linha
+044B   2???           00318         CALL    EnviaCmdLCD
+044C   3031           00319         MOVLW   '1'
+044D   2???           00320         CALL    EnviaCarLCD    
+044E   3020           00321         MOVLW   ' '
+044F   2???           00322         CALL    EnviaCarLCD  
+0450   3050           00323         MOVLW   'P'
+0451   2???           00324         CALL    EnviaCarLCD  
+0452   3041           00325         MOVLW   'A'
+0453   2???           00326         CALL    EnviaCarLCD  
+0454   3052           00327         MOVLW   'R'
+0455   2???           00328         CALL    EnviaCarLCD  
+0456   3041           00329         MOVLW   'A'
+0457   2???           00330         CALL    EnviaCarLCD  
                       00331         
-0366   30C0           00332         MOVLW   LCD_Linha_2     ;1 linha
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 22
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-0367   2???           00333         CALL    EnviaCmdLCD
-0368   3046           00334         MOVLW   'F'
-0369   2???           00335         CALL    EnviaCarLCD
-036A   3045           00336         MOVLW   'E'
-036B   2???           00337         CALL    EnviaCarLCD
-036C   3043           00338         MOVLW   'C'
-036D   2???           00339         CALL    EnviaCarLCD
-036E   3048           00340         MOVLW   'H'
-036F   2???           00341         CALL    EnviaCarLCD
-0370   3041           00342         MOVLW   'A'
-0371   2???           00343         CALL    EnviaCarLCD
-0372   3052           00344         MOVLW   'R'
-0373   2???           00345         CALL    EnviaCarLCD
-0374   2???           00346         CALL    delay_1s
-0375   0008           00347         RETURN
+0458   30C0           00332         MOVLW   LCD_Linha_2     ;1 linha
+0459   2???           00333         CALL    EnviaCmdLCD
+045A   3046           00334         MOVLW   'F'
+045B   2???           00335         CALL    EnviaCarLCD
+045C   3045           00336         MOVLW   'E'
+045D   2???           00337         CALL    EnviaCarLCD
+045E   3043           00338         MOVLW   'C'
+045F   2???           00339         CALL    EnviaCarLCD
+0460   3048           00340         MOVLW   'H'
+0461   2???           00341         CALL    EnviaCarLCD
+0462   3041           00342         MOVLW   'A'
+0463   2???           00343         CALL    EnviaCarLCD
+0464   3052           00344         MOVLW   'R'
+0465   2???           00345         CALL    EnviaCarLCD
+0466   2???           00346         CALL    delay_1s
+0467   0008           00347         RETURN
                       00348 ;++++++++++++++++++++++++++++++++++++++++++++++++++
-0376                  00349 envia_msg_opcao_LCD:
-0376   3001           00350         MOVLW   LCD_CLEAR
-0377   2???           00351         CALL    EnviaCmdLCD
-0378   3080           00352         MOVLW   LCD_Linha_1     ;1 linha
-0379   2???           00353         CALL    EnviaCmdLCD
-037A   304F           00354         MOVLW   'O'
-037B   2???           00355         CALL    EnviaCarLCD    
-037C   3050           00356         MOVLW   'P'
-037D   2???           00357         CALL    EnviaCarLCD  
-037E   3043           00358         MOVLW   'C'
-037F   2???           00359         CALL    EnviaCarLCD  
-0380   304F           00360         MOVLW   'O'
-0381   2???           00361         CALL    EnviaCarLCD  
-0382   3045           00362         MOVLW   'E'
-0383   2???           00363         CALL    EnviaCarLCD  
-0384   3053           00364         MOVLW   'S'
-0385   2???           00365         CALL    EnviaCarLCD  
-0386   3020           00366         MOVLW   ' '
-0387   2???           00367         CALL    EnviaCarLCD    
-0388   304D           00368         MOVLW   'M'
-0389   2???           00369         CALL    EnviaCarLCD  
-038A   3055           00370         MOVLW   'U'
-038B   2???           00371         CALL    EnviaCarLCD  
-038C   3044           00372         MOVLW   'D'
-038D   2???           00373         CALL    EnviaCarLCD  
-038E   3041           00374         MOVLW   'A'
-038F   2???           00375         CALL    EnviaCarLCD  
-0390   3052           00376         MOVLW   'R'
-0391   2???           00377         CALL    EnviaCarLCD  
-                      00378         
-0392   30C0           00379         MOVLW   LCD_Linha_2     ;2 linha
-0393   2???           00380         CALL    EnviaCmdLCD
-0394   3031           00381         MOVLW   '1'
-0395   2???           00382         CALL    EnviaCarLCD
-0396   302D           00383         MOVLW   '-'
-0397   2???           00384         CALL    EnviaCarLCD
-0398   3055           00385         MOVLW   'U'
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 23
+0468                  00349 envia_msg_opcao_LCD:
+0468   3001           00350         MOVLW   LCD_CLEAR
+0469   2???           00351         CALL    EnviaCmdLCD
+046A   3080           00352         MOVLW   LCD_Linha_1     ;1 linha
+046B   2???           00353         CALL    EnviaCmdLCD
+046C   304F           00354         MOVLW   'O'
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0399   2???           00386         CALL    EnviaCarLCD
-039A   3053           00387         MOVLW   'S'
-039B   2???           00388         CALL    EnviaCarLCD
-039C   3045           00389         MOVLW   'E'
-039D   2???           00390         CALL    EnviaCarLCD
-039E   3052           00391         MOVLW   'R'
-039F   2???           00392         CALL    EnviaCarLCD
-03A0   302C           00393         MOVLW   ','
-03A1   2???           00394         CALL    EnviaCarLCD
-03A2   3032           00395         MOVLW   '2'
-03A3   2???           00396         CALL    EnviaCarLCD
-03A4   302D           00397         MOVLW   '-'
-03A5   2???           00398         CALL    EnviaCarLCD
-03A6   3050           00399         MOVLW   'P'
-03A7   2???           00400         CALL    EnviaCarLCD
-03A8   3041           00401         MOVLW   'A'
-03A9   2???           00402         CALL    EnviaCarLCD
-03AA   3053           00403         MOVLW   'S'
-03AB   2???           00404         CALL    EnviaCarLCD
-03AC   3053           00405         MOVLW   'S'
-03AD   2???           00406         CALL    EnviaCarLCD
-03AE   0008           00407         RETURN
+046D   2???           00355         CALL    EnviaCarLCD    
+046E   3050           00356         MOVLW   'P'
+046F   2???           00357         CALL    EnviaCarLCD  
+0470   3043           00358         MOVLW   'C'
+0471   2???           00359         CALL    EnviaCarLCD  
+0472   304F           00360         MOVLW   'O'
+0473   2???           00361         CALL    EnviaCarLCD  
+0474   3045           00362         MOVLW   'E'
+0475   2???           00363         CALL    EnviaCarLCD  
+0476   3053           00364         MOVLW   'S'
+0477   2???           00365         CALL    EnviaCarLCD  
+0478   3020           00366         MOVLW   ' '
+0479   2???           00367         CALL    EnviaCarLCD    
+047A   304D           00368         MOVLW   'M'
+047B   2???           00369         CALL    EnviaCarLCD  
+047C   3055           00370         MOVLW   'U'
+047D   2???           00371         CALL    EnviaCarLCD  
+047E   3044           00372         MOVLW   'D'
+047F   2???           00373         CALL    EnviaCarLCD  
+0480   3041           00374         MOVLW   'A'
+0481   2???           00375         CALL    EnviaCarLCD  
+0482   3052           00376         MOVLW   'R'
+0483   2???           00377         CALL    EnviaCarLCD  
+                      00378         
+0484   30C0           00379         MOVLW   LCD_Linha_2     ;2 linha
+0485   2???           00380         CALL    EnviaCmdLCD
+0486   3031           00381         MOVLW   '1'
+0487   2???           00382         CALL    EnviaCarLCD
+0488   302D           00383         MOVLW   '-'
+0489   2???           00384         CALL    EnviaCarLCD
+048A   3055           00385         MOVLW   'U'
+048B   2???           00386         CALL    EnviaCarLCD
+048C   3053           00387         MOVLW   'S'
+048D   2???           00388         CALL    EnviaCarLCD
+048E   3045           00389         MOVLW   'E'
+048F   2???           00390         CALL    EnviaCarLCD
+0490   3052           00391         MOVLW   'R'
+0491   2???           00392         CALL    EnviaCarLCD
+0492   302C           00393         MOVLW   ','
+0493   2???           00394         CALL    EnviaCarLCD
+0494   3032           00395         MOVLW   '2'
+0495   2???           00396         CALL    EnviaCarLCD
+0496   302D           00397         MOVLW   '-'
+0497   2???           00398         CALL    EnviaCarLCD
+0498   3050           00399         MOVLW   'P'
+0499   2???           00400         CALL    EnviaCarLCD
+049A   3041           00401         MOVLW   'A'
+049B   2???           00402         CALL    EnviaCarLCD
+049C   3053           00403         MOVLW   'S'
+049D   2???           00404         CALL    EnviaCarLCD
+049E   3053           00405         MOVLW   'S'
+049F   2???           00406         CALL    EnviaCarLCD
+04A0   0008           00407         RETURN
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
                       00408 ;++++++++++++++++++++++++++++++++++++++++++++++++++
-03AF                  00409 Enviar_msg_change_user_LCD:
-03AF   3001           00410         MOVLW   LCD_CLEAR
-03B0   2???           00411         CALL    EnviaCmdLCD
-03B1   3080           00412         MOVLW   LCD_Linha_1     ;1 linha
-03B2   2???           00413         CALL    EnviaCmdLCD
-03B3   3055           00414         MOVLW   'U'
-03B4   2???           00415         CALL    EnviaCarLCD    
-03B5   3053           00416         MOVLW   'S'
-03B6   2???           00417         CALL    EnviaCarLCD  
-03B7   3045           00418         MOVLW   'E'
-03B8   2???           00419         CALL    EnviaCarLCD  
-03B9   3052           00420         MOVLW   'R'
-03BA   2???           00421         CALL    EnviaCarLCD  
-03BB   3020           00422         MOVLW   ' '
-03BC   2???           00423         CALL    EnviaCarLCD  
-03BD   3041           00424         MOVLW   'A'
-03BE   2???           00425         CALL    EnviaCarLCD  
-03BF   3054           00426         MOVLW   'T'
-03C0   2???           00427         CALL    EnviaCarLCD    
-03C1   3055           00428         MOVLW   'U'
-03C2   2???           00429         CALL    EnviaCarLCD  
-03C3   3041           00430         MOVLW   'A'
-03C4   2???           00431         CALL    EnviaCarLCD  
-03C5   304C           00432         MOVLW   'L'
-03C6   2???           00433         CALL    EnviaCarLCD  
-03C7   303A           00434         MOVLW   ':'
-03C8   2???           00435         CALL    EnviaCarLCD  
-03C9   0008           00436         return
+04A1                  00409 Enviar_msg_change_user_LCD:
+04A1   3001           00410         MOVLW   LCD_CLEAR
+04A2   2???           00411         CALL    EnviaCmdLCD
+04A3   3080           00412         MOVLW   LCD_Linha_1     ;1 linha
+04A4   2???           00413         CALL    EnviaCmdLCD
+04A5   3055           00414         MOVLW   'U'
+04A6   2???           00415         CALL    EnviaCarLCD    
+04A7   3053           00416         MOVLW   'S'
+04A8   2???           00417         CALL    EnviaCarLCD  
+04A9   3045           00418         MOVLW   'E'
+04AA   2???           00419         CALL    EnviaCarLCD  
+04AB   3052           00420         MOVLW   'R'
+04AC   2???           00421         CALL    EnviaCarLCD  
+04AD   3020           00422         MOVLW   ' '
+04AE   2???           00423         CALL    EnviaCarLCD  
+04AF   3041           00424         MOVLW   'A'
+04B0   2???           00425         CALL    EnviaCarLCD  
+04B1   3054           00426         MOVLW   'T'
+04B2   2???           00427         CALL    EnviaCarLCD    
+04B3   3055           00428         MOVLW   'U'
+04B4   2???           00429         CALL    EnviaCarLCD  
+04B5   3041           00430         MOVLW   'A'
+04B6   2???           00431         CALL    EnviaCarLCD  
+04B7   304C           00432         MOVLW   'L'
+04B8   2???           00433         CALL    EnviaCarLCD  
+04B9   303A           00434         MOVLW   ':'
+04BA   2???           00435         CALL    EnviaCarLCD  
+04BB   0008           00436         return
                       00437         
                       00438 ;++++++++++++++++++++++++++++++++++++++++++++++++++
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 24
+04BC                  00439 Enviar_msg_change_user2_LCD:
+04BC   3001           00440         MOVLW   LCD_CLEAR
+04BD   2???           00441         CALL    EnviaCmdLCD
+04BE   3080           00442         MOVLW   LCD_Linha_1     ;1 linha
+04BF   2???           00443         CALL    EnviaCmdLCD
+04C0   3033           00444         MOVLW   '3'
+04C1   2???           00445         CALL    EnviaCarLCD    
+04C2   3020           00446         MOVLW   ' '
+04C3   2???           00447         CALL    EnviaCarLCD  
+04C4   3044           00448         MOVLW   'D'
+04C5   2???           00449         CALL    EnviaCarLCD  
+04C6   3049           00450         MOVLW   'I'
+04C7   2???           00451         CALL    EnviaCarLCD  
+04C8   3047           00452         MOVLW   'G'
+04C9   2???           00453         CALL    EnviaCarLCD  
+04CA   302E           00454         MOVLW   '.'
+04CB   2???           00455         CALL    EnviaCarLCD  
+04CC   3020           00456         MOVLW   ' '
+04CD   2???           00457         CALL    EnviaCarLCD    
+04CE   304E           00458         MOVLW   'N'
+04CF   2???           00459         CALL    EnviaCarLCD  
+04D0   3045           00460         MOVLW   'E'
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-03CA                  00439 Enviar_msg_change_user2_LCD:
-03CA   3001           00440         MOVLW   LCD_CLEAR
-03CB   2???           00441         CALL    EnviaCmdLCD
-03CC   3080           00442         MOVLW   LCD_Linha_1     ;1 linha
-03CD   2???           00443         CALL    EnviaCmdLCD
-03CE   3033           00444         MOVLW   '3'
-03CF   2???           00445         CALL    EnviaCarLCD    
-03D0   3020           00446         MOVLW   ' '
-03D1   2???           00447         CALL    EnviaCarLCD  
-03D2   3044           00448         MOVLW   'D'
-03D3   2???           00449         CALL    EnviaCarLCD  
-03D4   3049           00450         MOVLW   'I'
-03D5   2???           00451         CALL    EnviaCarLCD  
-03D6   3047           00452         MOVLW   'G'
-03D7   2???           00453         CALL    EnviaCarLCD  
-03D8   302E           00454         MOVLW   '.'
-03D9   2???           00455         CALL    EnviaCarLCD  
-03DA   3020           00456         MOVLW   ' '
-03DB   2???           00457         CALL    EnviaCarLCD    
-03DC   304E           00458         MOVLW   'N'
-03DD   2???           00459         CALL    EnviaCarLCD  
-03DE   3045           00460         MOVLW   'E'
-03DF   2???           00461         CALL    EnviaCarLCD  
-03E0   3057           00462         MOVLW   'W'
-03E1   2???           00463         CALL    EnviaCarLCD  
-03E2   3020           00464         MOVLW   ' '
-03E3   2???           00465         CALL    EnviaCarLCD  
-03E4   3055           00466         MOVLW   'U'
-03E5   2???           00467         CALL    EnviaCarLCD
-03E6   3053           00468         MOVLW   'S'
-03E7   2???           00469         CALL    EnviaCarLCD
-03E8   3045           00470         MOVLW   'E'
-03E9   2???           00471         CALL    EnviaCarLCD
-03EA   3052           00472         MOVLW   'R'
-03EB   2???           00473         CALL    EnviaCarLCD
-03EC   303A           00474         MOVLW   ':'
-03ED   2???           00475         CALL    EnviaCarLCD
-03EE   0008           00476         return
+04D1   2???           00461         CALL    EnviaCarLCD  
+04D2   3057           00462         MOVLW   'W'
+04D3   2???           00463         CALL    EnviaCarLCD  
+04D4   3020           00464         MOVLW   ' '
+04D5   2???           00465         CALL    EnviaCarLCD  
+04D6   3055           00466         MOVLW   'U'
+04D7   2???           00467         CALL    EnviaCarLCD
+04D8   3053           00468         MOVLW   'S'
+04D9   2???           00469         CALL    EnviaCarLCD
+04DA   3045           00470         MOVLW   'E'
+04DB   2???           00471         CALL    EnviaCarLCD
+04DC   3052           00472         MOVLW   'R'
+04DD   2???           00473         CALL    EnviaCarLCD
+04DE   303A           00474         MOVLW   ':'
+04DF   2???           00475         CALL    EnviaCarLCD
+04E0   0008           00476         return
                       00477         
                       00478         
-03EF                  00479 Exibir_novo_user_LCD:
-03EF   3001           00480         MOVLW   LCD_CLEAR
-03F0   2???           00481         CALL    EnviaCmdLCD
-03F1   3080           00482         MOVLW   LCD_Linha_1     ;1 linha
-03F2   2???           00483         CALL    EnviaCmdLCD
-03F3   304E           00484         MOVLW   'N'
-03F4   2???           00485         CALL    EnviaCarLCD    
-03F5   304F           00486         MOVLW   'O'
-03F6   2???           00487         CALL    EnviaCarLCD  
-03F7   3056           00488         MOVLW   'V'
-03F8   2???           00489         CALL    EnviaCarLCD  
-03F9   304F           00490         MOVLW   'O'
-03FA   2???           00491         CALL    EnviaCarLCD  
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 25
+04E1                  00479 Exibir_novo_user_LCD:
+04E1   3001           00480         MOVLW   LCD_CLEAR
+04E2   2???           00481         CALL    EnviaCmdLCD
+04E3   3080           00482         MOVLW   LCD_Linha_1     ;1 linha
+04E4   2???           00483         CALL    EnviaCmdLCD
+04E5   304E           00484         MOVLW   'N'
+04E6   2???           00485         CALL    EnviaCarLCD    
+04E7   304F           00486         MOVLW   'O'
+04E8   2???           00487         CALL    EnviaCarLCD  
+04E9   3056           00488         MOVLW   'V'
+04EA   2???           00489         CALL    EnviaCarLCD  
+04EB   304F           00490         MOVLW   'O'
+04EC   2???           00491         CALL    EnviaCarLCD  
+04ED   3020           00492         MOVLW   ' '
+04EE   2???           00493         CALL    EnviaCarLCD  
+04EF   3055           00494         MOVLW   'U'
+04F0   2???           00495         CALL    EnviaCarLCD
+04F1   3053           00496         MOVLW   'S'
+04F2   2???           00497         CALL    EnviaCarLCD   
+04F3   3045           00498         MOVLW   'E'
+04F4   2???           00499         CALL    EnviaCarLCD    
+04F5   3052           00500         MOVLW   'R'
+04F6   2???           00501         CALL    EnviaCarLCD  
+04F7   30C0           00502         MOVLW   LCD_Linha_2     ;2 linha
+04F8   2???           00503         CALL    EnviaCmdLCD
+04F9   3052           00504         MOVLW   'R'
+04FA   2???           00505         CALL    EnviaCarLCD  
+04FB   3045           00506         MOVLW   'E'
+04FC   2???           00507         CALL    EnviaCarLCD  
+04FD   3047           00508         MOVLW   'G'
+04FE   2???           00509         CALL    EnviaCarLCD  
+04FF   3049           00510         MOVLW   'I'
+0500   2???           00511         CALL    EnviaCarLCD  
+0501   3053           00512         MOVLW   'S'
+0502   2???           00513         CALL    EnviaCarLCD    
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-03FB   3020           00492         MOVLW   ' '
-03FC   2???           00493         CALL    EnviaCarLCD  
-03FD   3055           00494         MOVLW   'U'
-03FE   2???           00495         CALL    EnviaCarLCD  
-03FF   3045           00496         MOVLW   'E'
-0400   2???           00497         CALL    EnviaCarLCD    
-0401   3052           00498         MOVLW   'R'
-0402   2???           00499         CALL    EnviaCarLCD  
-0403   30C0           00500         MOVLW   LCD_Linha_2     ;2 linha
-0404   2???           00501         CALL    EnviaCmdLCD
-0405   3052           00502         MOVLW   'R'
-0406   2???           00503         CALL    EnviaCarLCD  
-0407   3045           00504         MOVLW   'E'
-0408   2???           00505         CALL    EnviaCarLCD  
-0409   3047           00506         MOVLW   'G'
-040A   2???           00507         CALL    EnviaCarLCD  
-040B   3049           00508         MOVLW   'I'
-040C   2???           00509         CALL    EnviaCarLCD  
-040D   3053           00510         MOVLW   'S'
-040E   2???           00511         CALL    EnviaCarLCD    
-040F   3054           00512         MOVLW   'T'
-0410   2???           00513         CALL    EnviaCarLCD
-0411   3045           00514         MOVLW   'E'
-0412   2???           00515         CALL    EnviaCarLCD
-0413   3052           00516         MOVLW   'R'
-0414   2???           00517         CALL    EnviaCarLCD
-0415   3045           00518         MOVLW   'E'
-0416   2???           00519         CALL    EnviaCarLCD
-0417   3044           00520         MOVLW   'D'
-0418   2???           00521         CALL    EnviaCarLCD
-0419   2???           00522         call    delay_1s
-041A   0008           00523         return
-                      00600         #include        "up_md_atrasos.asm"
+0503   3054           00514         MOVLW   'T'
+0504   2???           00515         CALL    EnviaCarLCD
+0505   3045           00516         MOVLW   'E'
+0506   2???           00517         CALL    EnviaCarLCD
+0507   3052           00518         MOVLW   'R'
+0508   2???           00519         CALL    EnviaCarLCD
+0509   3045           00520         MOVLW   'E'
+050A   2???           00521         CALL    EnviaCarLCD
+050B   3044           00522         MOVLW   'D'
+050C   2???           00523         CALL    EnviaCarLCD
+050D   2???           00524         call    delay_1s
+050E   0008           00525         return
+                      00526         
+050F                  00527 Exibir_old_pass_LCD:
+050F   3001           00528         MOVLW   LCD_CLEAR
+0510   2???           00529         CALL    EnviaCmdLCD
+0511   3080           00530         MOVLW   LCD_Linha_1     ;1 linha
+0512   2???           00531         CALL    EnviaCmdLCD
+0513   3053           00532         MOVLW   'S'
+0514   2???           00533         CALL    EnviaCarLCD    
+0515   3045           00534         MOVLW   'E'
+0516   2???           00535         CALL    EnviaCarLCD  
+0517   304E           00536         MOVLW   'N'
+0518   2???           00537         CALL    EnviaCarLCD  
+0519   3048           00538         MOVLW   'H'
+051A   2???           00539         CALL    EnviaCarLCD  
+051B   3041           00540         MOVLW   'A'
+051C   2???           00541         CALL    EnviaCarLCD  
+051D   3020           00542         MOVLW   ' '
+051E   2???           00543         CALL    EnviaCarLCD
+051F   3041           00544         MOVLW   'A'
+0520   2???           00545         CALL    EnviaCarLCD   
+0521   3054           00546         MOVLW   'T'
+0522   2???           00547         CALL    EnviaCarLCD    
+0523   3055           00548         MOVLW   'U'
+0524   2???           00549         CALL    EnviaCarLCD  
+0525   3041           00550         MOVLW   'A'
+0526   2???           00551         CALL    EnviaCarLCD  
+0527   304C           00552         MOVLW   'L'
+0528   2???           00553         CALL    EnviaCarLCD  
+0529   303A           00554         MOVLW   ':'
+052A   2???           00555         CALL    EnviaCarLCD  
+052B   30C0           00556         MOVLW   LCD_Linha_2     ;2 linha
+052C   2???           00557         CALL    EnviaCmdLCD
+052D   0008           00558         return
+                      00559         
+052E                  00560 Exibir_NEW_pass_LCD:
+052E   3001           00561         MOVLW   LCD_CLEAR
+052F   2???           00562         CALL    EnviaCmdLCD
+0530   3080           00563         MOVLW   LCD_Linha_1     ;1 linha
+0531   2???           00564         CALL    EnviaCmdLCD
+0532   304E           00565         MOVLW   'N'
+0533   2???           00566         CALL    EnviaCarLCD    
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 32
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0534   304F           00567         MOVLW   'O'
+0535   2???           00568         CALL    EnviaCarLCD  
+0536   3056           00569         MOVLW   'V'
+0537   2???           00570         CALL    EnviaCarLCD  
+0538   3041           00571         MOVLW   'A'
+0539   2???           00572         CALL    EnviaCarLCD  
+053A   3020           00573         MOVLW   ' '
+053B   2???           00574         CALL    EnviaCarLCD  
+053C   3053           00575         MOVLW   'S'
+053D   2???           00576         CALL    EnviaCarLCD
+053E   3045           00577         MOVLW   'E'
+053F   2???           00578         CALL    EnviaCarLCD   
+0540   304E           00579         MOVLW   'N'
+0541   2???           00580         CALL    EnviaCarLCD    
+0542   3048           00581         MOVLW   'H'
+0543   2???           00582         CALL    EnviaCarLCD  
+0544   3041           00583         MOVLW   'A'
+0545   2???           00584         CALL    EnviaCarLCD  
+0546   303A           00585         MOVLW   ':'
+0547   2???           00586         CALL    EnviaCarLCD  
+0548   30C0           00587         MOVLW   LCD_Linha_2     ;2 linha
+0549   2???           00588         CALL    EnviaCmdLCD
+054A   0008           00589         return
+                      00590         
+054B                  00591 Exibir_senha_alterada_LCD:
+054B   3001           00592         MOVLW   LCD_CLEAR
+054C   2???           00593         CALL    EnviaCmdLCD
+054D   3080           00594         MOVLW   LCD_Linha_1     ;1 linha
+054E   2???           00595         CALL    EnviaCmdLCD
+054F   3053           00596         MOVLW   'S'
+0550   2???           00597         CALL    EnviaCarLCD    
+0551   3045           00598         MOVLW   'E'
+0552   2???           00599         CALL    EnviaCarLCD  
+0553   304E           00600         MOVLW   'N'
+0554   2???           00601         CALL    EnviaCarLCD  
+0555   3048           00602         MOVLW   'H'
+0556   2???           00603         CALL    EnviaCarLCD  
+0557   3041           00604         MOVLW   'A'
+0558   2???           00605         CALL    EnviaCarLCD  
+0559   3020           00606         MOVLW   ' '
+055A   2???           00607         CALL    EnviaCarLCD
+055B   3041           00608         MOVLW   'A'
+055C   2???           00609         CALL    EnviaCarLCD   
+055D   304C           00610         MOVLW   'L'
+055E   2???           00611         CALL    EnviaCarLCD    
+055F   3054           00612         MOVLW   'T'
+0560   2???           00613         CALL    EnviaCarLCD  
+0561   3045           00614         MOVLW   'E'
+0562   2???           00615         CALL    EnviaCarLCD  
+0563   3052           00616         MOVLW   'R'
+0564   2???           00617         CALL    EnviaCarLCD  
+0565   3041           00618         MOVLW   'A'
+0566   2???           00619         CALL    EnviaCarLCD
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 33
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0567   3044           00620         MOVLW   'D'
+0568   2???           00621         CALL    EnviaCarLCD
+0569   3041           00622         MOVLW   'A'
+056A   2???           00623         CALL    EnviaCarLCD
+056B   303A           00624         MOVLW   ':'
+056C   2???           00625         CALL    EnviaCarLCD
+056D   2???           00626         call    delay_1s
+056E   0008           00627         return
+                      00896         #include        "up_md_atrasos.asm"
                       00001 ;******************************************************************
                       00002 ;* Rotinas para gerar atrasos de tempo,
                       00003 ;* reg. "contador1,2,3" para estabelecer o tempo de atraso
@@ -1466,161 +1914,161 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   00000031            00011                 contador3
                       00012         endc
                       00013 
-041B                  00014 delay_1ms:      
-041B   302F           00015         movlw   D'47'
-041C   00AF           00016         movwf   contador1
-041D   3006           00017         movlw   D'6'
-041E   00B0           00018         movwf   contador2
-041F   0BAF           00019         decfsz  contador1,F     ;
-0420   2???           00020         goto    $-1
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 26
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-0421   0BB0           00021         decfsz  contador2,1
-0422   2???           00022         goto    $-3
-0423   0008           00023         return  
+056F                  00014 delay_1ms:      
+056F   302F           00015         movlw   D'47'
+0570   00AF           00016         movwf   contador1
+0571   3006           00017         movlw   D'6'
+0572   00B0           00018         movwf   contador2
+0573   0BAF           00019         decfsz  contador1,F     ;
+0574   2???           00020         goto    $-1
+0575   0BB0           00021         decfsz  contador2,1
+0576   2???           00022         goto    $-3
+0577   0008           00023         return  
                       00024 
-0424                  00025 delay_2ms:      
-0424   3061           00026         movlw   D'97'
-0425   00AF           00027         movwf   contador1
-0426   300B           00028         movlw   D'11'
-0427   00B0           00029         movwf   contador2
-0428   0BAF           00030         decfsz  contador1,F     ;
-0429   2???           00031         goto    $-1
-042A   0BB0           00032         decfsz  contador2,1
-042B   2???           00033         goto    $-3
-042C   0008           00034         return  
+0578                  00025 delay_2ms:      
+0578   3061           00026         movlw   D'97'
+0579   00AF           00027         movwf   contador1
+057A   300B           00028         movlw   D'11'
+057B   00B0           00029         movwf   contador2
+057C   0BAF           00030         decfsz  contador1,F     ;
+057D   2???           00031         goto    $-1
+057E   0BB0           00032         decfsz  contador2,1
+057F   2???           00033         goto    $-3
+0580   0008           00034         return  
                       00035 
-042D                  00036 delay_3ms:      
-042D   3093           00037         movlw   D'147'
-042E   00AF           00038         movwf   contador1
-042F   3010           00039         movlw   D'16'
-0430   00B0           00040         movwf   contador2
-0431   0BAF           00041         decfsz  contador1,F     ;
-0432   2???           00042         goto    $-1
-0433   0BB0           00043         decfsz  contador2,1
-0434   2???           00044         goto    $-3
-0435   0008           00045         return  
+0581                  00036 delay_3ms:      
+0581   3093           00037         movlw   D'147'
+0582   00AF           00038         movwf   contador1
+0583   3010           00039         movlw   D'16'
+0584   00B0           00040         movwf   contador2
+0585   0BAF           00041         decfsz  contador1,F     ;
+0586   2???           00042         goto    $-1
+0587   0BB0           00043         decfsz  contador2,1
+0588   2???           00044         goto    $-3
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 34
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0589   0008           00045         return  
                       00046 
-0436                  00047 delay_4ms:      
-0436   30C5           00048         movlw   D'197'
-0437   00AF           00049         movwf   contador1
-0438   3015           00050         movlw   D'21'
-0439   00B0           00051         movwf   contador2
-043A   0BAF           00052         decfsz  contador1,F     ;
-043B   2???           00053         goto    $-1
-043C   0BB0           00054         decfsz  contador2,1
-043D   2???           00055         goto    $-3
-043E   0008           00056         return  
+058A                  00047 delay_4ms:      
+058A   30C5           00048         movlw   D'197'
+058B   00AF           00049         movwf   contador1
+058C   3015           00050         movlw   D'21'
+058D   00B0           00051         movwf   contador2
+058E   0BAF           00052         decfsz  contador1,F     ;
+058F   2???           00053         goto    $-1
+0590   0BB0           00054         decfsz  contador2,1
+0591   2???           00055         goto    $-3
+0592   0008           00056         return  
                       00057 
-043F                  00058 delay_5ms:      
-043F   30F7           00059         movlw   D'247'
-0440   00AF           00060         movwf   contador1
-0441   301A           00061         movlw   D'26'
-0442   00B0           00062         movwf   contador2
-0443   0BAF           00063         decfsz  contador1,F     ;
-0444   2???           00064         goto    $-1
-0445   0BB0           00065         decfsz  contador2,1
-0446   2???           00066         goto    $-3
-0447   0008           00067         return  
+0593                  00058 delay_5ms:      
+0593   30F7           00059         movlw   D'247'
+0594   00AF           00060         movwf   contador1
+0595   301A           00061         movlw   D'26'
+0596   00B0           00062         movwf   contador2
+0597   0BAF           00063         decfsz  contador1,F     ;
+0598   2???           00064         goto    $-1
+0599   0BB0           00065         decfsz  contador2,1
+059A   2???           00066         goto    $-3
+059B   0008           00067         return  
                       00068 
-0448                  00069 delay_10ms:
-0448   30F0           00070         movlw   D'240'
-0449   00AF           00071         movwf   contador1
-044A   3034           00072         movlw   D'52'
-044B   00B0           00073         movwf   contador2
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 27
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-044C   0BAF           00074         decfsz  contador1,1
-044D   2???           00075         goto    $-1
-044E   0BB0           00076         decfsz  contador2,1
-044F   2???           00077         goto    $-3
-0450   0008           00078         return  
+059C                  00069 delay_10ms:
+059C   30F0           00070         movlw   D'240'
+059D   00AF           00071         movwf   contador1
+059E   3034           00072         movlw   D'52'
+059F   00B0           00073         movwf   contador2
+05A0   0BAF           00074         decfsz  contador1,1
+05A1   2???           00075         goto    $-1
+05A2   0BB0           00076         decfsz  contador2,1
+05A3   2???           00077         goto    $-3
+05A4   0008           00078         return  
                       00079 
-0451                  00080 delay_20ms:
-0451   30E2           00081         movlw   D'226'
-0452   00AF           00082         movwf   contador1
-0453   3068           00083         movlw   D'104'
-0454   00B0           00084         movwf   contador2
-0455   0BAF           00085         decfsz  contador1,1
-0456   2???           00086         goto    $-1
-0457   0BB0           00087         decfsz  contador2,1
-0458   2???           00088         goto    $-3
-0459   0008           00089         return  
+05A5                  00080 delay_20ms:
+05A5   30E2           00081         movlw   D'226'
+05A6   00AF           00082         movwf   contador1
+05A7   3068           00083         movlw   D'104'
+05A8   00B0           00084         movwf   contador2
+05A9   0BAF           00085         decfsz  contador1,1
+05AA   2???           00086         goto    $-1
+05AB   0BB0           00087         decfsz  contador2,1
+05AC   2???           00088         goto    $-3
+05AD   0008           00089         return  
                       00090 
-045A                  00091 delay_50ms:
-045A   30B9           00092         movlw   D'185'
-045B   00AF           00093         movwf   contador1
-045C   3004           00094         movlw   D'4'
-045D   00B0           00095         movwf   contador2
-045E   3002           00096         movlw   D'2'
-045F   00B1           00097         movwf   contador3
-0460   0BAF           00098         decfsz  contador1,1
-0461   2???           00099         goto    $-1
-0462   0BB0           00100         decfsz  contador2,1
-0463   2???           00101         goto    $-3
-0464   0BB1           00102         decfsz  contador3,1
-0465   2???           00103         goto    $-5
-0466   0008           00104         return
-                      00105 
-0467                  00106 delay_100ms:
-0467   3075           00107         movlw   D'117'
-0468   00AF           00108         movwf   contador1
-0469   3008           00109         movlw   D'8'
-046A   00B0           00110         movwf   contador2
-046B   3003           00111         movlw   D'3'
-046C   00B1           00112         movwf   contador3
-046D   0BAF           00113         decfsz  contador1,1
-046E   2???           00114         goto    $-1
-046F   0BB0           00115         decfsz  contador2,1
-0470   2???           00116         goto    $-3
-0471   0BB1           00117         decfsz  contador3,1
-0472   2???           00118         goto    $-5
-0473   0008           00119         return
-                      00120 
-0474                  00121 delay_500ms:
-0474   305C           00122         movlw   D'92'
-0475   00AF           00123         movwf   contador1
-0476   3026           00124         movlw   D'38'
-0477   00B0           00125         movwf   contador2
-0478   300B           00126         movlw   D'11'
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 28
+05AE                  00091 delay_50ms:
+05AE   30B9           00092         movlw   D'185'
+05AF   00AF           00093         movwf   contador1
+05B0   3004           00094         movlw   D'4'
+05B1   00B0           00095         movwf   contador2
+05B2   3002           00096         movlw   D'2'
+05B3   00B1           00097         movwf   contador3
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0479   00B1           00127         movwf   contador3
-047A   0BAF           00128         decfsz  contador1,F     ;
-047B   2???           00129         goto    $-1
-047C   0BB0           00130         decfsz  contador2,1
-047D   2???           00131         goto    $-3
-047E   0BB1           00132         decfsz  contador3,1
-047F   2???           00133         goto    $-5
-0480   0008           00134         return  
+05B4   0BAF           00098         decfsz  contador1,1
+05B5   2???           00099         goto    $-1
+05B6   0BB0           00100         decfsz  contador2,1
+05B7   2???           00101         goto    $-3
+05B8   0BB1           00102         decfsz  contador3,1
+05B9   2???           00103         goto    $-5
+05BA   0008           00104         return
+                      00105 
+05BB                  00106 delay_100ms:
+05BB   3075           00107         movlw   D'117'
+05BC   00AF           00108         movwf   contador1
+05BD   3008           00109         movlw   D'8'
+05BE   00B0           00110         movwf   contador2
+05BF   3003           00111         movlw   D'3'
+05C0   00B1           00112         movwf   contador3
+05C1   0BAF           00113         decfsz  contador1,1
+05C2   2???           00114         goto    $-1
+05C3   0BB0           00115         decfsz  contador2,1
+05C4   2???           00116         goto    $-3
+05C5   0BB1           00117         decfsz  contador3,1
+05C6   2???           00118         goto    $-5
+05C7   0008           00119         return
+                      00120 
+05C8                  00121 delay_500ms:
+05C8   305C           00122         movlw   D'92'
+05C9   00AF           00123         movwf   contador1
+05CA   3026           00124         movlw   D'38'
+05CB   00B0           00125         movwf   contador2
+05CC   300B           00126         movlw   D'11'
+05CD   00B1           00127         movwf   contador3
+05CE   0BAF           00128         decfsz  contador1,F     ;
+05CF   2???           00129         goto    $-1
+05D0   0BB0           00130         decfsz  contador2,1
+05D1   2???           00131         goto    $-3
+05D2   0BB1           00132         decfsz  contador3,1
+05D3   2???           00133         goto    $-5
+05D4   0008           00134         return  
                       00135 
-0481                  00136 delay_1s:
-0481   30BD           00137         movlw   D'189'
-0482   00AF           00138         movwf   contador1
-0483   304B           00139         movlw   D'75'
-0484   00B0           00140         movwf   contador2
-0485   3015           00141         movlw   D'21'
-0486   00B1           00142         movwf   contador3
-0487   0BAF           00143         decfsz  contador1,1
-0488   2???           00144         goto    $-1
-0489   0BB0           00145         decfsz  contador2,1
-048A   2???           00146         goto    $-3
-048B   0BB1           00147         decfsz  contador3,1
-048C   2???           00148         goto    $-5
-048D   0008           00149         return
-                      00601         #include        "verify_password.asm"
+05D5                  00136 delay_1s:
+05D5   30BD           00137         movlw   D'189'
+05D6   00AF           00138         movwf   contador1
+05D7   304B           00139         movlw   D'75'
+05D8   00B0           00140         movwf   contador2
+05D9   3015           00141         movlw   D'21'
+05DA   00B1           00142         movwf   contador3
+05DB   0BAF           00143         decfsz  contador1,1
+05DC   2???           00144         goto    $-1
+05DD   0BB0           00145         decfsz  contador2,1
+05DE   2???           00146         goto    $-3
+05DF   0BB1           00147         decfsz  contador3,1
+05E0   2???           00148         goto    $-5
+05E1   0008           00149         return
+                      00897         #include        "verify_password.asm"
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 36
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
                       00001         cblock
   00000032            00002                 flag_error
   00000033            00003                 p1,p2,p3,p4,p5
@@ -1630,421 +2078,501 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   00000047            00007                 d1,d2,d3,d4,d5
                       00008         endc
                       00009 
-048E                  00010 Set_password:
-048E   3031           00011         movlw   '1'
-048F   00B3           00012         movwf   p1      ;coloca numero 1 como primeiro digito da senha
-0490   3032           00013         movlw   '2'
-0491   00B4           00014         movwf   p2      ;coloca numero 2 como primeiro digito da senha
-0492   3033           00015         movlw   '3'
-0493   00B5           00016         movwf   p3      ;coloca numero 3 como primeiro digito da senha
-0494   3034           00017         movlw   '4'
-0495   00B6           00018         movwf   p4       ;coloca numero 4 como primeiro digito da senha
-0496   3035           00019         movlw   '5'
-0497   00B7           00020         movwf   p5       ;coloca numero 5 como primeiro digito da senha
+05E2                  00010 Set_password:
+05E2   3031           00011         movlw   '1'
+05E3   00B3           00012         movwf   p1      ;coloca numero 1 como primeiro digito da senha
+05E4   3032           00013         movlw   '2'
+05E5   00B4           00014         movwf   p2      ;coloca numero 2 como primeiro digito da senha
+05E6   3033           00015         movlw   '3'
+05E7   00B5           00016         movwf   p3      ;coloca numero 3 como primeiro digito da senha
+05E8   3034           00017         movlw   '4'
+05E9   00B6           00018         movwf   p4       ;coloca numero 4 como primeiro digito da senha
+05EA   3035           00019         movlw   '5'
+05EB   00B7           00020         movwf   p5       ;coloca numero 5 como primeiro digito da senha
                       00021         
-0498   3031           00022         movlw   '1'
-0499   00B8           00023         movwf   a1      ;coloca numero 1 como primeiro digito da senha
-049A   3031           00024         movlw   '1'
-049B   00B9           00025         movwf   a2      ;coloca numero 2 como primeiro digito da senha
-049C   3032           00026         movlw   '2'
-049D   00BA           00027         movwf   a3      ;coloca numero 3 como primeiro digito da senha
-049E   3034           00028         movlw   '4'
-049F   00BB           00029         movwf   a4       ;coloca numero 4 como primeiro digito da senha
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 29
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-04A0   3036           00030         movlw   '6'
-04A1   00BC           00031         movwf   a5       ;coloca numero 5 como primeiro digito da senha
+05EC   3031           00022         movlw   '1'
+05ED   00B8           00023         movwf   a1      ;coloca numero 1 como primeiro digito da senha
+05EE   3031           00024         movlw   '1'
+05EF   00B9           00025         movwf   a2      ;coloca numero 2 como primeiro digito da senha
+05F0   3032           00026         movlw   '2'
+05F1   00BA           00027         movwf   a3      ;coloca numero 3 como primeiro digito da senha
+05F2   3034           00028         movlw   '4'
+05F3   00BB           00029         movwf   a4       ;coloca numero 4 como primeiro digito da senha
+05F4   3036           00030         movlw   '6'
+05F5   00BC           00031         movwf   a5       ;coloca numero 5 como primeiro digito da senha
                       00032         
-04A2   3032           00033         movlw   '2'
-04A3   00BD           00034         movwf   b1      ;coloca numero 1 como primeiro digito da senha
-04A4   3032           00035         movlw   '2'
-04A5   00BE           00036         movwf   b2      ;coloca numero 2 como primeiro digito da senha
-04A6   3032           00037         movlw   '2'
-04A7   00BF           00038         movwf   b3      ;coloca numero 3 como primeiro digito da senha
-04A8   3032           00039         movlw   '2'
-04A9   00C0           00040         movwf   b4       ;coloca numero 4 como primeiro digito da senha
-04AA   3032           00041         movlw   '2'
-04AB   00C1           00042         movwf   b5       ;coloca numero 5 como primeiro digito da senha
+05F6   3032           00033         movlw   '2'
+05F7   00BD           00034         movwf   b1      ;coloca numero 1 como primeiro digito da senha
+05F8   3032           00035         movlw   '2'
+05F9   00BE           00036         movwf   b2      ;coloca numero 2 como primeiro digito da senha
+05FA   3032           00037         movlw   '2'
+05FB   00BF           00038         movwf   b3      ;coloca numero 3 como primeiro digito da senha
+05FC   3032           00039         movlw   '2'
+05FD   00C0           00040         movwf   b4       ;coloca numero 4 como primeiro digito da senha
+05FE   3032           00041         movlw   '2'
+05FF   00C1           00042         movwf   b5       ;coloca numero 5 como primeiro digito da senha
                       00043         
-04AC   3036           00044         movlw   '6'
-04AD   00C2           00045         movwf   c1      ;coloca numero 1 como primeiro digito da senha
-04AE   3039           00046         movlw   '9'
-04AF   00C3           00047         movwf   c2      ;coloca numero 2 como primeiro digito da senha
-04B0   3031           00048         movlw   '1'
-04B1   00C4           00049         movwf   c3      ;coloca numero 3 como primeiro digito da senha
-04B2   3037           00050         movlw   '7'
-04B3   00C5           00051         movwf   c4       ;coloca numero 4 como primeiro digito da senha
-04B4   3031           00052         movlw   '1'
-04B5   00C6           00053         movwf   c5       ;coloca numero 5 como primeiro digito da senha
+0600   3036           00044         movlw   '6'
+0601   00C2           00045         movwf   c1      ;coloca numero 1 como primeiro digito da senha
+0602   3039           00046         movlw   '9'
+0603   00C3           00047         movwf   c2      ;coloca numero 2 como primeiro digito da senha
+0604   3031           00048         movlw   '1'
+0605   00C4           00049         movwf   c3      ;coloca numero 3 como primeiro digito da senha
+0606   3037           00050         movlw   '7'
+0607   00C5           00051         movwf   c4       ;coloca numero 4 como primeiro digito da senha
+0608   3031           00052         movlw   '1'
+0609   00C6           00053         movwf   c5       ;coloca numero 5 como primeiro digito da senha
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 37
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
                       00054         
-04B6   3035           00055         movlw   '5'
-04B7   00C7           00056         movwf   d1      ;coloca numero 1 como primeiro digito da senha
-04B8   3036           00057         movlw   '6'
-04B9   00C8           00058         movwf   d2      ;coloca numero 2 como primeiro digito da senha
-04BA   3033           00059         movlw   '3'
-04BB   00C9           00060         movwf   d3      ;coloca numero 3 como primeiro digito da senha
-04BC   3039           00061         movlw   '9'
-04BD   00CA           00062         movwf   d4       ;coloca numero 4 como primeiro digito da senha
-04BE   3038           00063         movlw   '8'
-04BF   00CB           00064         movwf   d5       ;coloca numero 5 como primeiro digito da senha
-04C0   0008           00065         return
+060A   3035           00055         movlw   '5'
+060B   00C7           00056         movwf   d1      ;coloca numero 1 como primeiro digito da senha
+060C   3036           00057         movlw   '6'
+060D   00C8           00058         movwf   d2      ;coloca numero 2 como primeiro digito da senha
+060E   3033           00059         movlw   '3'
+060F   00C9           00060         movwf   d3      ;coloca numero 3 como primeiro digito da senha
+0610   3039           00061         movlw   '9'
+0611   00CA           00062         movwf   d4       ;coloca numero 4 como primeiro digito da senha
+0612   3038           00063         movlw   '8'
+0613   00CB           00064         movwf   d5       ;coloca numero 5 como primeiro digito da senha
+0614   0008           00065         return
                       00066 
-04C1                  00067 Verify_password:
-04C1   01B2           00068         clrf    flag_error
-04C2   0820           00069         movfw   dig1
-04C3   0633           00070         xorwf   p1,0
-04C4   1D03           00071         btfss   STATUS,Z
-04C5   14B2           00072         bsf     flag_error,F
-04C6   0821           00073         movfw   dig2
-04C7   0634           00074         xorwf   p2,0
-04C8   1D03           00075         btfss   STATUS,Z
-04C9   14B2           00076         bsf     flag_error,F
-04CA   0822           00077         movfw   dig3
-04CB   0635           00078         xorwf   p3,0
-04CC   1D03           00079         btfss   STATUS,Z
-04CD   14B2           00080         bsf     flag_error,F
-04CE   0823           00081         movfw   dig4
-04CF   0636           00082         xorwf   p4,0
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 30
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-04D0   1D03           00083         btfss   STATUS,Z
-04D1   14B2           00084         bsf     flag_error,F
-04D2   0824           00085         movfw   dig5
-04D3   0637           00086         xorwf   p5,0
-04D4   1D03           00087         btfss   STATUS,Z
-04D5   14B2           00088         bsf     flag_error,F
-04D6   0008           00089         return
+0615                  00067 Verify_password:
+0615   01B2           00068         clrf    flag_error
+0616   0820           00069         movfw   dig1
+0617   0633           00070         xorwf   p1,0
+0618   1D03           00071         btfss   STATUS,Z
+0619   14B2           00072         bsf     flag_error,F
+061A   0821           00073         movfw   dig2
+061B   0634           00074         xorwf   p2,0
+061C   1D03           00075         btfss   STATUS,Z
+061D   14B2           00076         bsf     flag_error,F
+061E   0822           00077         movfw   dig3
+061F   0635           00078         xorwf   p3,0
+0620   1D03           00079         btfss   STATUS,Z
+0621   14B2           00080         bsf     flag_error,F
+0622   0823           00081         movfw   dig4
+0623   0636           00082         xorwf   p4,0
+0624   1D03           00083         btfss   STATUS,Z
+0625   14B2           00084         bsf     flag_error,F
+0626   0824           00085         movfw   dig5
+0627   0637           00086         xorwf   p5,0
+0628   1D03           00087         btfss   STATUS,Z
+0629   14B2           00088         bsf     flag_error,F
+062A   0008           00089         return
                       00090 
-04D7                  00091 Verify_password2:
-04D7   01B2           00092         clrf    flag_error
-04D8   0820           00093         movfw   dig1
-04D9   0638           00094         xorwf   a1,0
-04DA   1D03           00095         btfss   STATUS,Z
-04DB   14B2           00096         bsf     flag_error,F
-04DC   0821           00097         movfw   dig2
-04DD   0639           00098         xorwf   a2,0
-04DE   1D03           00099         btfss   STATUS,Z
-04DF   14B2           00100         bsf     flag_error,F
-04E0   0822           00101         movfw   dig3
-04E1   063A           00102         xorwf   a3,0
-04E2   1D03           00103         btfss   STATUS,Z
-04E3   14B2           00104         bsf     flag_error,F
-04E4   0823           00105         movfw   dig4
-04E5   063B           00106         xorwf   a4,0
-04E6   1D03           00107         btfss   STATUS,Z
-04E7   14B2           00108         bsf     flag_error,F
-04E8   0824           00109         movfw   dig5
-04E9   063C           00110         xorwf   a5,0
-04EA   1D03           00111         btfss   STATUS,Z
-04EB   14B2           00112         bsf     flag_error,F
-04EC   0008           00113         return
-                      00114 
-04ED                  00115 Verify_password3:
-04ED   01B2           00116         clrf    flag_error
-04EE   0820           00117         movfw   dig1
-04EF   063D           00118         xorwf   b1,0
-04F0   1D03           00119         btfss   STATUS,Z
-04F1   14B2           00120         bsf     flag_error,F
-04F2   0821           00121         movfw   dig2
-04F3   063E           00122         xorwf   b2,0
-04F4   1D03           00123         btfss   STATUS,Z
-04F5   14B2           00124         bsf     flag_error,F
-04F6   0822           00125         movfw   dig3
-04F7   063F           00126         xorwf   b3,0
-04F8   1D03           00127         btfss   STATUS,Z
-04F9   14B2           00128         bsf     flag_error,F
-04FA   0823           00129         movfw   dig4
-04FB   0640           00130         xorwf   b4,0
-04FC   1D03           00131         btfss   STATUS,Z
-04FD   14B2           00132         bsf     flag_error,F
-04FE   0824           00133         movfw   dig5
-04FF   0641           00134         xorwf   b5,0
-0500   1D03           00135         btfss   STATUS,Z
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 31
+062B                  00091 Verify_password2:
+062B   01B2           00092         clrf    flag_error
+062C   0820           00093         movfw   dig1
+062D   0638           00094         xorwf   a1,0
+062E   1D03           00095         btfss   STATUS,Z
+062F   14B2           00096         bsf     flag_error,F
+0630   0821           00097         movfw   dig2
+0631   0639           00098         xorwf   a2,0
+0632   1D03           00099         btfss   STATUS,Z
+0633   14B2           00100         bsf     flag_error,F
+0634   0822           00101         movfw   dig3
+0635   063A           00102         xorwf   a3,0
+0636   1D03           00103         btfss   STATUS,Z
+0637   14B2           00104         bsf     flag_error,F
+0638   0823           00105         movfw   dig4
+0639   063B           00106         xorwf   a4,0
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0501   14B2           00136         bsf     flag_error,F
-0502   0008           00137         return
+063A   1D03           00107         btfss   STATUS,Z
+063B   14B2           00108         bsf     flag_error,F
+063C   0824           00109         movfw   dig5
+063D   063C           00110         xorwf   a5,0
+063E   1D03           00111         btfss   STATUS,Z
+063F   14B2           00112         bsf     flag_error,F
+0640   0008           00113         return
+                      00114 
+0641                  00115 Verify_password3:
+0641   01B2           00116         clrf    flag_error
+0642   0820           00117         movfw   dig1
+0643   063D           00118         xorwf   b1,0
+0644   1D03           00119         btfss   STATUS,Z
+0645   14B2           00120         bsf     flag_error,F
+0646   0821           00121         movfw   dig2
+0647   063E           00122         xorwf   b2,0
+0648   1D03           00123         btfss   STATUS,Z
+0649   14B2           00124         bsf     flag_error,F
+064A   0822           00125         movfw   dig3
+064B   063F           00126         xorwf   b3,0
+064C   1D03           00127         btfss   STATUS,Z
+064D   14B2           00128         bsf     flag_error,F
+064E   0823           00129         movfw   dig4
+064F   0640           00130         xorwf   b4,0
+0650   1D03           00131         btfss   STATUS,Z
+0651   14B2           00132         bsf     flag_error,F
+0652   0824           00133         movfw   dig5
+0653   0641           00134         xorwf   b5,0
+0654   1D03           00135         btfss   STATUS,Z
+0655   14B2           00136         bsf     flag_error,F
+0656   0008           00137         return
                       00138 
-0503                  00139 Verify_password4:
-0503   01B2           00140         clrf    flag_error
-0504   0820           00141         movfw   dig1
-0505   0642           00142         xorwf   c1,0
-0506   1D03           00143         btfss   STATUS,Z
-0507   14B2           00144         bsf     flag_error,F
-0508   0821           00145         movfw   dig2
-0509   0643           00146         xorwf   c2,0
-050A   1D03           00147         btfss   STATUS,Z
-050B   14B2           00148         bsf     flag_error,F
-050C   0822           00149         movfw   dig3
-050D   0644           00150         xorwf   c3,0
-050E   1D03           00151         btfss   STATUS,Z
-050F   14B2           00152         bsf     flag_error,F
-0510   0823           00153         movfw   dig4
-0511   0645           00154         xorwf   c4,0
-0512   1D03           00155         btfss   STATUS,Z
-0513   14B2           00156         bsf     flag_error,F
-0514   0824           00157         movfw   dig5
-0515   0646           00158         xorwf   c5,0
-0516   1D03           00159         btfss   STATUS,Z
-0517   14B2           00160         bsf     flag_error,F
-0518   0008           00161         return
+0657                  00139 Verify_password4:
+0657   01B2           00140         clrf    flag_error
+0658   0820           00141         movfw   dig1
+0659   0642           00142         xorwf   c1,0
+065A   1D03           00143         btfss   STATUS,Z
+065B   14B2           00144         bsf     flag_error,F
+065C   0821           00145         movfw   dig2
+065D   0643           00146         xorwf   c2,0
+065E   1D03           00147         btfss   STATUS,Z
+065F   14B2           00148         bsf     flag_error,F
+0660   0822           00149         movfw   dig3
+0661   0644           00150         xorwf   c3,0
+0662   1D03           00151         btfss   STATUS,Z
+0663   14B2           00152         bsf     flag_error,F
+0664   0823           00153         movfw   dig4
+0665   0645           00154         xorwf   c4,0
+0666   1D03           00155         btfss   STATUS,Z
+0667   14B2           00156         bsf     flag_error,F
+0668   0824           00157         movfw   dig5
+0669   0646           00158         xorwf   c5,0
+066A   1D03           00159         btfss   STATUS,Z
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 39
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+066B   14B2           00160         bsf     flag_error,F
+066C   0008           00161         return
                       00162         
-0519                  00163 Verify_password5:
-0519   01B2           00164         clrf    flag_error
-051A   0820           00165         movfw   dig1
-051B   0647           00166         xorwf   d1,0
-051C   1D03           00167         btfss   STATUS,Z
-051D   14B2           00168         bsf     flag_error,F
-051E   0821           00169         movfw   dig2
-051F   0648           00170         xorwf   d2,0
-0520   1D03           00171         btfss   STATUS,Z
-0521   14B2           00172         bsf     flag_error,F
-0522   0822           00173         movfw   dig3
-0523   0649           00174         xorwf   d3,0
-0524   1D03           00175         btfss   STATUS,Z
-0525   14B2           00176         bsf     flag_error,F
-0526   0823           00177         movfw   dig4
-0527   064A           00178         xorwf   d4,0
-0528   1D03           00179         btfss   STATUS,Z
-0529   14B2           00180         bsf     flag_error,F
-052A   0824           00181         movfw   dig5
-052B   064B           00182         xorwf   d5,0
-052C   1D03           00183         btfss   STATUS,Z
-052D   14B2           00184         bsf     flag_error,F
-052E   0008           00185         return
-                      00602         #include        "user.asm"
+066D                  00163 Verify_password5:
+066D   01B2           00164         clrf    flag_error
+066E   0820           00165         movfw   dig1
+066F   0647           00166         xorwf   d1,0
+0670   1D03           00167         btfss   STATUS,Z
+0671   14B2           00168         bsf     flag_error,F
+0672   0821           00169         movfw   dig2
+0673   0648           00170         xorwf   d2,0
+0674   1D03           00171         btfss   STATUS,Z
+0675   14B2           00172         bsf     flag_error,F
+0676   0822           00173         movfw   dig3
+0677   0649           00174         xorwf   d3,0
+0678   1D03           00175         btfss   STATUS,Z
+0679   14B2           00176         bsf     flag_error,F
+067A   0823           00177         movfw   dig4
+067B   064A           00178         xorwf   d4,0
+067C   1D03           00179         btfss   STATUS,Z
+067D   14B2           00180         bsf     flag_error,F
+067E   0824           00181         movfw   dig5
+067F   064B           00182         xorwf   d5,0
+0680   1D03           00183         btfss   STATUS,Z
+0681   14B2           00184         bsf     flag_error,F
+0682   0008           00185         return
+                      00186         
+0683                  00187 New_password:
+                      00188         ;flag testa e envia para um dos labels de senha
+0683   18DC           00189         btfsc   flag_user1,F
+0684   2???           00190         goto    change_pass_U
+0685   18DD           00191         btfsc   flag_user2,F
+0686   2???           00192         goto    change_pass_A
+0687   18DE           00193         btfsc   flag_user3,F
+0688   2???           00194         goto    change_pass_B
+0689   18DF           00195         btfsc   flag_user4,F
+068A   2???           00196         goto    change_pass_C
+068B   18E0           00197         btfsc   flag_user5,F
+068C   2???           00198         goto    change_pass_D
+068D   0008           00199         return
+068E                  00200 change_pass_U:
+068E   0820           00201         movfw   dig1
+068F   00B3           00202         movwf   p1
+0690   0821           00203         movfw   dig2
+0691   00B4           00204         movwf   p2
+0692   0822           00205         movfw   dig3
+0693   00B5           00206         movwf   p3
+0694   0823           00207         movfw   dig4
+0695   00B6           00208         movwf   p4
+0696   0824           00209         movfw   dig5
+0697   00B7           00210         movwf   p5
+0698   0008           00211         return
+0699                  00212 change_pass_A:
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 40
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0699   0820           00213         movfw   dig1
+069A   00B8           00214         movwf   a1
+069B   0821           00215         movfw   dig2
+069C   00B9           00216         movwf   a2
+069D   0822           00217         movfw   dig3
+069E   00BA           00218         movwf   a3
+069F   0823           00219         movfw   dig4
+06A0   00BB           00220         movwf   a4
+06A1   0824           00221         movfw   dig5
+06A2   00BC           00222         movwf   a5
+06A3   0008           00223         return
+06A4                  00224 change_pass_B:
+06A4   0820           00225         movfw   dig1
+06A5   00BD           00226         movwf   b1
+06A6   0821           00227         movfw   dig2
+06A7   00BE           00228         movwf   b2
+06A8   0822           00229         movfw   dig3
+06A9   00BF           00230         movwf   b3
+06AA   0823           00231         movfw   dig4
+06AB   00C0           00232         movwf   b4
+06AC   0824           00233         movfw   dig5
+06AD   00C1           00234         movwf   b5
+06AE   0008           00235         return
+06AF                  00236 change_pass_C:
+06AF   0820           00237         movfw   dig1
+06B0   00C2           00238         movwf   c1
+06B1   0821           00239         movfw   dig2
+06B2   00C3           00240         movwf   c2
+06B3   0822           00241         movfw   dig3
+06B4   00C4           00242         movwf   c3
+06B5   0823           00243         movfw   dig4
+06B6   00C5           00244         movwf   c4
+06B7   0824           00245         movfw   dig5
+06B8   00C6           00246         movwf   c5
+06B9   0008           00247         return
+06BA                  00248 change_pass_D:
+06BA   0820           00249         movfw   dig1
+06BB   00C7           00250         movwf   d1
+06BC   0821           00251         movfw   dig2
+06BD   00C8           00252         movwf   d2
+06BE   0822           00253         movfw   dig3
+06BF   00C9           00254         movwf   d3
+06C0   0823           00255         movfw   dig4
+06C1   00CA           00256         movwf   d4
+06C2   0824           00257         movfw   dig5
+06C3   00CB           00258         movwf   d5
+06C4   0008           00259         return
+                      00898         #include        "user.asm"
                       00001         cblock
   0000004C            00002                 flag_user_err
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 32
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
   0000004D            00003                 U1,U2,U3
   00000050            00004                 A1,A2,A3
   00000053            00005                 B1,B2,B3
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 41
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
   00000056            00006                 C1,C2,C3
   00000059            00007                 D1,D2,D3
   0000005C            00008                 flag_user1,flag_user2,flag_user3,flag_user4,flag_user5
                       00009         endc
                       00010 
-052F                  00011 Iniciar_senhas:
-052F   3031           00012         movlw   '1'
-0530   00CD           00013         movwf   U1
-0531   3032           00014         movlw   '2'
-0532   00CE           00015         movwf   U2
-0533   3033           00016         movlw   '3'
-0534   00CF           00017         movwf   U3
-0535   3036           00018         movlw   '6'
-0536   00D0           00019         movwf   A1
-0537   3036           00020         movlw   '6'
-0538   00D1           00021         movwf   A2
-0539   3036           00022         movlw   '6'
-053A   00D2           00023         movwf   A3
-053B   3031           00024         movlw   '1'
-053C   00D3           00025         movwf   B1
-053D   3031           00026         movlw   '1'
-053E   00D4           00027         movwf   B2
-053F   3031           00028         movlw   '1'
-0540   00D5           00029         movwf   B3
-0541   3031           00030         movlw   '1'
-0542   00D6           00031         movwf   C1
-0543   3035           00032         movlw   '5'
-0544   00D7           00033         movwf   C2
-0545   3037           00034         movlw   '7'
-0546   00D8           00035         movwf   C3
-0547   3031           00036         movlw   '1'
-0548   00D9           00037         movwf   D1
-0549   3032           00038         movlw   '2'
-054A   00DA           00039         movwf   D2
-054B   3034           00040         movlw   '4'
-054C   00DB           00041         movwf   D3
-054D   0008           00042         return
+06C5                  00011 Iniciar_senhas:
+06C5   3031           00012         movlw   '1'
+06C6   00CD           00013         movwf   U1
+06C7   3032           00014         movlw   '2'
+06C8   00CE           00015         movwf   U2
+06C9   3033           00016         movlw   '3'
+06CA   00CF           00017         movwf   U3
+06CB   3036           00018         movlw   '6'
+06CC   00D0           00019         movwf   A1
+06CD   3036           00020         movlw   '6'
+06CE   00D1           00021         movwf   A2
+06CF   3036           00022         movlw   '6'
+06D0   00D2           00023         movwf   A3
+06D1   3031           00024         movlw   '1'
+06D2   00D3           00025         movwf   B1
+06D3   3031           00026         movlw   '1'
+06D4   00D4           00027         movwf   B2
+06D5   3031           00028         movlw   '1'
+06D6   00D5           00029         movwf   B3
+06D7   3031           00030         movlw   '1'
+06D8   00D6           00031         movwf   C1
+06D9   3035           00032         movlw   '5'
+06DA   00D7           00033         movwf   C2
+06DB   3037           00034         movlw   '7'
+06DC   00D8           00035         movwf   C3
+06DD   3031           00036         movlw   '1'
+06DE   00D9           00037         movwf   D1
+06DF   3032           00038         movlw   '2'
+06E0   00DA           00039         movwf   D2
+06E1   3034           00040         movlw   '4'
+06E2   00DB           00041         movwf   D3
+06E3   0008           00042         return
                       00043 
                       00044      
-054E                  00045 Verify_user:    
-054E   01CC           00046         clrf    flag_user_err
-054F   01DC           00047         clrf    flag_user1
-0550   0825           00048         movfw   user1
-0551   064D           00049         xorwf   U1,0
-0552   1D03           00050         btfss   STATUS,Z
-0553   14CC           00051         bsf     flag_user_err,F
-0554   0826           00052         movfw   user2
-0555   064E           00053         xorwf   U2,0
-0556   1D03           00054         btfss   STATUS,Z
-0557   14CC           00055         bsf     flag_user_err,F
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 33
+06E4                  00045 Verify_user:    
+06E4   01CC           00046         clrf    flag_user_err
+06E5   01DC           00047         clrf    flag_user1
+06E6   0825           00048         movfw   user1
+06E7   064D           00049         xorwf   U1,0
+06E8   1D03           00050         btfss   STATUS,Z
+06E9   14CC           00051         bsf     flag_user_err,F
+06EA   0826           00052         movfw   user2
+06EB   064E           00053         xorwf   U2,0
+06EC   1D03           00054         btfss   STATUS,Z
+06ED   14CC           00055         bsf     flag_user_err,F
+06EE   0827           00056         movfw   user3
+06EF   064F           00057         xorwf   U3,0
+06F0   1D03           00058         btfss   STATUS,Z
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0558   0827           00056         movfw   user3
-0559   064F           00057         xorwf   U3,0
-055A   1D03           00058         btfss   STATUS,Z
-055B   14CC           00059         bsf     flag_user_err,F
-055C   1CCC           00060         btfss   flag_user_err,F
-055D   14DC           00061         bsf     flag_user1,F
-055E   18DC           00062         btfsc   flag_user1,F
-055F   0008           00063         return
+06F1   14CC           00059         bsf     flag_user_err,F
+06F2   1CCC           00060         btfss   flag_user_err,F
+06F3   14DC           00061         bsf     flag_user1,F
+06F4   18DC           00062         btfsc   flag_user1,F
+06F5   0008           00063         return
                       00064         
-0560   01CC           00065         clrf    flag_user_err
-0561   01DD           00066         clrf    flag_user2
-0562   0825           00067         movfw   user1
-0563   0650           00068         xorwf   A1,0
-0564   1D03           00069         btfss   STATUS,Z
-0565   14CC           00070         bsf     flag_user_err,F
-0566   0826           00071         movfw   user2
-0567   0651           00072         xorwf   A2,0
-0568   1D03           00073         btfss   STATUS,Z
-0569   14CC           00074         bsf     flag_user_err,F
-056A   0827           00075         movfw   user3
-056B   0652           00076         xorwf   A3,0
-056C   1D03           00077         btfss   STATUS,Z
-056D   14CC           00078         bsf     flag_user_err,F
-056E   1CCC           00079         btfss   flag_user_err,F
-056F   14DD           00080         bsf     flag_user2,F
-0570   18DD           00081         btfsc   flag_user2,F
-0571   0008           00082         return
+06F6   01CC           00065         clrf    flag_user_err
+06F7   01DD           00066         clrf    flag_user2
+06F8   0825           00067         movfw   user1
+06F9   0650           00068         xorwf   A1,0
+06FA   1D03           00069         btfss   STATUS,Z
+06FB   14CC           00070         bsf     flag_user_err,F
+06FC   0826           00071         movfw   user2
+06FD   0651           00072         xorwf   A2,0
+06FE   1D03           00073         btfss   STATUS,Z
+06FF   14CC           00074         bsf     flag_user_err,F
+0700   0827           00075         movfw   user3
+0701   0652           00076         xorwf   A3,0
+0702   1D03           00077         btfss   STATUS,Z
+0703   14CC           00078         bsf     flag_user_err,F
+0704   1CCC           00079         btfss   flag_user_err,F
+0705   14DD           00080         bsf     flag_user2,F
+0706   18DD           00081         btfsc   flag_user2,F
+0707   0008           00082         return
                       00083         
-0572   01CC           00084         clrf    flag_user_err
-0573   01DE           00085         clrf    flag_user3
-0574   0825           00086         movfw   user1
-0575   0653           00087         xorwf   B1,0
-0576   1D03           00088         btfss   STATUS,Z
-0577   14CC           00089         bsf     flag_user_err,F
-0578   0826           00090         movfw   user2
-0579   0654           00091         xorwf   B2,0
-057A   1D03           00092         btfss   STATUS,Z
-057B   14CC           00093         bsf     flag_user_err,F
-057C   0827           00094         movfw   user3
-057D   0655           00095         xorwf   B3,0
-057E   1D03           00096         btfss   STATUS,Z
-057F   14CC           00097         bsf     flag_user_err,F
-0580   1CCC           00098         btfss   flag_user_err,F
-0581   14DE           00099         bsf     flag_user3,F
-0582   18DE           00100         btfsc   flag_user3,F
-0583   0008           00101         return
+0708   01CC           00084         clrf    flag_user_err
+0709   01DE           00085         clrf    flag_user3
+070A   0825           00086         movfw   user1
+070B   0653           00087         xorwf   B1,0
+070C   1D03           00088         btfss   STATUS,Z
+070D   14CC           00089         bsf     flag_user_err,F
+070E   0826           00090         movfw   user2
+070F   0654           00091         xorwf   B2,0
+0710   1D03           00092         btfss   STATUS,Z
+0711   14CC           00093         bsf     flag_user_err,F
+0712   0827           00094         movfw   user3
+0713   0655           00095         xorwf   B3,0
+0714   1D03           00096         btfss   STATUS,Z
+0715   14CC           00097         bsf     flag_user_err,F
+0716   1CCC           00098         btfss   flag_user_err,F
+0717   14DE           00099         bsf     flag_user3,F
+0718   18DE           00100         btfsc   flag_user3,F
+0719   0008           00101         return
                       00102         
-0584   01CC           00103         clrf    flag_user_err
-0585   01DF           00104         clrf    flag_user4
-0586   0825           00105         movfw   user1
-0587   0656           00106         xorwf   C1,0
-0588   1D03           00107         btfss   STATUS,Z
-0589   14CC           00108         bsf     flag_user_err,F
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 34
+071A   01CC           00103         clrf    flag_user_err
+071B   01DF           00104         clrf    flag_user4
+071C   0825           00105         movfw   user1
+071D   0656           00106         xorwf   C1,0
+071E   1D03           00107         btfss   STATUS,Z
+071F   14CC           00108         bsf     flag_user_err,F
+0720   0826           00109         movfw   user2
+0721   0657           00110         xorwf   C2,0
+0722   1D03           00111         btfss   STATUS,Z
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-058A   0826           00109         movfw   user2
-058B   0657           00110         xorwf   C2,0
-058C   1D03           00111         btfss   STATUS,Z
-058D   14CC           00112         bsf     flag_user_err,F
-058E   0827           00113         movfw   user3
-058F   0658           00114         xorwf   C3,0
-0590   1D03           00115         btfss   STATUS,Z
-0591   14CC           00116         bsf     flag_user_err,F
-0592   1CCC           00117         btfss   flag_user_err,F
-0593   14DF           00118         bsf     flag_user4,F
-0594   18DF           00119         btfsc   flag_user4,F
-0595   0008           00120         return
+0723   14CC           00112         bsf     flag_user_err,F
+0724   0827           00113         movfw   user3
+0725   0658           00114         xorwf   C3,0
+0726   1D03           00115         btfss   STATUS,Z
+0727   14CC           00116         bsf     flag_user_err,F
+0728   1CCC           00117         btfss   flag_user_err,F
+0729   14DF           00118         bsf     flag_user4,F
+072A   18DF           00119         btfsc   flag_user4,F
+072B   0008           00120         return
                       00121         
-0596   01CC           00122         clrf    flag_user_err
-0597   01E0           00123         clrf    flag_user5
-0598   0825           00124         movfw   user1
-0599   0659           00125         xorwf   D1,0
-059A   1D03           00126         btfss   STATUS,Z
-059B   14CC           00127         bsf     flag_user_err,F
-059C   0826           00128         movfw   user2
-059D   065A           00129         xorwf   D2,0
-059E   1D03           00130         btfss   STATUS,Z
-059F   14CC           00131         bsf     flag_user_err,F
-05A0   0827           00132         movfw   user3
-05A1   065B           00133         xorwf   D3,0
-05A2   1D03           00134         btfss   STATUS,Z
-05A3   14CC           00135         bsf     flag_user_err,F
-05A4   1CCC           00136         btfss   flag_user_err,F
-05A5   14E0           00137         bsf     flag_user5,F
-05A6   0008           00138         return
+072C   01CC           00122         clrf    flag_user_err
+072D   01E0           00123         clrf    flag_user5
+072E   0825           00124         movfw   user1
+072F   0659           00125         xorwf   D1,0
+0730   1D03           00126         btfss   STATUS,Z
+0731   14CC           00127         bsf     flag_user_err,F
+0732   0826           00128         movfw   user2
+0733   065A           00129         xorwf   D2,0
+0734   1D03           00130         btfss   STATUS,Z
+0735   14CC           00131         bsf     flag_user_err,F
+0736   0827           00132         movfw   user3
+0737   065B           00133         xorwf   D3,0
+0738   1D03           00134         btfss   STATUS,Z
+0739   14CC           00135         bsf     flag_user_err,F
+073A   1CCC           00136         btfss   flag_user_err,F
+073B   14E0           00137         bsf     flag_user5,F
+073C   0008           00138         return
                       00139 
-05A7                  00140 New_user:
+073D                  00140 New_user:
                       00141         ;flag testa e envia para um dos labels de senha
-05A7   18DC           00142         btfsc   flag_user1,F
-05A8   2???           00143         goto    change_U
-05A9   18DD           00144         btfsc   flag_user2,F
-05AA   2???           00145         goto    change_A
-05AB   18DE           00146         btfsc   flag_user3,F
-05AC   2???           00147         goto    change_B
-05AD   18DF           00148         btfsc   flag_user4,F
-05AE   2???           00149         goto    change_C
-05AF   18E0           00150         btfsc   flag_user5,F
-05B0   2???           00151         goto    change_D
-05B1   2???           00152         goto    User_retorno
-05B2                  00153 change_U:
-05B2   0825           00154         movfw   user1
-05B3   00CD           00155         movwf   U1
-05B4   0826           00156         movfw   user2
-05B5   00CE           00157         movwf   U2
-05B6   0827           00158         movfw   user3
-05B7   00CF           00159         movwf   U3
-05B8   0008           00160         return
-05B9                  00161 change_A:
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 35
+073D   18DC           00142         btfsc   flag_user1,F
+073E   2???           00143         goto    change_U
+073F   18DD           00144         btfsc   flag_user2,F
+0740   2???           00145         goto    change_A
+0741   18DE           00146         btfsc   flag_user3,F
+0742   2???           00147         goto    change_B
+0743   18DF           00148         btfsc   flag_user4,F
+0744   2???           00149         goto    change_C
+0745   18E0           00150         btfsc   flag_user5,F
+0746   2???           00151         goto    change_D
+0747   2???           00152         goto    User_retorno
+0748                  00153 change_U:
+0748   0825           00154         movfw   user1
+0749   00CD           00155         movwf   U1
+074A   0826           00156         movfw   user2
+074B   00CE           00157         movwf   U2
+074C   0827           00158         movfw   user3
+074D   00CF           00159         movwf   U3
+074E   0008           00160         return
+074F                  00161 change_A:
+074F   0825           00162         movfw   user1
+0750   00D0           00163         movwf   A1
+0751   0826           00164         movfw   user2
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-05B9   0825           00162         movfw   user1
-05BA   00D0           00163         movwf   A1
-05BB   0826           00164         movfw   user2
-05BC   00D1           00165         movwf   A2
-05BD   0827           00166         movfw   user3
-05BE   00D2           00167         movwf   A3
-05BF   0008           00168         return
-05C0                  00169 change_B:
-05C0   0825           00170         movfw   user1
-05C1   00D3           00171         movwf   B1
-05C2   0826           00172         movfw   user2
-05C3   00D4           00173         movwf   B2
-05C4   0827           00174         movfw   user3
-05C5   00D5           00175         movwf   B3
-05C6   0008           00176         return
-05C7                  00177 change_C:
-05C7   0825           00178         movfw   user1
-05C8   00D6           00179         movwf   C1
-05C9   0826           00180         movfw   user2
-05CA   00D7           00181         movwf   C2
-05CB   0827           00182         movfw   user3
-05CC   00D8           00183         movwf   C3
-05CD   0008           00184         return
-05CE                  00185 change_D:
-05CE   0825           00186         movfw   user1
-05CF   00D9           00187         movwf   D1
-05D0   0826           00188         movfw   user2
-05D1   00DA           00189         movwf   D2
-05D2   0827           00190         movfw   user3
-05D3   00DB           00191         movwf   D3
-05D4   0008           00192         return
+0752   00D1           00165         movwf   A2
+0753   0827           00166         movfw   user3
+0754   00D2           00167         movwf   A3
+0755   0008           00168         return
+0756                  00169 change_B:
+0756   0825           00170         movfw   user1
+0757   00D3           00171         movwf   B1
+0758   0826           00172         movfw   user2
+0759   00D4           00173         movwf   B2
+075A   0827           00174         movfw   user3
+075B   00D5           00175         movwf   B3
+075C   0008           00176         return
+075D                  00177 change_C:
+075D   0825           00178         movfw   user1
+075E   00D6           00179         movwf   C1
+075F   0826           00180         movfw   user2
+0760   00D7           00181         movwf   C2
+0761   0827           00182         movfw   user3
+0762   00D8           00183         movwf   C3
+0763   0008           00184         return
+0764                  00185 change_D:
+0764   0825           00186         movfw   user1
+0765   00D9           00187         movwf   D1
+0766   0826           00188         movfw   user2
+0767   00DA           00189         movwf   D2
+0768   0827           00190         movfw   user3
+0769   00DB           00191         movwf   D3
+076A   0008           00192         return
                       00193         
-                      00603         
-2F02                  00604         end
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 36
+                      00899         
+2F02                  00900         end
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 45
 
 
 SYMBOL TABLE
@@ -2103,7 +2631,7 @@ CCP2M3                            00000003
 CCP2X                             00000005
 CCP2Y                             00000004
 CCPR1                             00000015
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 37
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 46
 
 
 SYMBOL TABLE
@@ -2138,6 +2666,7 @@ CVRCON                            0000009D
 CVREN                             00000007
 CVROE                             00000006
 CVRR                              00000005
+Change_pass_return                000002AB
 Change_user_password              0000016C
 Col1                              PORTB,0
 Col2                              PORTB,1
@@ -2151,7 +2680,7 @@ DATA_ADDRESS                      00000005
 DC                                00000001
 D_A                               00000005
 D_NOT_A                           00000005
-Delay_LCD                         0000022B
+Delay_LCD                         0000031D
 EEADR                             0000010D
 EEADRH                            0000010F
 EECON1                            0000018C
@@ -2161,23 +2690,29 @@ EEDATH                            0000010E
 EEIE                              00000004
 EEIF                              00000004
 EEPGD                             00000007
-EnviaCarLCD                       0000021D
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 38
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 47
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-EnviaCmdLCD                       00000224
-Envia_cmd_fechar_LCD              00000356
-Enviar_msg_change_user2_LCD       000003CA
-Enviar_msg_change_user_LCD        000003AF
+EnviaCarLCD                       0000030F
+EnviaCmdLCD                       00000316
+Envia_cmd_fechar_LCD              00000448
+Enviar_msg_change_user2_LCD       000004BC
+Enviar_msg_change_user_LCD        000004A1
 Enviar_msg_senha                  000000AD
+Enviar_msg_senha_change_Pass      0000024E
 Enviar_new_user                   00000200
 Enviar_senha                      000000F4
+Enviar_senha_pass_change          00000293
 Enviar_user                       0000009D
 Enviar_user2                      0000015C
-Exibir_novo_user_LCD              000003EF
+Enviar_user_change_pass           0000023E
+Exibir_NEW_pass_LCD               0000052E
+Exibir_novo_user_LCD              000004E1
+Exibir_old_pass_LCD               0000050F
+Exibir_senha_alterada_LCD         0000054B
 F                                 00000001
 FERR                              00000002
 FSR                               00000004
@@ -2198,9 +2733,9 @@ INTE                              00000004
 INTEDG                            00000006
 INTF                              00000001
 IRP                               00000007
-Inicia_LCD                        0000020E
+Inicia_LCD                        00000300
 Inicia_teclado                    00000015
-Iniciar_senhas                    0000052F
+Iniciar_senhas                    000006C5
 LCD_CLEAR                         00000001
 LCD_DADO                          PORTD
 LCD_E                             PORTE,1
@@ -2214,19 +2749,27 @@ LCD_RS                            PORTE,0
 Linha1                            PORTC,3
 Linha2                            PORTC,2
 Linha3                            PORTC,1
-Linha4                            PORTC,0
-Loop3                             00000128
-Lop1                              00000073
-Lop2                              000000B0
-Lop4                              00000132
-Lop_user_1                        0000016F
-Loper                             00000028
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 39
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 48
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+Linha4                            PORTC,0
+Loop3                             00000128
+Loop_change_user_pass1            0000024F
+Loop_change_user_pass2            0000025C
+Loop_change_user_pass3            00000269
+Loop_change_user_pass4            00000276
+Loop_change_user_pass5            00000283
+Loop_user_change_pass1            00000214
+Loop_user_change_pass2            00000221
+Loop_user_change_pass3            0000022E
+Lop1                              00000073
+Lop2                              000000B0
+Lop4                              00000132
+Lop_user_1                        0000016F
+Loper                             00000028
 MENSAJE_DIREITA                   0000001C
 MENSAJE_ESQUERDA                  00000018
 Mudar_user                        000001D3
@@ -2244,7 +2787,13 @@ NOT_TO                            00000004
 NOT_TX8                           00000006
 NOT_W                             00000002
 NOT_WRITE                         00000002
-New_user                          000005A7
+New_pass1                         000002B2
+New_pass2                         000002BF
+New_pass3                         000002CC
+New_pass4                         000002D9
+New_pass5                         000002E6
+New_password                      00000683
+New_user                          0000073D
 New_user1                         000001D6
 New_user2                         000001E3
 New_user3                         000001F0
@@ -2259,6 +2808,12 @@ PCFG1                             00000001
 PCFG2                             00000002
 PCFG3                             00000003
 PCL                               00000002
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 49
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 PCLATH                            0000000A
 PCON                              0000008E
 PEIE                              00000006
@@ -2280,17 +2835,17 @@ PSA                               00000003
 PSPIE                             00000007
 PSPIF                             00000007
 PSPMODE                           00000004
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 40
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 Pass_1                            000001C2
 Pass_2                            000001C4
 Pass_3                            000001C6
 Pass_4                            000001C8
 Pass_5                            000001CA
+Pass_change1                      000002A2
+Pass_change2                      000002A4
+Pass_change3                      000002A6
+Pass_change4                      000002A8
+Pass_change5                      000002AA
+Pass_changer_routine              000002B1
 R                                 00000002
 RA0                               00000000
 RA1                               00000001
@@ -2312,6 +2867,12 @@ RC0                               00000000
 RC1                               00000001
 RC2                               00000002
 RC3                               00000003
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 50
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 RC4                               00000004
 RC5                               00000005
 RC6                               00000006
@@ -2339,12 +2900,6 @@ RE2                               00000002
 READ_WRITE                        00000002
 RP0                               00000005
 RP1                               00000006
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 41
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 RSEN                              00000001
 RX9                               00000006
 RX9D                              00000000
@@ -2371,8 +2926,15 @@ SSPM2                             00000002
 SSPM3                             00000003
 SSPOV                             00000006
 SSPSTAT                           00000094
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 51
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 STATUS                            00000003
 SYNC                              00000004
+Send_pass                         000002F6
 Send_user_pass                    000001B3
 Senha1                            00000103
 Senha2                            00000105
@@ -2384,11 +2946,12 @@ Senha_3dig                        000000CA
 Senha_4dig                        000000D7
 Senha_5dig                        000000E4
 Senha_erro                        0000010F
+Senha_erro_pass_changer           000002AE
 Senha_user_2                      0000017C
 Senha_user_3                      00000189
 Senha_user_4                      00000196
 Senha_user_5                      000001A3
-Set_password                      0000048E
+Set_password                      000005E2
 T0CS                              00000005
 T0IE                              00000005
 T0IF                              00000002
@@ -2398,12 +2961,6 @@ T1CKPS1                           00000005
 T1CON                             00000010
 T1INSYNC                          00000002
 T1OSCEN                           00000003
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 42
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 T1SYNC                            00000002
 T2CKPS0                           00000000
 T2CKPS1                           00000001
@@ -2428,6 +2985,12 @@ TMR2ON                            00000002
 TOUTPS0                           00000003
 TOUTPS1                           00000004
 TOUTPS2                           00000005
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 52
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TOUTPS3                           00000006
 TRISA                             00000085
 TRISA0                            00000000
@@ -2457,12 +3020,6 @@ TRISC7                            00000007
 TRISD                             00000088
 TRISD0                            00000000
 TRISD1                            00000001
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 43
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISD2                            00000002
 TRISD3                            00000003
 TRISD4                            00000004
@@ -2487,6 +3044,12 @@ Testa_2                           00000123
 U1                                0000004D
 U2                                0000004E
 U3                                0000004F
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 53
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 UA                                00000001
 User_pass_error                   000001CE
 User_retorno                      000001CB
@@ -2496,12 +3059,13 @@ Usuario_4dig                      0000013F
 Usuario_5dig                      0000014C
 Usuario_change_error              00000164
 Usuario_erro                      000000A5
-Verify_password                   000004C1
-Verify_password2                  000004D7
-Verify_password3                  000004ED
-Verify_password4                  00000503
-Verify_password5                  00000519
-Verify_user                       0000054E
+Usuario_erro_change_pass          00000246
+Verify_password                   00000615
+Verify_password2                  0000062B
+Verify_password3                  00000641
+Verify_password4                  00000657
+Verify_password5                  0000066D
+Verify_user                       000006E4
 W                                 00000000
 WCOL                              00000007
 WR                                00000001
@@ -2516,12 +3080,6 @@ _.org_1_00BF                      000000BF
 _.org_1_00CC                      000000CC
 _.org_1_00D9                      000000D9
 _.org_1_00E6                      000000E6
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 44
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _.org_1_00F3                      000000F3
 _.org_1_0119                      00000119
 _.org_1_012A                      0000012A
@@ -2536,34 +3094,54 @@ _.org_1_01B2                      000001B2
 _.org_1_01E5                      000001E5
 _.org_1_01F2                      000001F2
 _.org_1_01FF                      000001FF
+_.org_1_0211                      00000211
+_.org_1_0223                      00000223
 _.org_1_0230                      00000230
-_.org_1_0232                      00000232
-_.org_1_0420                      00000420
-_.org_1_0422                      00000422
-_.org_1_0429                      00000429
-_.org_1_042B                      0000042B
-_.org_1_0432                      00000432
-_.org_1_0434                      00000434
-_.org_1_043B                      0000043B
-_.org_1_043D                      0000043D
-_.org_1_0444                      00000444
-_.org_1_0446                      00000446
-_.org_1_044D                      0000044D
-_.org_1_044F                      0000044F
-_.org_1_0456                      00000456
-_.org_1_0458                      00000458
-_.org_1_0461                      00000461
-_.org_1_0463                      00000463
-_.org_1_0465                      00000465
-_.org_1_046E                      0000046E
-_.org_1_0470                      00000470
-_.org_1_0472                      00000472
-_.org_1_047B                      0000047B
-_.org_1_047D                      0000047D
-_.org_1_047F                      0000047F
-_.org_1_0488                      00000488
-_.org_1_048A                      0000048A
-_.org_1_048C                      0000048C
+_.org_1_023D                      0000023D
+_.org_1_025E                      0000025E
+_.org_1_026B                      0000026B
+_.org_1_0278                      00000278
+_.org_1_0285                      00000285
+_.org_1_0292                      00000292
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 54
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_.org_1_02C1                      000002C1
+_.org_1_02CE                      000002CE
+_.org_1_02DB                      000002DB
+_.org_1_02E8                      000002E8
+_.org_1_02F5                      000002F5
+_.org_1_0322                      00000322
+_.org_1_0324                      00000324
+_.org_1_0574                      00000574
+_.org_1_0576                      00000576
+_.org_1_057D                      0000057D
+_.org_1_057F                      0000057F
+_.org_1_0586                      00000586
+_.org_1_0588                      00000588
+_.org_1_058F                      0000058F
+_.org_1_0591                      00000591
+_.org_1_0598                      00000598
+_.org_1_059A                      0000059A
+_.org_1_05A1                      000005A1
+_.org_1_05A3                      000005A3
+_.org_1_05AA                      000005AA
+_.org_1_05AC                      000005AC
+_.org_1_05B5                      000005B5
+_.org_1_05B7                      000005B7
+_.org_1_05B9                      000005B9
+_.org_1_05C2                      000005C2
+_.org_1_05C4                      000005C4
+_.org_1_05C6                      000005C6
+_.org_1_05CF                      000005CF
+_.org_1_05D1                      000005D1
+_.org_1_05D3                      000005D3
+_.org_1_05DC                      000005DC
+_.org_1_05DE                      000005DE
+_.org_1_05E0                      000005E0
 _BODEN_OFF                        00003FBF
 _BODEN_ON                         00003FFF
 _BOREN_OFF                        00003FBF
@@ -2575,12 +3153,6 @@ _CP_ALL                           00001FFF
 _CP_OFF                           00003FFF
 _CP_ON                            00001FFF
 _DEBUG_OFF                        00003FFF
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 45
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _DEBUG_ON                         000037FF
 _DEVID1                           00002006
 _FOSC_EXTRC                       00003FFF
@@ -2590,6 +3162,12 @@ _FOSC_XT                          00003FFD
 _HS_OSC                           00003FFE
 _IDLOC0                           00002000
 _IDLOC1                           00002001
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 55
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _IDLOC2                           00002002
 _IDLOC3                           00002003
 _LP_OSC                           00003FFC
@@ -2627,52 +3205,57 @@ c2                                00000043
 c3                                00000044
 c4                                00000045
 c5                                00000046
-change_A                          000005B9
-change_B                          000005C0
-change_C                          000005C7
-change_D                          000005CE
-change_U                          000005B2
+change_A                          0000074F
+change_B                          00000756
+change_C                          0000075D
+change_D                          00000764
+change_U                          00000748
+change_pass_A                     00000699
+change_pass_B                     000006A4
+change_pass_C                     000006AF
+change_pass_D                     000006BA
+change_pass_U                     0000068E
 checa_BCD                         00000048
 codifica                          0000003A
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 46
+conta_kp                          0000002A
+contador1                         0000002F
+contador2                         00000030
+contador3                         00000031
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 56
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-conta_kp                          0000002A
-contador1                         0000002F
-contador2                         00000030
-contador3                         00000031
 d1                                00000047
 d2                                00000048
 d3                                00000049
 d4                                0000004A
 d5                                0000004B
-delay_100ms                       00000467
-delay_10ms                        00000448
-delay_1ms                         0000041B
-delay_1s                          00000481
-delay_20ms                        00000451
-delay_2ms                         00000424
-delay_3ms                         0000042D
-delay_4ms                         00000436
-delay_500ms                       00000474
-delay_50ms                        0000045A
-delay_5ms                         0000043F
+delay_100ms                       000005BB
+delay_10ms                        0000059C
+delay_1ms                         0000056F
+delay_1s                          000005D5
+delay_20ms                        000005A5
+delay_2ms                         00000578
+delay_3ms                         00000581
+delay_4ms                         0000058A
+delay_500ms                       000005C8
+delay_50ms                        000005AE
+delay_5ms                         00000593
 dig1                              00000020
 dig2                              00000021
 dig3                              00000022
 dig4                              00000023
 dig5                              00000024
-envia_msg_LCD                     00000234
-envia_msg_abrir_LCD               00000330
-envia_msg_entrar_LCD              000002B0
-envia_msg_erro_LCD                000002C5
-envia_msg_menu_LCD                0000026D
-envia_msg_opcao_LCD               00000376
-envia_msg_senha_LCD               000002F9
-envia_msg_senha_erro_LCD          0000030A
+envia_msg_LCD                     00000326
+envia_msg_abrir_LCD               00000422
+envia_msg_entrar_LCD              000003A2
+envia_msg_erro_LCD                000003B7
+envia_msg_menu_LCD                0000035F
+envia_msg_opcao_LCD               00000468
+envia_msg_senha_LCD               000003EB
+envia_msg_senha_erro_LCD          000003FC
 flag_error                        00000032
 flag_user1                        0000005C
 flag_user2                        0000005D
@@ -2693,16 +3276,16 @@ retorno                           0000010C
 scan_cols                         0000002D
 setup                             00000052
 tecla                             00000029
-MPASM 5.87                          MAIN.ASM   9-30-2021  11:54:47         PAGE 47
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 teclado                           0000001D
 user1                             00000025
 user2                             00000026
 user3                             00000027
+MPASM 5.87                          MAIN.ASM   10-1-2021  11:14:05         PAGE 57
+
+
+
+
+
 
 Errors   :     0
 Warnings :     0 reported,     0 suppressed

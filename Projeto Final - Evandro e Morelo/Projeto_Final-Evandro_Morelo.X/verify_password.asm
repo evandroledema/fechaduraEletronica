@@ -183,3 +183,77 @@ Verify_password5:
 	btfss	STATUS,Z
 	bsf	flag_error,F
 	return
+	
+New_password:
+	;flag testa e envia para um dos labels de senha
+	btfsc	flag_user1,F
+	goto	change_pass_U
+	btfsc	flag_user2,F
+	goto	change_pass_A
+	btfsc	flag_user3,F
+	goto	change_pass_B
+	btfsc	flag_user4,F
+	goto	change_pass_C
+	btfsc	flag_user5,F
+	goto	change_pass_D
+	return
+change_pass_U:
+	movfw	dig1
+	movwf	p1
+	movfw	dig2
+	movwf	p2
+	movfw	dig3
+	movwf	p3
+	movfw	dig4
+	movwf	p4
+	movfw	dig5
+	movwf	p5
+	return
+change_pass_A:
+	movfw	dig1
+	movwf	a1
+	movfw	dig2
+	movwf	a2
+	movfw	dig3
+	movwf	a3
+	movfw	dig4
+	movwf	a4
+	movfw	dig5
+	movwf	a5
+	return
+change_pass_B:
+	movfw	dig1
+	movwf	b1
+	movfw	dig2
+	movwf	b2
+	movfw	dig3
+	movwf	b3
+	movfw	dig4
+	movwf	b4
+	movfw	dig5
+	movwf	b5
+	return
+change_pass_C:
+	movfw	dig1
+	movwf	c1
+	movfw	dig2
+	movwf	c2
+	movfw	dig3
+	movwf	c3
+	movfw	dig4
+	movwf	c4
+	movfw	dig5
+	movwf	c5
+	return
+change_pass_D:
+	movfw	dig1
+	movwf	d1
+	movfw	dig2
+	movwf	d2
+	movfw	dig3
+	movwf	d3
+	movfw	dig4
+	movwf	d4
+	movfw	dig5
+	movwf	d5
+	return
