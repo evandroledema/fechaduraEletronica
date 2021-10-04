@@ -1,13 +1,16 @@
 	cblock
 		flag_user_err
-		U1,U2,U3
-		A1,A2,A3
-		B1,B2,B3
-		C1,C2,C3
-		D1,D2,D3
+		U1,U2,U3    ;USER 1
+		A1,A2,A3     ;USER 2
+		B1,B2,B3     ;USER 3
+		C1,C2,C3     ;USER 4
+		D1,D2,D3    ;USER 5
 		flag_user1,flag_user2,flag_user3,flag_user4,flag_user5
 	endc
 
+ ;****************************************************************
+ ;	CARREGA USUARIOS PADROES DO SISTEMA
+ ;****************************************************************
 Iniciar_senhas:
 	movlw	'1'
 	movwf	U1
@@ -41,14 +44,16 @@ Iniciar_senhas:
 	movwf	D3
 	return
 
-     
+ ;****************************************************************
+ ;	VERIFICA SE USUARIO EXISTE
+ ;****************************************************************
 Verify_user:	
-	clrf	flag_user_err
-	clrf	flag_user1
-	movfw	user1
+	clrf	flag_user_err	    ;LIMPA FLAG ERRO
+	clrf	flag_user1	    ;LIMPA FLAG USER
+	movfw	user1	    ;COMPARA DIG1 COM USER1
 	xorwf	U1,0
 	btfss	STATUS,Z
-	bsf	flag_user_err,F
+	bsf	flag_user_err,F ;SETA FLAG USER 1 = 1
 	movfw	user2
 	xorwf	U2,0
 	btfss	STATUS,Z
@@ -57,10 +62,10 @@ Verify_user:
 	xorwf	U3,0
 	btfss	STATUS,Z
 	bsf	flag_user_err,F
-	btfss	flag_user_err,F
-	bsf	flag_user1,F
-	btfsc	flag_user1,F
-	return
+	btfss	flag_user_err,F ;SE FLAG USER = 1 SALTA PROXIMA INSTRUCAO
+	bsf	flag_user1,F	    ;SETA FLAG ERRO 1
+	btfsc	flag_user1,F	    ;SE FLAG ERRO = 1 SALTA PROXIMA INSTRUCAO
+	return		    ;RETORNA PARA PROGRAMA PRINCIPAL
 	
 	clrf	flag_user_err
 	clrf	flag_user2
@@ -137,10 +142,13 @@ Verify_user:
 	bsf	flag_user5,F
 	return
 
+ ;****************************************************************
+ ;	MUDA USUARIO DE ACORDO COM DADOS ENTRADO
+ ;****************************************************************
 New_user:
 	;flag testa e envia para um dos labels de senha
-	btfsc	flag_user1,F
-	goto	change_U
+	btfsc	flag_user1,F	;TESTA E SE FLAG = 0 SALTA A PROXIMA INSTRUCAO
+	goto	change_U	;VAI PARA MUDAR USER 1
 	btfsc	flag_user2,F
 	goto	change_A
 	btfsc	flag_user3,F

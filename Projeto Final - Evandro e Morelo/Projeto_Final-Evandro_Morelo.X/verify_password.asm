@@ -1,12 +1,15 @@
 	cblock
 		flag_error
-		p1,p2,p3,p4,p5
-		a1,a2,a3,a4,a5
-		b1,b2,b3,b4,b5
-		c1,c2,c3,c4,c5
-		d1,d2,d3,d4,d5
+		p1,p2,p3,p4,p5	;SENHA 1
+		a1,a2,a3,a4,a5	;SENHA 2
+		b1,b2,b3,b4,b5	;SENHA 3
+		c1,c2,c3,c4,c5	;SENHA 4
+		d1,d2,d3,d4,d5	;SENHA 5
 	endc
 
+;****************************************************************
+ ;	CARREGA SENHAS PADROES DO SISTEMA
+ ;****************************************************************
 Set_password:
 	movlw	'1'
 	movwf	p1	;coloca numero 1 como primeiro digito da senha
@@ -64,12 +67,15 @@ Set_password:
 	movwf	d5	 ;coloca numero 5 como primeiro digito da senha
 	return
 
+ ;********************************************************************
+ ;	VERIFICA SENHAS DE ACORDO COM USUARIO SELECIONADO
+ ;********************************************************************
 Verify_password:
-	clrf	flag_error
-	movfw	dig1
-	xorwf	p1,0
-	btfss	STATUS,Z
-	bsf	flag_error,F
+	clrf	flag_error	    ; LIMPA FLAG ERRO
+	movfw	dig1	    ; MOVE DIGITO 1 DO USUARIO PARA W
+	xorwf	p1,0	    ; XOR COM ENTRE DIG1 E P1
+	btfss	STATUS,Z	    ; SE XOR = 0 (Z = 1, SIGNIFICA DIGITO CORRETO) SALTA PROXIMA INSTRUCAO
+	bsf	flag_error,F	    ; SETA FLAG ERRO = 1
 	movfw	dig2
 	xorwf	p2,0
 	btfss	STATUS,Z
@@ -84,12 +90,12 @@ Verify_password:
 	bsf	flag_error,F
 	movfw	dig5
 	xorwf	p5,0
-	btfss	STATUS,Z
-	bsf	flag_error,F
-	return
+	btfss	STATUS,Z  ; SALTA PARA A VERIFICAÇÃO DA PROXIMA SENHA  
+	bsf	flag_error,F	
+	return		; RETORNA PARA PROGRAMA PRINCIPAL
 
 Verify_password2:
-	clrf	flag_error
+	clrf	flag_error	;LIMPA FLAG ERRO PARA UMA NOVA TENTATIVA
 	movfw	dig1
 	xorwf	a1,0
 	btfss	STATUS,Z
@@ -182,8 +188,11 @@ Verify_password5:
 	xorwf	d5,0
 	btfss	STATUS,Z
 	bsf	flag_error,F
-	return
+	return		; SE TODAS SENHAS NÃO FOREM CORRETOS ENTÃO FLAG ERRO = 1
 	
+ ;****************************************************************
+ ;	MUDA SENHA DE ACORDO COM USUARIO SELECIONADO
+ ;****************************************************************
 New_password:
 	;flag testa e envia para um dos labels de senha
 	btfsc	flag_user1,F
